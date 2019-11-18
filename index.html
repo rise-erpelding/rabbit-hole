@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Get Data from APIs</title>
+    <link rel="shortcut icon" href="#">
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <div class="search-container">
+        <h1>API Getter</h1>
+
+        <form>
+          <label for="search-term">Search for podcasts, topics</label>
+          <input type="text" name="search-term" class="js-search-term" placeholder="Search for podcast names, topics, people..." required>
+          <input type="submit" value="Search">
+        </form>
+
+        <!-- <div class="random-podcast">Get Random Podcast</div> -->
+    </div>
+    <h2>Results: </h2>
+    <div class="all-results">
+        <div class="results-left">
+            <div class="go-back">Back</div>
+            <div class="js-results-container"></div>
+            <div class="podcast-player">
+                <iframe class="podcast-player" src="https://www.listennotes.com/embedded/e/ca029d4f9b4d488fa336e63b88376a3a/" width="100%" style="width: 1px; min-width: 100%;" frameborder="0" scrolling="no"></iframe>
+            </div>
+            <div class="wiki-results">
+                Wikipedia results:
+                <ul class="wiki-list"></ul>
+            </div>
+        </div>
+        <div class="results-right">
+            <iframe id="wikipedia-frame"
+                title="Wikipedia Page"
+                name="wiki_iframe"
+                sandbox
+                src="#"></iframe>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="config.js"></script>
+    <script type="text/javascript" src="main.js"></script>
+</body>
+</html>

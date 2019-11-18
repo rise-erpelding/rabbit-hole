@@ -1,0 +1,83 @@
+* {
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: 'Roboto', sans-serif;
+  }
+  
+  .search-container {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  /* podcast results styles */
+  .podcast-box {
+      background: lightgray;
+      border: 1px solid black;
+      /* height: 300px; */
+      /* overflow: scroll; */
+      width: 300px;
+      padding: 5px 5px 5px 5px;
+  }
+
+  .podcast-image {
+      width: 100px;
+      float: left;
+      padding-right: 5px;
+  }
+
+  .podcast-description {
+      float: clear;
+  }
+
+  .hidden {
+    display: none;
+  }
+
+  .wiki-results {
+    background-color: orange;
+    border: 1px solid black;
+    min-height: 100px;
+    width: 300px;
+    padding: 5px 5px 5px 5px;
+  }
+
+  .random-podcast {
+    background-color: lightgray;
+    border: 1px solid gray;
+    padding: 3px;
+  }
+
+  form {
+    margin-top: 10px;
+  }
+
+  .all-results {
+    display: flex;
+  }
+
+ .results-right {
+   width: 700px;
+   height: 600px;
+   overflow: hidden;
+   position: relative;
+   background-color: green;
+ }
+
+ #wikipedia-frame {
+   position: absolute;
+   top: -85px;
+    /* for articles, offset -85px, for home page, don't?*/
+   left: -162px;
+   /* nav bar on left is 160px */
+   width: 700px;
+   height: 600px;
+   border: none;
+ }
+
+ .go-back {
+   border: 1px solid black;
+   padding: 5px;
+   background-color: gray;
+ }
