@@ -6,6 +6,31 @@ const textEntitiesURL = 'https://api.dandelion.eu/datatxt/nex/v1/';
 const listenNotesKey = config.PODCAST_KEY;
 const dandelionKey = config.TEXT_WIKI_KEY;
 
+// function showOnePodcast() {
+//     $('.js-results-container').on('click', 'div', function(event) {
+//         // event.stopPropagation();
+
+//         //hides everything but clicked div
+//         $('.podcast-box').not(this).hide().removeClass('js-selected');
+//         //hides truncated description and shows full description
+//         $('.podcast-description').addClass('hidden');
+//         $('.full-description').removeClass('hidden');
+
+//         //passes description to getEntities function to search for key phrases
+//         const selectedDescription = $('.js-selected > .full-description').text();
+//         console.log(selectedDescription);
+//         getEntities(selectedDescription);
+
+//         //takes idnum from hidden p above and inserts it into embedded player
+//         const selectedIDNum = $('.js-selected > .idnum').text();
+//         const playerURL = 'https://www.listennotes.com/embedded/e/' + selectedIDNum + '/';
+//         console.log(selectedIDNum);
+//         $('.podcast-player').attr("src",playerURL);
+//         $('.podcast-player').show();
+//     console.log('`showOnePodcast` ran');
+
+// }
+
 function backButton() {
     $('.results-left').on('click', '.go-back', function(event) {
         $('.results-right').hide();
@@ -14,8 +39,9 @@ function backButton() {
         $('.podcast-description').removeClass('hidden');
         $('.full-description').addClass('hidden');
         $('.podcast-box').show().addClass('js-selected');
-
+        $('.go-back').hide();
     })
+
 }
 
 function displayDandelionResults(responseJson) {
@@ -84,8 +110,6 @@ function displayPodcastResults(responseJson) {
     $('.js-results-container').show();
     $('.go-back').show();
 
-    
-
     for (let i = 0; i < responseJson.results.length; i++) {
         if (responseJson.results[i].description_original.length > 30) {
             $('.js-results-container').append(`
@@ -109,6 +133,8 @@ function displayPodcastResults(responseJson) {
       });
     $('.podcast-description').append('...');
 
+
+    //   showOnePodcast();
     $('.js-results-container').on('click', 'div', function(event) {
         // event.stopPropagation();
 
@@ -129,41 +155,12 @@ function displayPodcastResults(responseJson) {
         console.log(selectedIDNum);
         $('.podcast-player').attr("src",playerURL);
         $('.podcast-player').show();
-
     })
 
     
 }
 
-// function displayRandomPodcast(responseJson) {
-//     console.log(responseJson);
-//     $('.js-results-container').show();
-//     $('.go-back').show();
-//     $('.js-results-container').append(`
-//         <div class="podcast-box js-selected">
-//             <img src="${responseJson.image}" class="podcast-image"/>
-//             <h3 class="podcast-title">${responseJson.podcast_title}</h3>
-//             <h4 class="podcast-title">${responseJson.title}</h4>
-//             <h5 class="podcast-title">${responseJson.publisher}</h5>
-//             <p class="podcast-description">${responseJson.description}</p>
-//             <p class="hidden idnum">${responseJson.id}</p>
-//         </div>
-//     `);
 
-    
-// // TODO: figure out how to get this working
-//     const selectedDescription = $('.js-selected > .podcast-description').text();
-//     console.log(selectedDescription);
-//     getEntities(selectedDescription);
-
-//     //takes idnum from hidden p above and inserts it into embedded player
-//     const selectedIDNum = $('.js-selected > .idnum').text();
-//     const playerURL = 'https://www.listennotes.com/embedded/e/' + selectedIDNum + '/';
-//     console.log(selectedIDNum);
-//     $('.podcast-player').attr("src",playerURL);
-//     $('.podcast-player').show();
-
-// }
 
 function formatQueryParams(params) {
     const QueryParams = Object.keys(params).map(key => `${key}=${params[key]}`);
@@ -207,29 +204,7 @@ function getPodcasts(query) {
 }
 
 
-// function handleRandom() {
-//     $('.search-container').on('click', '.random-podcast', event => {
-//         const options = {
-//             headers: {
-//                 'X-ListenAPI-Key': listenNotesKey
-//             }
-//         }
-    
-//         const url = 'https://listen-api.listennotes.com/api/v2/just_listen?lang=en'
-    
-//         fetch(url, options)
-//             .then(response => {
-//                 if (response.ok) {
-//                     return response.json();
-//                 }
-//                 throw new Error(response.statusText);
-//             })
-//             .then(responseJson => displayRandomPodcast(responseJson))
-//             .catch(error => {
-//                 $('#js-error-message').text(`Something went wrong: ${error.message}`);
-//             });
-//     });
-// }
+
 
 // listen for form submit, get input value
 function watchForm() {
@@ -250,7 +225,7 @@ function handlePage() {
     $('.go-back').hide();
 
     watchForm();
-    // handleRandom();
+
 }
 
 $(handlePage);
