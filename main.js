@@ -6,31 +6,9 @@ const textEntitiesURL = 'https://api.dandelion.eu/datatxt/nex/v1/';
 const listenNotesKey = config.PODCAST_KEY;
 const dandelionKey = config.TEXT_WIKI_KEY;
 
-// function showOnePodcast() {
-//     $('.js-results-container').on('click', 'div', function(event) {
-//         // event.stopPropagation();
 
-//         //hides everything but clicked div
-//         $('.podcast-box').not(this).hide().removeClass('js-selected');
-//         //hides truncated description and shows full description
-//         $('.podcast-description').addClass('hidden');
-//         $('.full-description').removeClass('hidden');
 
-//         //passes description to getEntities function to search for key phrases
-//         const selectedDescription = $('.js-selected > .full-description').text();
-//         console.log(selectedDescription);
-//         getEntities(selectedDescription);
-
-//         //takes idnum from hidden p above and inserts it into embedded player
-//         const selectedIDNum = $('.js-selected > .idnum').text();
-//         const playerURL = 'https://www.listennotes.com/embedded/e/' + selectedIDNum + '/';
-//         console.log(selectedIDNum);
-//         $('.podcast-player').attr("src",playerURL);
-//         $('.podcast-player').show();
-//     console.log('`showOnePodcast` ran');
-
-// }
-
+//when you click on back, hides wikipedia and podcast player, goes back to all short descriptions from search results
 function backButton() {
     $('.results-left').on('click', '.go-back', function(event) {
         $('.results-right').hide();
@@ -41,6 +19,8 @@ function backButton() {
         $('.podcast-box').show().addClass('js-selected');
         $('.go-back').hide();
     })
+
+    showOnePodcast();
 
 }
 
@@ -59,7 +39,7 @@ function displayDandelionResults(responseJson) {
     const arrayOfUniqueTitles = Array.from(new Set(arrayOfTitles));
     console.log(arrayOfUniqueTitles);
 
-
+//only do this one time until the function is fired again
     for (let i = 0; i < arrayOfUniqueTitles.length; i++) {
 
         $('.wiki-list').append(`
@@ -67,9 +47,17 @@ function displayDandelionResults(responseJson) {
         `);
     }
 
+    $('.wiki-list').append(`
+        <li class="search-link"><a href="https://www.wikipedia.org/" target="wiki_iframe">Search Wikipedia</a></li>
+    `);
+
+    //ends only do this once
+
     $('.wiki-results').on('click', 'li', function(event) {
         $('.results-right').show();
     })
+
+    //if the current target is .search-link change the styles of the iframe
 
     backButton();
 }
@@ -105,10 +93,39 @@ function getEntities(description) {
         });
 }
 
+function showOnePodcast() {
+    $('.js-results-container').one('click', 'div', function(event) {
+
+        //hides everything but clicked div
+        $('.podcast-box').not(this).hide().removeClass('js-selected');
+        //hides truncated description and shows full description
+        $('.podcast-description').addClass('hidden');
+        $('.full-description').removeClass('hidden');
+
+        //displays back button
+        $('.go-back').show();
+
+        //empties out list of wikipedia links
+        $('.wiki-list').empty();
+
+        //passes description to getEntities function to search for key phrases
+        const selectedDescription = $('.js-selected > .full-description').text();
+        console.log(selectedDescription);
+        getEntities(selectedDescription);
+
+        //takes idnum from hidden p above and inserts it into embedded player
+        const selectedIDNum = $('.js-selected > .idnum').text();
+        const playerURL = 'https://www.listennotes.com/embedded/e/' + selectedIDNum + '/';
+        console.log(selectedIDNum);
+        $('.podcast-player').attr("src",playerURL);
+        $('.podcast-player').show();
+    })  
+}
+
 function displayPodcastResults(responseJson) {
     console.log(responseJson);
     $('.js-results-container').show();
-    $('.go-back').show();
+
 
     for (let i = 0; i < responseJson.results.length; i++) {
         if (responseJson.results[i].description_original.length > 30) {
@@ -127,49 +144,47 @@ function displayPodcastResults(responseJson) {
         }
     }
 
-    //truncates the description at 300 characters
+    //truncates each description at 300 characters and adds '...' to each
     $(".podcast-description").each(function(x) {
         $(this).text(($(this).text().substring(0, 300)));
       });
     $('.podcast-description').append('...');
 
+    showOnePodcast();
 
-    //   showOnePodcast();
-    $('.js-results-container').on('click', 'div', function(event) {
-        // event.stopPropagation();
 
-        //hides everything but clicked div
-        $('.podcast-box').not(this).hide().removeClass('js-selected');
-        //hides truncated description and shows full description
-        $('.podcast-description').addClass('hidden');
-        $('.full-description').removeClass('hidden');
+    // $('.js-results-container').on('click', 'div', function(event) {
+    //     // event.stopPropagation();
+    //     //hides everything but clicked div
+    //     $('.podcast-box').not(this).hide().removeClass('js-selected');
+    //     //hides truncated description and shows full description
+    //     $('.podcast-description').addClass('hidden');
+    //     $('.full-description').removeClass('hidden');
 
-        //passes description to getEntities function to search for key phrases
-        const selectedDescription = $('.js-selected > .full-description').text();
-        console.log(selectedDescription);
-        getEntities(selectedDescription);
+    //     //passes description to getEntities function to search for key phrases
+    //     const selectedDescription = $('.js-selected > .full-description').text();
+    //     console.log(selectedDescription);
+    //     getEntities(selectedDescription);
 
-        //takes idnum from hidden p above and inserts it into embedded player
-        const selectedIDNum = $('.js-selected > .idnum').text();
-        const playerURL = 'https://www.listennotes.com/embedded/e/' + selectedIDNum + '/';
-        console.log(selectedIDNum);
-        $('.podcast-player').attr("src",playerURL);
-        $('.podcast-player').show();
-    })
-
-    
+    //     //takes idnum from hidden p above and inserts it into embedded player
+    //     const selectedIDNum = $('.js-selected > .idnum').text();
+    //     const playerURL = 'https://www.listennotes.com/embedded/e/' + selectedIDNum + '/';
+    //     console.log(selectedIDNum);
+    //     $('.podcast-player').attr("src",playerURL);
+    //     $('.podcast-player').show();
+    // })  
 }
 
-
-
+//formats the query parameters as a string that can be added to the url
 function formatQueryParams(params) {
     const QueryParams = Object.keys(params).map(key => `${key}=${params[key]}`);
     return QueryParams.join('&');
 }
 
+//formats the search query and calls the listennotes api to get podcasts
 function getPodcasts(query) {
     //search parameters: search for query, return episodes only, English, minimum length 10 minutes
-    //genre ids for educational type podcasts (Audio Drama, Health & Fitness, Business, News, Arts, Science, Education, Society & Culture, History, Technology, Documentary)
+    //genre ids for educational type podcasts only(Audio Drama, Health & Fitness, Business, News, Arts, Science, Education, Society & Culture, History, Technology, Documentary)
     const podcastParams = {
         q: query,
         type: 'episode',
@@ -189,7 +204,6 @@ function getPodcasts(query) {
         }
     }
 
-
     fetch(url, options)
         .then(response => {
             if (response.ok) {
@@ -203,15 +217,14 @@ function getPodcasts(query) {
         });
 }
 
-
-
-
 // listen for form submit, get input value
 function watchForm() {
     $('form').submit(event => {
         event.preventDefault();
         const searchTerm = $('.js-search-term').val();
         getPodcasts(searchTerm);
+
+        //if you do another search, empties results and hides everything again
         $('.js-results-container').empty();
         $('.wiki-list').empty();
         $('.wiki-results').hide();
@@ -220,10 +233,13 @@ function watchForm() {
     }); 
 }
 
+//hides results containers
 function handlePage() {
-    $('.wiki-results, .results-right, .podcast-player, .js-results-container').hide();
+    $('.wiki-results').hide();
+    $('.results-right').hide();
+    $('.podcast-player').hide();
+    $('.js-results-container').hide();
     $('.go-back').hide();
-
     watchForm();
 
 }
