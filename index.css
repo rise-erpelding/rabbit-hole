@@ -4,21 +4,73 @@
   
   body {
     font-family: 'Roboto', sans-serif;
+    font-size: 1em;
   }
   
+
+
+  /* search container styles */
+  /* .search-container > #big-title, #subtitle, form */
   .search-container {
     max-width: 600px;
-    margin: 0 auto;
   }
-  
-  /* podcast results styles */
+
+  #big-title {
+    font-size: 1.2em;
+  }
+
+  #subtitle {
+    font-size: .8em;
+    margin-bottom: 40px;
+  }
+
+  form {
+    margin-top: 10px;
+  }
+
+  #search-for {
+    font-size: .8em;
+    text-align: left;
+  }
+
+  .js-search-term {
+    border: 1px solid black;
+    min-width: 240px;
+    margin-bottom: 20px;
+  }
+
+  #submit {
+    border: 1px solid black;
+  }
+
+
+
+
+  /* results styles*/  
+  .all-results {
+    display: flex;
+    flex-direction: column;
+    width: 95vw;
+    margin: auto;
+  }
+
+  .results-left > div {
+    margin-top: 5px;
+    margin-bottom: 5px;
+  }
+
+  .go-back {
+    padding: 5px;
+    background-color: gray;
+    display: inline-block;
+    margin-bottom: 10px;
+  }
+
   .podcast-box {
       background: lightgray;
-      border: 1px solid black;
-      /* height: 300px; */
-      /* overflow: scroll; */
-      width: 300px;
       padding: 5px 5px 5px 5px;
+      margin-bottom: 5px;
+      border: 1px solid black;
   }
 
   .podcast-image {
@@ -27,65 +79,48 @@
       padding-right: 5px;
   }
 
-  .podcast-description {
+  .podcast-description, .full-description {
       float: clear;
+      word-wrap: break-word;
   }
 
-  .hidden {
-    display: none;
+  .podcast-player {
+    margin: auto;
+    margin-bottom: -5px;
+    border-bottom: 1px solid lightgray;
   }
 
   .wiki-results {
     background-color: silver;
-    border: 1px solid black;
-    min-height: 100px;
-    width: 300px;
     padding: 5px 5px 5px 5px;
+    border: 1px solid black;
   }
+  
+  #wikipedia-frame {
+    height: 540px;
+    width: 95vw;
+    border: 1px solid black;
+ }
 
-  .random-podcast {
-    background-color: lightgray;
-    border: 1px solid gray;
-    padding: 3px;
-  }
 
-  form {
-    margin-top: 10px;
-  }
-
+@media screen and (min-width: 700px) {
   .all-results {
-    display: flex;
+    flex-direction: row;
   }
 
- .results-right {
-   width: 700px;
-   height: 600px;
-   overflow: hidden;
-   position: relative;
- }
+  .podcast-box, .podcast-player, .wiki-results {
+    width: 47vw;
+  }
 
- #wikipedia-frame {
-   position: absolute;
-   top: -85px;
-    /* for articles, offset -85px, for home page, don't?*/
-   left: -162px;
-   /* nav bar on left is 160px */
-   width: 700px;
-   height: 600px;
-   border: none;
- }
+  #wikipedia-frame {
+    position: relative;
+    top: 43px;
+    left: 10px;
+    width: 47vw;
+    height: 98vh;
+  }
+}
 
- /* .wikipedia-search {
-   position: absolute;
-   top: 0px;
-   left: 0px;
-   width: 700px;
-   height: 600px;
-   border: none;
- } */
-
- .go-back {
-   border: 1px solid black;
-   padding: 5px;
-   background-color: gray;
- }
+ .hidden {
+  display: none;
+}

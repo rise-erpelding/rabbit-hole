@@ -1,3 +1,7 @@
+//TODO:
+//edge case: mac and cheese/mac cheese Gastropod podcast
+//Japanese food = Splendid Table? Not bringing up Japan
+
 'use strict';
 
 const podcastURL = 'https://listen-api.listennotes.com/api/v2/search';
@@ -21,27 +25,21 @@ function backButton() {
     })
 
     showOnePodcast();
-
 }
 
 function displayDandelionResults(responseJson) {
     $('.wiki-results').show();
-    console.log(responseJson);
 
     //creates array from titles of responseJson
     const arrayOfTitles = [];
     for (let i = 0; i < responseJson.annotations.length; i++) {
         arrayOfTitles.push(responseJson.annotations[i].title);
     }
-    console.log(arrayOfTitles);
 
     //create new array of unique titles
     const arrayOfUniqueTitles = Array.from(new Set(arrayOfTitles));
-    console.log(arrayOfUniqueTitles);
 
-//only do this one time until the function is fired again
     for (let i = 0; i < arrayOfUniqueTitles.length; i++) {
-
         $('.wiki-list').append(`
             <li><a href="https://en.wikipedia.org/wiki/${arrayOfUniqueTitles[i]}" target="wiki_iframe">${arrayOfUniqueTitles[i]}</a></li>
         `);
@@ -51,34 +49,23 @@ function displayDandelionResults(responseJson) {
         <li class="search-link"><a href="https://www.wikipedia.org/" target="wiki_iframe">Search Wikipedia</a></li>
     `);
 
-    //ends only do this once
-
     $('.wiki-results').on('click', 'li', function(event) {
         $('.results-right').show();
     })
-
-    //if the current target is .search-link change the styles of the iframe
 
     backButton();
 }
 
 function getEntities(description) {
-    const textInQuotes = `\"` + description + `\"`; //still trying to figure this one out
-
     const dandelionParams = {
         token: dandelionKey,
         lang: 'en',
-        text: textInQuotes
+        text: description
     }
-
-
 
     const dandelionQueryString = formatQueryParams(dandelionParams);
 
-
-
-    const url = textEntitiesURL + '?' + dandelionQueryString + textInQuotes;
-    console.log(url);
+    const url = textEntitiesURL + '?' + dandelionQueryString;
 
     fetch(url)
         .then(response => {
@@ -95,7 +82,6 @@ function getEntities(description) {
 
 function showOnePodcast() {
     $('.js-results-container').one('click', 'div', function(event) {
-
         //hides everything but clicked div
         $('.podcast-box').not(this).hide().removeClass('js-selected');
         //hides truncated description and shows full description
@@ -110,22 +96,18 @@ function showOnePodcast() {
 
         //passes description to getEntities function to search for key phrases
         const selectedDescription = $('.js-selected > .full-description').text();
-        console.log(selectedDescription);
         getEntities(selectedDescription);
 
         //takes idnum from hidden p above and inserts it into embedded player
         const selectedIDNum = $('.js-selected > .idnum').text();
         const playerURL = 'https://www.listennotes.com/embedded/e/' + selectedIDNum + '/';
-        console.log(selectedIDNum);
         $('.podcast-player').attr("src",playerURL);
         $('.podcast-player').show();
     })  
 }
 
 function displayPodcastResults(responseJson) {
-    console.log(responseJson);
     $('.js-results-container').show();
-
 
     for (let i = 0; i < responseJson.results.length; i++) {
         if (responseJson.results[i].description_original.length > 30) {
@@ -140,7 +122,6 @@ function displayPodcastResults(responseJson) {
                     <p class="hidden idnum">${responseJson.results[i].id}</p>
                 </div>
             `);
-
         }
     }
 
@@ -151,28 +132,6 @@ function displayPodcastResults(responseJson) {
     $('.podcast-description').append('...');
 
     showOnePodcast();
-
-
-    // $('.js-results-container').on('click', 'div', function(event) {
-    //     // event.stopPropagation();
-    //     //hides everything but clicked div
-    //     $('.podcast-box').not(this).hide().removeClass('js-selected');
-    //     //hides truncated description and shows full description
-    //     $('.podcast-description').addClass('hidden');
-    //     $('.full-description').removeClass('hidden');
-
-    //     //passes description to getEntities function to search for key phrases
-    //     const selectedDescription = $('.js-selected > .full-description').text();
-    //     console.log(selectedDescription);
-    //     getEntities(selectedDescription);
-
-    //     //takes idnum from hidden p above and inserts it into embedded player
-    //     const selectedIDNum = $('.js-selected > .idnum').text();
-    //     const playerURL = 'https://www.listennotes.com/embedded/e/' + selectedIDNum + '/';
-    //     console.log(selectedIDNum);
-    //     $('.podcast-player').attr("src",playerURL);
-    //     $('.podcast-player').show();
-    // })  
 }
 
 //formats the query parameters as a string that can be added to the url
@@ -196,7 +155,6 @@ function getPodcasts(query) {
     const podcastQueryString = formatQueryParams(podcastParams);
     
     const url = podcastURL + '?' + podcastQueryString;
-    console.log(url);
 
     const options = {
         headers: {
@@ -241,7 +199,6 @@ function handlePage() {
     $('.js-results-container').hide();
     $('.go-back').hide();
     watchForm();
-
 }
 
 $(handlePage);
