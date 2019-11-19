@@ -41,12 +41,12 @@ function displayDandelionResults(responseJson) {
 
     for (let i = 0; i < arrayOfUniqueTitles.length; i++) {
         $('.wiki-list').append(`
-            <li><a href="https://en.wikipedia.org/wiki/${arrayOfUniqueTitles[i]}" target="wiki_iframe">${arrayOfUniqueTitles[i]}</a></li>
+            <li><a href="https://en.m.wikipedia.org/wiki/${arrayOfUniqueTitles[i]}" target="wiki_iframe">${arrayOfUniqueTitles[i]}</a></li>
         `);
     }
 
     $('.wiki-list').append(`
-        <li class="search-link"><a href="https://www.wikipedia.org/" target="wiki_iframe">Search Wikipedia</a></li>
+        <li class="search-link"><a href="https://m.wikipedia.org/" target="wiki_iframe">Search Wikipedia</a></li>
     `);
 
     $('.wiki-results').on('click', 'li', function(event) {
