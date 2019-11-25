@@ -24,14 +24,13 @@ function backButton() {
         $('.podcast-results').show();
         $('.js-selected').removeClass('js-selected');
         $('.go-back').hide();
+        $('.search-container').show();
     })
 
     showOnePodcast();
 }
 
-// function searchWikipedia() {
-//     $('.wiki-results').on('click', '')
-// }
+
 
 //since Dandelion API will sometimes return duplicate objects in the results, this filters out all the duplicates and returns an array containing only unique objects
 function removeDuplicates(myArr, prop) {
@@ -46,6 +45,7 @@ function displayDandelionResults(responseJson) {
     
 
     $('.wiki-results').show();
+    $('.search-container').hide();
 
     let arrayOfUniqueResults = removeDuplicates(responseJson.annotations, "label");
     console.log('unique object')
@@ -68,7 +68,7 @@ function displayDandelionResults(responseJson) {
 
     for (let i = 0; i < arrayOfUniqueResults.length; i++) {
         $('.wiki-list').append(`
-            <li><p><a href="https://en.m.wikipedia.org/wiki/${arrayOfUniqueResults[i].title}" target="wiki_iframe">${arrayOfUniqueResults[i].title}</a></p><p class="abstract">${arrayOfUniqueResults[i].abstract}</p></li>
+            <li><a href="https://en.m.wikipedia.org/wiki/${arrayOfUniqueResults[i].title}" target="wiki_iframe"><p>${arrayOfUniqueResults[i].title}</p><p class="abstract">${arrayOfUniqueResults[i].abstract}</p></a></li>
         `);
     }
 
@@ -79,16 +79,26 @@ function displayDandelionResults(responseJson) {
 
     $('.wiki-results').append(`<p><a href="https://m.wikipedia.org" target="wiki_iframe">Search Wikipedia <i class="fas fa-search"></i></a></p>`);
 
-    $('.wiki-results').on('click', 'li', function(event) {
+
+
+
+    $('.wiki-results').on('click', 'a', function(event) {
+        $('.wikipedia').prepend(`<i class="fas fa-times exit-iframe"></i>`);
         $('.wikipedia').show();
+
+        $('.selected-podcast').hide();
     })
 
     $('wiki-results').on('click', 'p', function(event) {
         $('.wikipedia').show();
+        $('.selected-podcast').hide();
     })
 
+
+
+    
+
     backButton();
-    // searchWikipedia();
 }
 
 function getEntities(description) {
@@ -218,10 +228,11 @@ function getPodcasts(query) {
 
 // listen for form submit, get input value
 function watchForm() {
-    $('form').submit(event => {
+    $('#podcast-search').submit(event => {
         event.preventDefault();
         const searchTerm = $('.js-search-term').val();
         getPodcasts(searchTerm);
+        $('.js-search-term').empty();
         $('body').css("background-image", "none");
         $('.subtitle').remove();
         $('.big-title').addClass('small-title')
