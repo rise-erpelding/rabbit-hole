@@ -9,23 +9,45 @@
     <script src="https://kit.fontawesome.com/08a7f00056.js" crossorigin="anonymous"></script>
     <link href="https://fonts.googleapis.com/css?family=Arima+Madurai&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Averia+Serif+Libre:700&display=swap" rel="stylesheet">
     <link href="https://meyerweb.com/eric/tools/css/reset/reset.css" rel="stylesheet">
     <link rel="stylesheet" href="index.css">
 </head>
 <body>
-    <div class="search-container">
+    <section class="search-container">
         <h1 class="big-title">Rabbit Hole</h1>
         <h2 class="subtitle">Listen. Read. Learn more.</h2>
         <form id="podcast-search">
             <input type="text" name="search-term" class="js-search-term" placeholder="Search for podcast names, topics, people..." required>
             <button id="submit" type="submit"><i class="fas fa-search"></i></button>
         </form>
-        <p class="start-onboarding hidden">See how it works.</p>
-    </div>  
+        <div class="start-onboarding"><i class="fas fa-question-circle"></i>Want to see how it works?</div>
+    </section>  
 
     <div class="js-error-message"></div>
 
-    <div class="user-onboarding"></div>
+    <section class="user-onboarding">
+        <div class="onboarding-title-container"
+            <p></div>Welcome to Rabbit Hole</h3>
+            <h4>Using Rabbit Hole is easy. Here's how to get started:</h4>
+        </div>
+
+        <div class="grid-container">
+            <div class="icons-list">
+                <i class="fas fa-search onboard-icon"></i>
+                <i class="fas fa-headphones-alt onboard-icon"></i>
+                <i class="fas fa-hand-pointer onboard-icon"></i>
+            </div>
+
+            <ol class="numbered-list">
+                <li>Search podcasts. The podcast search engine will return educational podcasts.</li>
+                <li>Click on any podcast to listen to it. Controls for player are at the bottom of the screen.</li>
+                <li>Click on the links to view related Wikipedia articles.</li>
+            </ol>
+        </div>
+        <div class="back-to-landing">Ready? Let's hop to it.<i class="fas fa-chevron-circle-right"></i></div>
+
+    </section>
 
     <div class="podcast-results"></div>
 
@@ -34,12 +56,14 @@
         <div class="podcast-info"></div>
         <div class="wiki-results">
             <h3>Wikipedia results:</h3>
+            
             <ul class="wiki-list"></ul>
             <!-- <div class="wiki-search"></div> -->
         </div>
     </div>
 
     <div class="wikipedia">
+        <i class="fas fa-times exit-iframe"></i>
         <iframe id="wikipedia-frame"
             title="Wikipedia Page"
             name="wiki_iframe"
@@ -48,7 +72,7 @@
     </div>
 
     <div class="podcast-player">
-        <iframe class="player" src="#" width="100%" scrolling="no"></iframe>
+        <iframe class="player" src="#" scrolling="no"></iframe>
     </div>
 
 

@@ -18,9 +18,11 @@ function backButton() {
         $('.wikipedia').hide();
         $('.podcast-player').hide();
         $('.selected-results').hide();
+        $('.selected-podcast').hide();
         $('.podcast-description').removeClass('hidden');
         $('.full-description').addClass('hidden');
         $('.wiki-list').empty();
+        // $('.wiki-results').show();
         $('.podcast-results').show();
         $('.js-selected').removeClass('js-selected');
         $('.go-back').hide();
@@ -30,7 +32,22 @@ function backButton() {
     showOnePodcast();
 }
 
+function hideWikipedia() {
+    $('.wikipedia').on('click', '.exit-iframe', function(event) {
+        $('.wikipedia').hide();
+        $('.selected-podcast').show();
+    });
+}
 
+function showWikipedia() {
+
+    $('.wiki-results').on('click', 'a', function(event) {
+        $('.wikipedia').show();
+        $('.selected-podcast').hide();
+    });
+
+    hideWikipedia();
+}
 
 //since Dandelion API will sometimes return duplicate objects in the results, this filters out all the duplicates and returns an array containing only unique objects
 function removeDuplicates(myArr, prop) {
@@ -50,54 +67,20 @@ function displayDandelionResults(responseJson) {
     let arrayOfUniqueResults = removeDuplicates(responseJson.annotations, "label");
     console.log('unique object')
     console.log(arrayOfUniqueResults);
-    
-
-
-    // const arrayOfTitles = [];
-    // for (let i = 0; i < responseJson.annotations.length; i++) {
-    //     arrayOfTitles.push(responseJson.annotations[i].title);
-    // }
-    // const arrayOfUniqueTitles = Array.from(new Set(arrayOfTitles));
-
-    // for (let i = 0; i < arrayOfUniqueTitles.length; i++) {
-    //     $('.wiki-list').append(`
-    //         <li><p><a href="https://en.m.wikipedia.org/wiki/${arrayOfUniqueTitles[i]}" target="wiki_iframe">${arrayOfUniqueTitles[i]}</a></p><p>GAH</p></li>
-    //     `);
-    // }
-
 
     for (let i = 0; i < arrayOfUniqueResults.length; i++) {
         $('.wiki-list').append(`
-            <li><a href="https://en.m.wikipedia.org/wiki/${arrayOfUniqueResults[i].title}" target="wiki_iframe"><p>${arrayOfUniqueResults[i].title}</p><p class="abstract">${arrayOfUniqueResults[i].abstract}</p></a></li>
+            <li><a href="https://en.m.wikipedia.org/wiki/${arrayOfUniqueResults[i].title}" target="wiki_iframe"><p class="wiki-title">${arrayOfUniqueResults[i].title}</p><p class="abstract">${arrayOfUniqueResults[i].abstract}</p></a></li>
         `);
     }
-
     $('.abstract').each(function(x) {
         $(this).text(($(this).text().substring(0, 300)));
       });
     $('.abstract').append('...');
 
-    $('.wiki-results').append(`<p><a href="https://m.wikipedia.org" target="wiki_iframe">Search Wikipedia <i class="fas fa-search"></i></a></p>`);
+    $('.wiki-list').append(`<li class="wiki-title"><a href="https://m.wikipedia.org" target="wiki_iframe">Search Wikipedia <i class="fas fa-search"></i></a></li>`);
 
-
-
-
-    $('.wiki-results').on('click', 'a', function(event) {
-        $('.wikipedia').prepend(`<i class="fas fa-times exit-iframe"></i>`);
-        $('.wikipedia').show();
-
-        $('.selected-podcast').hide();
-    })
-
-    $('wiki-results').on('click', 'p', function(event) {
-        $('.wikipedia').show();
-        $('.selected-podcast').hide();
-    })
-
-
-
-    
-
+    showWikipedia();
     backButton();
 }
 
@@ -125,6 +108,7 @@ function getEntities(description) {
         .then(responseJson => displayDandelionResults(responseJson))
         .catch(error => {
             $('.js-error-message').html(`<p><i class="far fa-flushed"></i></p><p>Uh-oh, something went wrong: ${error.message}</p>`);
+            $('.js-error-message').addClass('.error-style');
         });
 }
 
@@ -223,6 +207,7 @@ function getPodcasts(query) {
         .then(responseJson => displayPodcastResults(responseJson))
         .catch(error => {
             $('.js-error-message').html(`<p><i class="far fa-flushed"></i></p><p>Uh-oh, something went wrong: ${error.message}</p>`);
+            $('.js-error-message').addClass('.error-style');
         });
 }
 
@@ -246,6 +231,18 @@ function watchForm() {
     }); 
 }
 
+function startUserOnboarding() {
+    $('.search-container').on('click', '.start-onboarding', function(event) {
+        $('.user-onboarding').show();
+        $('body').scrollTop( 500 );
+    });
+
+    $('.user-onboarding').on('click', '.back-to-landing', function(event) {
+        $('.user-onboarding').hide();
+    });
+  
+}
+
 //hides results containers
 function handlePage() {
     $('.wiki-results').hide();
@@ -253,7 +250,10 @@ function handlePage() {
     $('.podcast-player').hide();
     $('.podcast-results').hide();
     $('.selected-podcast').hide();
+    $('.user-onboarding').hide();
     watchForm();
+    startUserOnboarding();
+    
 }
 
 $(handlePage);
