@@ -14,58 +14,96 @@ const dandelionKey = config.TEXT_WIKI_KEY;
 
 //when you click on back, hides wikipedia and podcast player, goes back to all short descriptions from search results
 function backButton() {
-    $('.results-left').on('click', '.go-back', function(event) {
-        $('.results-right').hide();
+    $('.selected-podcast').on('click', '.go-back', function(event) {
+        $('.wikipedia').hide();
         $('.podcast-player').hide();
-        $('.wiki-results').hide();
+        $('.selected-results').hide();
         $('.podcast-description').removeClass('hidden');
         $('.full-description').addClass('hidden');
-        $('.podcast-box').show().addClass('js-selected');
+        $('.wiki-list').empty();
+        $('.podcast-results').show();
+        $('.js-selected').removeClass('js-selected');
         $('.go-back').hide();
     })
 
     showOnePodcast();
 }
 
+// function searchWikipedia() {
+//     $('.wiki-results').on('click', '')
+// }
+
+//since Dandelion API will sometimes return duplicate objects in the results, this filters out all the duplicates and returns an array containing only unique objects
+function removeDuplicates(myArr, prop) {
+    return myArr.filter((obj, ind, arr) => {
+      return arr.map(mapObj => mapObj[prop]).indexOf(obj[prop]) === ind;
+    });
+  }
+
 function displayDandelionResults(responseJson) {
+    console.log('responseJson:');
+    console.log(responseJson);
+    
+
     $('.wiki-results').show();
 
-    //creates array from titles of responseJson
-    const arrayOfTitles = [];
-    for (let i = 0; i < responseJson.annotations.length; i++) {
-        arrayOfTitles.push(responseJson.annotations[i].title);
-    }
+    let arrayOfUniqueResults = removeDuplicates(responseJson.annotations, "label");
+    console.log('unique object')
+    console.log(arrayOfUniqueResults);
+    
 
-    //create new array of unique titles
-    const arrayOfUniqueTitles = Array.from(new Set(arrayOfTitles));
 
-    for (let i = 0; i < arrayOfUniqueTitles.length; i++) {
+    // const arrayOfTitles = [];
+    // for (let i = 0; i < responseJson.annotations.length; i++) {
+    //     arrayOfTitles.push(responseJson.annotations[i].title);
+    // }
+    // const arrayOfUniqueTitles = Array.from(new Set(arrayOfTitles));
+
+    // for (let i = 0; i < arrayOfUniqueTitles.length; i++) {
+    //     $('.wiki-list').append(`
+    //         <li><p><a href="https://en.m.wikipedia.org/wiki/${arrayOfUniqueTitles[i]}" target="wiki_iframe">${arrayOfUniqueTitles[i]}</a></p><p>GAH</p></li>
+    //     `);
+    // }
+
+
+    for (let i = 0; i < arrayOfUniqueResults.length; i++) {
         $('.wiki-list').append(`
-            <li><a href="https://en.m.wikipedia.org/wiki/${arrayOfUniqueTitles[i]}" target="wiki_iframe">${arrayOfUniqueTitles[i]}</a></li>
+            <li><p><a href="https://en.m.wikipedia.org/wiki/${arrayOfUniqueResults[i].title}" target="wiki_iframe">${arrayOfUniqueResults[i].title}</a></p><p class="abstract">${arrayOfUniqueResults[i].abstract}</p></li>
         `);
     }
 
-    $('.wiki-list').append(`
-        <li class="search-link"><a href="https://m.wikipedia.org/" target="wiki_iframe">Search Wikipedia</a></li>
-    `);
+    $('.abstract').each(function(x) {
+        $(this).text(($(this).text().substring(0, 300)));
+      });
+    $('.abstract').append('...');
+
+    $('.wiki-results').append(`<p><a href="https://m.wikipedia.org" target="wiki_iframe">Search Wikipedia <i class="fas fa-search"></i></a></p>`);
 
     $('.wiki-results').on('click', 'li', function(event) {
-        $('.results-right').show();
+        $('.wikipedia').show();
+    })
+
+    $('wiki-results').on('click', 'p', function(event) {
+        $('.wikipedia').show();
     })
 
     backButton();
+    // searchWikipedia();
 }
 
 function getEntities(description) {
     const dandelionParams = {
         token: dandelionKey,
         lang: 'en',
+        min_confidence: 0.5,
+        include: 'abstract',
         text: description
     }
 
     const dandelionQueryString = formatQueryParams(dandelionParams);
 
     const url = textEntitiesURL + '?' + dandelionQueryString;
+    console.log(url);
 
     fetch(url)
         .then(response => {
@@ -76,19 +114,21 @@ function getEntities(description) {
         })
         .then(responseJson => displayDandelionResults(responseJson))
         .catch(error => {
-            $('#js-error-message').text(`Something went wrong: ${error.message}`);
+            $('.js-error-message').html(`<p><i class="far fa-flushed"></i></p><p>Uh-oh, something went wrong: ${error.message}</p>`);
         });
 }
 
 function showOnePodcast() {
-    $('.js-results-container').one('click', 'div', function(event) {
-        //hides everything but clicked div
-        $('.podcast-box').not(this).hide().removeClass('js-selected');
-        //hides truncated description and shows full description
+    $('.podcast-results').one('click', '.podcast-card', function(event) {
+        $(this).addClass('js-selected');
+        const selectedPodcastHTML = $('.js-selected').html();
+        $('.podcast-info').html(selectedPodcastHTML);
         $('.podcast-description').addClass('hidden');
         $('.full-description').removeClass('hidden');
+        $('.podcast-results').hide();
+        $('.selected-podcast').show();
+        $('.wiki-results').hide();
 
-        //displays back button
         $('.go-back').show();
 
         //empties out list of wikipedia links
@@ -101,25 +141,26 @@ function showOnePodcast() {
         //takes idnum from hidden p above and inserts it into embedded player
         const selectedIDNum = $('.js-selected > .idnum').text();
         const playerURL = 'https://www.listennotes.com/embedded/e/' + selectedIDNum + '/';
-        $('.podcast-player').attr("src",playerURL);
+        $('.player').attr("src",playerURL);
         $('.podcast-player').show();
     })  
 }
 
 function displayPodcastResults(responseJson) {
-    $('.js-results-container').show();
+    $('.podcast-results').show();
 
     for (let i = 0; i < responseJson.results.length; i++) {
         if (responseJson.results[i].description_original.length > 30) {
-            $('.js-results-container').append(`
-                <div class="podcast-box js-selected">
+            $('.podcast-results').append(`
+                <div class="podcast-card">
                     <img src="${responseJson.results[i].image}" class="podcast-image"/>
-                    <h3 class="podcast-title"><a href="${responseJson.results[i].listennotes_url}" target="_blank">${responseJson.results[i].title_original}</a></h3>
+                    <h3 class="episode-title">${responseJson.results[i].title_original}</h3>
                     <h4 class="podcast-title">${responseJson.results[i].podcast_title_original}</h4>
-                    <h5 class="podcast-title">${responseJson.results[i].publisher_original}</h5>
+                    <h5 class="podcast-publisher">${responseJson.results[i].publisher_original}</h5>
                     <p class="podcast-description">${responseJson.results[i].description_original}</p>
                     <p class="hidden full-description">${responseJson.results[i].description_original}</p>
                     <p class="hidden idnum">${responseJson.results[i].id}</p>
+                    <p class="hidden"><a href="${responseJson.results[i].listennotes_url}" target="_blank">View in ListenNotes</a></p>
                 </div>
             `);
         }
@@ -171,7 +212,7 @@ function getPodcasts(query) {
         })
         .then(responseJson => displayPodcastResults(responseJson))
         .catch(error => {
-            $('#js-error-message').text(`Something went wrong: ${error.message}`);
+            $('.js-error-message').html(`<p><i class="far fa-flushed"></i></p><p>Uh-oh, something went wrong: ${error.message}</p>`);
         });
 }
 
@@ -181,23 +222,26 @@ function watchForm() {
         event.preventDefault();
         const searchTerm = $('.js-search-term').val();
         getPodcasts(searchTerm);
+        $('body').css("background-image", "none");
+        $('.subtitle').remove();
+        $('.big-title').addClass('small-title')
 
         //if you do another search, empties results and hides everything again
         $('.js-results-container').empty();
         $('.wiki-list').empty();
         $('.wiki-results').hide();
         $('.podcast-player').hide();
-        $('.results-right').hide();
+        $('.wikipedia').hide();
     }); 
 }
 
 //hides results containers
 function handlePage() {
     $('.wiki-results').hide();
-    $('.results-right').hide();
+    $('.wikipedia').hide();
     $('.podcast-player').hide();
-    $('.js-results-container').hide();
-    $('.go-back').hide();
+    $('.podcast-results').hide();
+    $('.selected-podcast').hide();
     watchForm();
 }
 

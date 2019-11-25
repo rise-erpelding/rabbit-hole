@@ -3,99 +3,170 @@
   }
   
   body {
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Open Sans', sans-serif;
     font-size: 1em;
-    font-color: #070000;
-    background-color: #fffcfc;
-  }
-  
-
-
-  /* search container styles */
-  /* .search-container > #big-title, #subtitle, form */
-  .search-container {
-    max-width: 600px;
-  }
-
-  #big-title {
-    font-size: 1.2em;
+    margin: 0;
+    background-color: #E5E5E5;
+    background-image: 
+      linear-gradient(
+        rgba(255, 255, 255, 0.5),
+        rgba(255, 255, 255, 0.5)
+      ),
+      url(Images/spiral-staircase-feet.jpg);
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: cover;
+      background-attachment: fixed;
   }
 
-  #subtitle {
+  .big-title {
+    font-size: 2.5em;
+    font-family: 'Arima Madurai', cursive;
+    color: #2C0000;
+    margin-top: 15vh;
+    position: relative;
+    left: 50%;
+    margin-left: -140px;
+    width: 280px;
+  }
+
+  .small-title {
+    font-size: 1.5em;
+    margin-top: 5vh;
+  }
+
+  .subtitle {
     font-size: .8em;
-    margin-bottom: 40px;
+    margin-bottom: 90px;
+    position: relative;
+    left: 50%;
+    margin-left: -140px;
+    width: 280px;
   }
 
   form {
-    margin-top: 10px;
+    background-color: white;
+    display: block;
+    text-align: center;
+    width: 280px;
+    height: 30px;
+    margin: auto;
+    border-radius: 5px;
+    box-shadow: 0px 4px 3px rgba(0, 0, 0, 0.25);
   }
 
-  #search-for {
+  #submit {
+    height: 25px;
+    width: 25px;
+    font-size: 1.1em;
+    background-color: white;
+    color: #0B3C85;
+    border: none;
+    position: relative;
+    bottom: -2px;
+  }
+
+  .js-search-term {
+    border: none;
+    width: 240px;
+    height: 25px;
+    margin: 0;
+    position: relative;
+    bottom: 0;
+  }
+
+  .js-error-message {
+    margin: 10px;
+    color: #B83422;
+    font-weight: 700;
+    text-align: center;
+    /* background-color: white; */
+    padding: 20px;
+    /* border-radius: 4px;
+    box-shadow: 0px 4px 3px rgba(0, 0, 0, 0.25); */
+  }
+
+  .fa-flushed {
+    font-size: 3em;
+  }
+
+ 
+
+  .start-onboarding {
     font-size: .8em;
     text-align: left;
   }
 
-  .js-search-term {
-    border: 1px solid black;
-    min-width: 240px;
-    margin-bottom: 20px;
+  .fa-times {
+    font-size: 2em;
+    margin-left: 2px;
+    color: #0B3C85;
   }
 
-  #submit {
-    border: 1px solid black;
+  .podcast-card {
+      background: white;
+      padding: 8px;
+      margin: 10px;
+      border-radius: 4px;
+      box-shadow: 0px 4px 3px rgba(0, 0, 0, 0.25);
   }
 
-
-
-
-  /* results styles*/  
-  .all-results {
-    display: flex;
-    flex-direction: column;
-    width: 95vw;
-    margin: auto;
-  }
-
-  .results-left > div {
-    margin-top: 5px;
-    margin-bottom: 5px;
-  }
-
-  .go-back {
-    padding: 5px;
-    background-color: gray;
-    display: inline-block;
+  .episode-title {
+    color: #B83422;
+    font-weight: 700;
+    font-size: 1.1em;
     margin-bottom: 10px;
   }
 
-  .podcast-box {
-      background: lightgray;
-      padding: 5px 5px 5px 5px;
-      margin-bottom: 5px;
-      border: 1px solid black;
+  .podcast-title {
+    font-weight: 700;
+    font-size: .8em;
+    margin-bottom: 5px;
+  }
+
+  .podcast-publisher {
+    margin-bottom: 15px;
+    font-size: .8em;
   }
 
   .podcast-image {
       width: 100px;
       float: left;
-      padding-right: 5px;
+      padding-right: 10px;
   }
+
+  .selected-podcast {
+    background: white;
+    padding: 8px;
+    margin: 10px;
+    border-radius: 4px;
+    box-shadow: 0px 4px 3px rgba(0, 0, 0, 0.25);
+    margin-bottom: 150px;
+  }
+
 
   .podcast-description, .full-description {
       float: clear;
+      font-size: .9em;
       word-wrap: break-word;
   }
 
-  .podcast-player {
-    margin: auto;
-    margin-bottom: -5px;
-    border-bottom: 1px solid lightgray;
+  .wiki-list > li {
+    background: lightgray;
+    font-size: 0.85em;
+    padding: 8px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    box-shadow: 0px 4px 3px rgba(0, 0, 0, 0.25);
   }
 
-  .wiki-results {
-    background-color: silver;
-    padding: 5px 5px 5px 5px;
-    border: 1px solid black;
+  .wiki-results > p {
+    background: silver;
+    font-size: 0.85em;
+    padding: 8px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    box-shadow: 0px 4px 3px rgba(0, 0, 0, 0.25);
   }
   
   #wikipedia-frame {
@@ -104,13 +175,17 @@
     border: 1px solid black;
  }
 
+ .wiki-results > h3 {
+   margin-top: 20px;
+   color: #0B3C85;
+   font-weight: 700;
+   margin-bottom: 5px;
+ }
+
 
 @media screen and (min-width: 700px) {
-  .all-results {
-    flex-direction: row;
-  }
 
-  .podcast-box, .podcast-player, .wiki-results {
+  /* .podcast-box, .podcast-player, .wiki-results {
     width: 47vw;
   }
 
@@ -120,9 +195,27 @@
     left: 10px;
     width: 47vw;
     height: 98vh;
-  }
+  } */
 }
 
  .hidden {
   display: none;
 }
+
+.podcast-player {
+  position: fixed;
+  bottom: 0;
+  /* left: 5vw;
+  right: 5vw; */
+  height: 19vh;
+  background-color: white;
+  width: 100vw;
+}
+
+/* TODO: figure out how to remove styling on the embedded player */
+.player {
+  box-shadow: none;
+  border: none;
+  margin-bottom: -6px;
+}
+

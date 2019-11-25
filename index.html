@@ -6,41 +6,51 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Rabbit Hole</title>
     <link rel="shortcut icon" href="#">
-    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/08a7f00056.js" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css?family=Arima+Madurai&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap" rel="stylesheet">
+    <link href="https://meyerweb.com/eric/tools/css/reset/reset.css" rel="stylesheet">
     <link rel="stylesheet" href="index.css">
 </head>
 <body>
     <div class="search-container">
-        <h1 id="big-title">Rabbit Hole</h1>
-            <h2 id="subtitle">Listen to Podcasts and read Wikipedia articles</h2>
-
+        <h1 class="big-title">Rabbit Hole</h1>
+        <h2 class="subtitle">Listen. Read. Learn more.</h2>
         <form>
-          <label for="search-term" id="search-for">Search for podcasts, topics</label>
-          <input type="text" name="search-term" class="js-search-term" placeholder="Search for podcast names, topics, people..." required>
-          <input id="submit" type="submit" value="Search">
+            <input type="text" name="search-term" class="js-search-term" placeholder="Search for podcast names, topics, people..." required>
+            <button id="submit" type="submit"><i class="fas fa-search"></i></button>
         </form>
+        <p class="start-onboarding hidden">See how it works.</p>
+    </div>  
 
-    </div>
-    <div class="all-results">
-        <div class="results-left">
-            <div class="go-back"> << Back</div>
-            <div class="js-results-container"></div>
-            <div class="podcast-player">
-                <iframe class="podcast-player" src="https://www.listennotes.com/embedded/e/ca029d4f9b4d488fa336e63b88376a3a/" width="100%" style="width: 1px; min-width: 100%;" frameborder="0" scrolling="no"></iframe>
-            </div>
-            <div class="wiki-results">
-                Wikipedia results:
-                <ul class="wiki-list"></ul>
-            </div>
-        </div>
-        <div class="results-right">
-            <iframe id="wikipedia-frame"
-                title="Wikipedia Page"
-                name="wiki_iframe"
-                src="#"></iframe>
-                <!--TODO: Add sandbox to iframe?-->
+    <div class="js-error-message"></div>
+
+    <div class="user-onboarding"></div>
+
+    <div class="podcast-results"></div>
+
+    <div class="selected-podcast">
+        <div class="go-back"><i class="fas fa-times"></i></div>
+        <div class="podcast-info"></div>
+        <div class="wiki-results">
+            <h3>Wikipedia results:</h3>
+            <ul class="wiki-list"></ul>
+            <!-- <div class="wiki-search"></div> -->
         </div>
     </div>
+
+    <div class="wikipedia">
+        <iframe id="wikipedia-frame"
+            title="Wikipedia Page"
+            name="wiki_iframe"
+            src="#">
+        </iframe>
+    </div>
+
+    <div class="podcast-player">
+        <iframe class="player" src="#" width="100%" scrolling="no"></iframe>
+    </div>
+
 
 
     <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
