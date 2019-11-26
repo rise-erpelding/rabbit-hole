@@ -222,6 +222,12 @@ ol {
     word-wrap: break-word;
   }
 
+  .no-results {
+    color: #B83422;
+    text-align: center;
+    margin: 20px 50px 20px 50px;
+  }
+
 /* styles for .selected-podcast and children */
   .selected-podcast {
     background: white;

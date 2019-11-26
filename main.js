@@ -1,7 +1,3 @@
-//TODO:
-//edge case: mac and cheese/mac cheese Gastropod podcast
-//Japanese food = Splendid Table? Not bringing up Japan
-
 'use strict';
 
 const podcastURL = 'https://listen-api.listennotes.com/api/v2/search';
@@ -15,26 +11,21 @@ const dandelionKey = config.TEXT_WIKI_KEY;
 //when you click on back, hides wikipedia and podcast player, goes back to all short descriptions from search results
 function backButton() {
     $('.selected-podcast').on('click', '.go-back', function(event) {
-        $('.wikipedia').hide();
-        $('.podcast-player').hide();
-        $('.selected-results').hide();
-        $('.selected-podcast').hide();
-        $('.podcast-description').removeClass('hidden');
-        $('.full-description').addClass('hidden');
-        $('.wiki-list').empty();
-        // $('.wiki-results').show();
         $('.podcast-results').show();
-        $('.js-selected').removeClass('js-selected');
-        $('.go-back').hide();
         $('.search-container').show();
-    })
+        $('.selected-podcast').addClass('hidden');
+        $('.full-description').addClass('hidden');
+        $('.podcast-description').removeClass('hidden');
+        $('.js-selected').removeClass('js-selected');
+        $('.js-error-message').empty();
+    });
 
     showOnePodcast();
 }
 
 function hideWikipedia() {
     $('.wikipedia').on('click', '.exit-iframe', function(event) {
-        $('.wikipedia').hide();
+        $('.wikipedia').addClass('hidden');
         $('.selected-podcast').show();
     });
 }
@@ -42,7 +33,7 @@ function hideWikipedia() {
 function showWikipedia() {
 
     $('.wiki-results').on('click', 'a', function(event) {
-        $('.wikipedia').show();
+        $('.wikipedia').removeClass('hidden');
         $('.selected-podcast').hide();
     });
 
@@ -57,16 +48,14 @@ function removeDuplicates(myArr, prop) {
   }
 
 function displayDandelionResults(responseJson) {
-    console.log('responseJson:');
-    console.log(responseJson);
-    
-
-    $('.wiki-results').show();
+    // console.log('responseJson:');
+    // console.log(responseJson);
     $('.search-container').hide();
 
     let arrayOfUniqueResults = removeDuplicates(responseJson.annotations, "label");
-    console.log('unique object')
-    console.log(arrayOfUniqueResults);
+    // console.log('unique object')
+    // console.log(arrayOfUniqueResults);
+    $('.wiki-list').empty();
 
     for (let i = 0; i < arrayOfUniqueResults.length; i++) {
         $('.wiki-list').append(`
@@ -119,14 +108,10 @@ function showOnePodcast() {
         $('.podcast-info').html(selectedPodcastHTML);
         $('.podcast-description').addClass('hidden');
         $('.full-description').removeClass('hidden');
+
         $('.podcast-results').hide();
-        $('.selected-podcast').show();
-        $('.wiki-results').hide();
-
-        $('.go-back').show();
-
-        //empties out list of wikipedia links
-        $('.wiki-list').empty();
+        $('.search-container').hide();
+        $('.selected-podcast').removeClass('hidden');
 
         //passes description to getEntities function to search for key phrases
         const selectedDescription = $('.js-selected > .full-description').text();
@@ -136,12 +121,16 @@ function showOnePodcast() {
         const selectedIDNum = $('.js-selected > .idnum').text();
         const playerURL = 'https://www.listennotes.com/embedded/e/' + selectedIDNum + '/';
         $('.player').attr("src",playerURL);
-        $('.podcast-player').show();
+        $('.podcast-player').removeClass('hidden');
     })  
 }
 
 function displayPodcastResults(responseJson) {
-    $('.podcast-results').show();
+    if (responseJson.results.length === 0) {
+        $('.podcast-results').append(`
+        <div class="no-results">No results found. Try again with a different search.</div>
+        `);
+    }
 
     for (let i = 0; i < responseJson.results.length; i++) {
         if (responseJson.results[i].description_original.length > 30) {
@@ -171,7 +160,7 @@ function displayPodcastResults(responseJson) {
 
 //formats the query parameters as a string that can be added to the url
 function formatQueryParams(params) {
-    const QueryParams = Object.keys(params).map(key => `${key}=${params[key]}`);
+    const QueryParams = Object.keys(params).map(key => `${encodeURIComponent(key)}=${encodeURIComponent(params[key])}`);
     return QueryParams.join('&');
 }
 
@@ -217,43 +206,33 @@ function watchForm() {
         event.preventDefault();
         const searchTerm = $('.js-search-term').val();
         getPodcasts(searchTerm);
-        $('.js-search-term').empty();
+        $('.js-search-term').val('');
         $('body').css("background-image", "none");
         $('.subtitle').remove();
         $('.big-title').addClass('small-title')
 
         //if you do another search, empties results and hides everything again
-        $('.js-results-container').empty();
-        $('.wiki-list').empty();
-        $('.wiki-results').hide();
-        $('.podcast-player').hide();
-        $('.wikipedia').hide();
+        $('.podcast-results').empty();
+        $('.podcast-player').addClass('hidden');
+        $('.js-error-message').empty();
     }); 
 }
 
+// shows/hides user onboarding screen
 function startUserOnboarding() {
     $('.search-container').on('click', '.start-onboarding', function(event) {
-        $('.user-onboarding').show();
-        $('body').scrollTop( 500 );
+        $('.user-onboarding').removeClass('hidden');
     });
 
     $('.user-onboarding').on('click', '.back-to-landing', function(event) {
-        $('.user-onboarding').hide();
+        $('.user-onboarding').addClass('hidden');
     });
-  
 }
 
 //hides results containers
 function handlePage() {
-    $('.wiki-results').hide();
-    $('.wikipedia').hide();
-    $('.podcast-player').hide();
-    $('.podcast-results').hide();
-    $('.selected-podcast').hide();
-    $('.user-onboarding').hide();
     watchForm();
     startUserOnboarding();
-    
 }
 
 $(handlePage);

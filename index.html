@@ -27,7 +27,7 @@
 
     <div class="js-error-message"></div>
 
-    <section class="user-onboarding">
+    <section class="user-onboarding hidden">
         <div class="onboarding-title-container">
             <h3>Welcome to Rabbit Hole</h3>
             <h4>Using Rabbit Hole is easy. Here's how to get started:</h4>
@@ -50,36 +50,34 @@
 
     </section>
 
-    <div class="podcast-results"></div>
+    <section class="podcast-results"></section>
 
-    <div class="selected-podcast">
+    <section class="selected-podcast hidden">
         <div class="go-back"><i class="fas fa-times"></i></div>
         <div class="podcast-info"></div>
         <div class="wiki-results">
             <h3>Wikipedia results:</h3>
-            
             <ul class="wiki-list"></ul>
-            <!-- <div class="wiki-search"></div> -->
         </div>
-    </div>
+    </section>
 
-    <div class="wikipedia">
+    <section class="wikipedia hidden">
         <i class="fas fa-times exit-iframe"></i>
         <iframe id="wikipedia-frame"
             title="Wikipedia Page"
             name="wiki_iframe"
             src="#">
         </iframe>
-    </div>
+    </section>
 
-    <div class="podcast-player">
-        <iframe class="player" src="#" scrolling="no"></iframe>
-    </div>
+    <section class="podcast-player hidden">
+        <iframe class="player" src="#"></iframe>
+    </section>
 
 
 
     <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="config.js"></script>
-    <script type="text/javascript" src="main.js"></script>
+    <script src="config.js"></script>
+    <script src="main.js"></script>
 </body>
 </html>
