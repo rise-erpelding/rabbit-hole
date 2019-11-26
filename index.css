@@ -31,61 +31,13 @@
     color: #0B3C85;
   }
 
-/* styles for .user-onboarding */
-.user-onboarding {
-  background: linear-gradient(180deg, #0B3C85 0%, #0A326D 100%), #0B3485;
-  color: white;
-  height: 100vh;
-  width: 100vw;
-}
 
-.onboarding-title-container {
-  margin: 20px;
-}
-
-.grid-container {
-  display: grid;
-  grid-template-columns: 1fr 3fr;
-}
-
-.onboard-icon {
-  border: 3px solid white;
-  border-radius: 8px;
-  font-size: 4em;
-  padding: 15px;
-  text-align: center;
-  width: 1.6em;
-  margin: 20px;
-  color: #bbe727;
-}
-
-
-.icons-list {
-  display: grid;
-  grid-template-rows: repeat(3, 1fr);
-}
-
-.numbered-list {
-  display: grid;
-  grid-template-rows: repeat(3, 1fr);
-}
-
-ol {
-  margin-top: 0;
-  margin-bottom: 0;
-}
-
-.numbered-list > li {
-  font-size: 1em;
-  margin: 10px;
-  margin-top: 30px;
-}
 
 /* styles for .search-container and children */
   .big-title {
     font-size: 2.5em;
     font-family: 'Arima Madurai', cursive;
-    color: rgb(105, 90, 90);
+    color: #541810;
     margin-top: 15vh;
     position: relative;
     left: 50%;
@@ -138,10 +90,81 @@ ol {
     bottom: 0;
   }
 
-/* STYLES FOR USER ONBOARDING WILL GO HERE */
+/* styles for user onboarding */
 .start-onboarding {
-  font-size: .8em;
-  text-align: left;
+  padding-left: 20px;
+  border: 3px solid white;
+  background-color: #0B3C85;
+  color: white;
+  width: 12vw;
+  padding: 15px 15px 15px 20px;
+  border-radius: 8px;
+  font-size: 0.8em;
+}
+
+.user-onboarding {
+  position: fixed;
+  top: 0;
+  background: #0b3c85;
+  padding-top: 20px;
+  color: white;
+  height: 100vh;
+  width: 100vw;
+  padding-left: 10vw;
+  padding-right: 10vw;
+}
+
+.onboarding-title-container {
+  margin: 20px;
+}
+
+.onboarding-title-container > h3 {
+  font-weight: 700;
+  font-size: 1.5em;
+  margin-bottom: 15px;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+}
+
+.onboard-icon {
+  border: 3px solid white;
+  border-radius: 8px;
+  font-size: 4em;
+  padding: 15px;
+  text-align: center;
+  width: 1.6em;
+  margin: 20px;
+  color: #bbe727;
+}
+
+.back-to-landing {
+  text-align: center;
+  margin-top: 30px;
+}
+
+
+.icons-list {
+  display: grid;
+  grid-template-rows: repeat(3, 1fr);
+}
+
+.numbered-list {
+  display: grid;
+  grid-template-rows: repeat(3, 1fr);
+}
+
+ol {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.numbered-list > li {
+  font-size: 1em;
+  margin: 10px;
+  margin-top: 30px;
 }
 
 /* styles for .js-error-message */
@@ -251,10 +274,6 @@ ol {
 
 
 /* styles for .podcast-player and children */
- .podcast-player {
-  
-}
-
 .player {
   box-shadow: none;
   border: none;
@@ -310,7 +329,6 @@ ol {
     background-color: #e6f6b0;
   }
 }
-
 
  .hidden {
   display: none;
