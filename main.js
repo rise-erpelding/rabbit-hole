@@ -220,12 +220,18 @@ function watchForm() {
 
 // shows/hides user onboarding screen
 function startUserOnboarding() {
+
     $('.search-container').on('click', '.start-onboarding', function(event) {
-        $('.user-onboarding').removeClass('hidden');
+        $('.user-onboarding').removeClass('hidden').addClass('animated slideInLeft').one('animationend', function() {
+            $(this).removeClass('animated slideInLeft');
+        });
     });
 
     $('.user-onboarding').on('click', '.back-to-landing', function(event) {
-        $('.user-onboarding').addClass('hidden');
+        $('.user-onboarding').addClass('animated slideOutLeft').one('animationend', function() {
+            $(this).removeClass('animated slideOutLeft').addClass('hidden');
+        });
+        
     });
 }
 

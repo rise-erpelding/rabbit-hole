@@ -93,20 +93,25 @@
 /* styles for user onboarding */
 .start-onboarding {
   padding-left: 20px;
-  border: 3px solid white;
   background-color: #0B3C85;
   color: white;
-  width: 12vw;
-  padding: 15px 15px 15px 20px;
-  border-radius: 8px;
-  font-size: 0.8em;
+  max-width: 7vw;
+  padding: 1vw;
+  border-top: 3px solid white;
+  border-bottom: 3px solid white;
+  border-right: 3px solid white;
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+  font-size: 1.4em;
+  text-align: center;
 }
 
 .user-onboarding {
   position: fixed;
   top: 0;
   background: #0b3c85;
-  padding-top: 20px;
+  padding-top: 10vh;
+  padding-bottom: 10vh;
   color: white;
   height: 100vh;
   width: 100vw;
@@ -144,7 +149,6 @@
   text-align: center;
   margin-top: 30px;
 }
-
 
 .icons-list {
   display: grid;
@@ -232,10 +236,10 @@ ol {
   .selected-podcast {
     background: white;
     padding: 8px;
-    margin: 10px;
     border-radius: 4px;
     box-shadow: 0px 4px 3px rgba(0, 0, 0, 0.25);
-    margin-bottom: 150px;
+    height: 81vh;
+    overflow: scroll;
   }
 
   .wiki-list > li {
@@ -294,9 +298,9 @@ ol {
 /* media queries for screen widths */
 
 @media screen and (min-width: 480px) {
-  .player {
+  /* .player {
     height: 17vh;
-  }
+  } */
 }
 
 @media screen and (min-width: 700px) {
@@ -305,9 +309,9 @@ ol {
     margin: auto;
   }
 
-  .player {
+  /* .player {
     height: 16vh;
-  }
+  } */
 
   body {
     background-color: #e6f6b0;
@@ -335,7 +339,6 @@ ol {
     background-color: #e6f6b0;
   }
 }
-
  .hidden {
   display: none;
 }
