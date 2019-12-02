@@ -11,13 +11,14 @@ const dandelionKey = config.TEXT_WIKI_KEY;
 //when you click on back, hides wikipedia and podcast player, goes back to all short descriptions from search results
 function backButton() {
     $('.selected-podcast').on('click', '.go-back', function(event) {
+        $('.selected-podcast').addClass('hidden');
         $('.podcast-results').show();
         $('.search-container').show();
-        $('.selected-podcast').addClass('hidden');
         $('.full-description').addClass('hidden');
         $('.podcast-description').removeClass('hidden');
         $('.js-selected').removeClass('js-selected');
         $('.js-error-message').empty();
+        $('.listen-notes-link').addClass('hidden');
     });
 
     showOnePodcast();
@@ -108,10 +109,11 @@ function showOnePodcast() {
         $('.podcast-info').html(selectedPodcastHTML);
         $('.podcast-description').addClass('hidden');
         $('.full-description').removeClass('hidden');
-
+        $('.listen-notes-link').removeClass('hidden');
         $('.podcast-results').hide();
         $('.search-container').hide();
         $('.selected-podcast').removeClass('hidden');
+        $('.main').addClass('shorter-screen');
 
         //passes description to getEntities function to search for key phrases
         const selectedDescription = $('.js-selected > .full-description').text();
@@ -143,7 +145,7 @@ function displayPodcastResults(responseJson) {
                     <p class="podcast-description">${responseJson.results[i].description_original}</p>
                     <p class="hidden full-description">${responseJson.results[i].description_original}</p>
                     <p class="hidden idnum">${responseJson.results[i].id}</p>
-                    <p class="hidden"><a href="${responseJson.results[i].listennotes_url}" target="_blank">View in ListenNotes</a></p>
+                    <p class="listen-notes-link hidden"><a href="${responseJson.results[i].listennotes_url}" target="_blank">View in ListenNotes</a></p>
                 </div>
             `);
         }
@@ -209,7 +211,8 @@ function watchForm() {
         $('.js-search-term').val('');
         $('body').css("background-image", "none");
         $('.subtitle').remove();
-        $('.big-title').addClass('small-title')
+        $('.big-title').addClass('small-title');
+        $('.main').removeClass('shorter-screen');
 
         //if you do another search, empties results and hides everything again
         $('.podcast-results').empty();

@@ -24,6 +24,11 @@
     color: inherit;
   }
 
+  .shorter-screen {
+    height: 85vh;
+    overflow: scroll;
+  }
+
   .fa-times {
     font-size: 2em;
     margin-left: 2px;
@@ -52,7 +57,7 @@
 
   .subtitle {
     font-size: .8em;
-    margin-bottom: 90px;
+    margin-bottom: 70px;
     position: relative;
     left: 50%;
     margin-left: -140px;
@@ -83,11 +88,24 @@
 
   .js-search-term {
     border: none;
-    width: 240px;
+    width: 220px;
     height: 25px;
     margin: 0;
     position: relative;
     bottom: 0;
+  }
+
+  .logos {
+    text-align: center;
+    margin-top: 15px;
+  }
+
+  .listen-notes-logo {
+    height: 15px;
+  }
+
+  .dandelion-logo {
+    height: 20px;
   }
 
 /* styles for user onboarding */
@@ -95,8 +113,8 @@
   padding-left: 20px;
   background-color: #0B3C85;
   color: white;
-  max-width: 7vw;
-  padding: 1vw;
+  max-width: 1.6em;
+  padding: .2em;
   border-top: 3px solid white;
   border-bottom: 3px solid white;
   border-right: 3px solid white;
@@ -238,8 +256,12 @@ ol {
     padding: 8px;
     border-radius: 4px;
     box-shadow: 0px 4px 3px rgba(0, 0, 0, 0.25);
-    height: 81vh;
-    overflow: scroll;
+  }
+
+  .listen-notes-link {
+    color: #B83422;
+    padding-top: .5em;
+    font-size: .8em;
   }
 
   .wiki-list > li {
@@ -267,14 +289,14 @@ ol {
 
 /* styles for .wikipedia and children   */
   .wikipedia {
-    height: 77vh;
-    width: 98vw;
+    width: 97vw;
     margin: auto;
   }
 
   #wikipedia-frame {
-    height: 75vh;
-    width: 98vw;
+    height: 85vh;
+    width: 97vw;
+    margin: auto;
     border: 1px solid white;
     border-radius: 4px;
     box-shadow: 0px 4px 3px rgba(0, 0, 0, 0.25);
@@ -290,7 +312,7 @@ ol {
   margin-bottom: -6px;
   position: fixed;
   bottom: 0;
-  height: 19vh;
+  height: 15vh;
   background-color: white;
   width: 100vw;
 }
@@ -298,46 +320,45 @@ ol {
 /* media queries for screen widths */
 
 @media screen and (min-width: 480px) {
-  /* .player {
-    height: 17vh;
-  } */
+  .js-search-term {
+    width: 240px;
+  }
 }
 
 @media screen and (min-width: 700px) {
-  .podcast-results, .selected-podcast, .wikipedia {
+  .podcast-results, .selected-podcast {
     width: 75vw;
     margin: auto;
   }
 
-  /* .player {
-    height: 16vh;
-  } */
-
-  body {
-    background-color: #e6f6b0;
+  .wikipedia, #wikipedia-frame {
+    width: 80vw;
   }
+
 }
 
 @media screen and (min-width: 880px) {
-  .podcast-results, .selected-podcast, .wikipedia {
+  .podcast-results, .selected-podcast {
     width: 65vw;
     margin: auto;
   }
 
-  body {
-    background-color: #E5E5E5;
+  .wikipedia, #wikipedia-frame {
+    width: 70vw;
   }
+
 }
 
 @media screen and (min-width: 1050px) {
-  .podcast-results, .selected-podcast, .wikipedia {
+  .podcast-results, .selected-podcast {
     width: 55vw;
     margin: auto;
   }
 
-  body {
-    background-color: #e6f6b0;
+  .wikipedia, #wikipedia-frame {
+    width: 60vw;
   }
+
 }
  .hidden {
   display: none;

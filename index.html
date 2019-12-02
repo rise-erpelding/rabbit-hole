@@ -15,65 +15,68 @@
     <link rel="stylesheet" href="index.css">
 </head>
 <body>
-    <section class="search-container">
-        <h1 class="big-title">Rabbit Hole</h1>
-        <h2 class="subtitle">Listen. Read. Learn more.</h2>
-        <form id="podcast-search">
-            <input type="text" name="search-term" class="js-search-term" placeholder="Search for podcast names, topics, people..." required>
-            <button id="submit" type="submit"><i class="fas fa-search"></i></button>
-        </form>
-        <div class="start-onboarding"><i class="fas fa-question-circle"></i>
-        </div>
-    </section>  
+    <main class="main">
+        <section class="search-container">
+            <h1 class="big-title">Rabbit Hole</h1>
+            <h2 class="subtitle">Listen. Read. Learn more.</h2>
+            <form id="podcast-search">
+                <input type="text" name="search-term" class="js-search-term" placeholder="Search for podcast names, topics, people..." required>
+                <button id="submit" type="submit"><i class="fas fa-search"></i></button>
+            </form>
+            <div class="logos"><p><a href="https://www.listennotes.com/" target="_blank"><img class="listen-notes-logo" src="images/listennoteslogo.png" alt="ListenNotes logo"></a></p><p><a href="https://dandelion.eu/" target="_blank"><img class="dandelion-logo" src="images/dandelion.png" alt="Dandelion Logo"></a></p></div>
+            <div class="start-onboarding"><i class="fas fa-question-circle"></i>
+            </div>
+        </section>  
 
-    <div class="js-error-message"></div>
+        <div class="js-error-message"></div>
 
-    <section class="user-onboarding hidden">
-        <div class="onboarding-title-container">
-            <h3>Welcome to Rabbit Hole</h3>
-            <h4>Using Rabbit Hole is easy. Here's how to get started:</h4>
-        </div>
-
-        <div class="grid-container">
-            <div class="icons-list">
-                <i class="fas fa-search onboard-icon"></i>
-                <i class="fas fa-headphones-alt onboard-icon"></i>
-                <i class="fas fa-hand-pointer onboard-icon"></i>
+        <section class="user-onboarding hidden">
+            <div class="onboarding-title-container">
+                <h3>Welcome to Rabbit Hole</h3>
+                <h4>Using Rabbit Hole is easy. Here's how to get started:</h4>
             </div>
 
-            <ol class="numbered-list">
-                <li>Search podcasts. The podcast search engine will return educational podcasts.</li>
-                <li>Click on any podcast to listen to it. Controls for player are at the bottom of the screen.</li>
-                <li>Click on the links to view related Wikipedia articles.</li>
-            </ol>
-        </div>
-        <div class="back-to-landing">Ready? Let's hop to it. <i class="fas fa-chevron-circle-right"></i></div>
+            <div class="grid-container">
+                <div class="icons-list">
+                    <i class="fas fa-search onboard-icon"></i>
+                    <i class="fas fa-headphones-alt onboard-icon"></i>
+                    <i class="fas fa-hand-pointer onboard-icon"></i>
+                </div>
 
-    </section>
+                <ol class="numbered-list">
+                    <li>Search podcasts. The podcast search engine will return educational podcasts.</li>
+                    <li>Click on any podcast to listen to it. Controls for player are at the bottom of the screen.</li>
+                    <li>Click on the links to view related Wikipedia articles.</li>
+                </ol>
+            </div>
+            <div class="back-to-landing">Ready? Let's hop to it. <i class="fas fa-chevron-circle-right"></i></div>
 
-    <section class="podcast-results"></section>
+        </section>
 
-    <section class="selected-podcast hidden">
-        <div class="go-back"><i class="fas fa-times"></i></div>
-        <div class="podcast-info"></div>
-        <div class="wiki-results">
-            <h3>Wikipedia results:</h3>
-            <ul class="wiki-list"></ul>
-        </div>
-    </section>
+        <section class="podcast-results"></section>
 
-    <section class="wikipedia hidden">
-        <i class="fas fa-times exit-iframe"></i>
-        <iframe id="wikipedia-frame"
-            title="Wikipedia Page"
-            name="wiki_iframe"
-            src="#">
-        </iframe>
-    </section>
+        <section class="selected-podcast hidden">
+            <div class="go-back"><i class="fas fa-times"></i></div>
+            <div class="podcast-info"></div>
+            <div class="wiki-results">
+                <h3>Wikipedia results:</h3>
+                <ul class="wiki-list"></ul>
+            </div>
+        </section>
 
-    <section class="podcast-player hidden">
+        <section class="wikipedia hidden">
+            <i class="fas fa-times exit-iframe"></i>
+            <iframe id="wikipedia-frame"
+                title="Wikipedia Page"
+                name="wiki_iframe"
+                src="#">
+            </iframe>
+        </section>
+    </main>
+
+    <footer class="podcast-player hidden">
         <iframe class="player" src="#"></iframe>
-    </section>
+    </footer>
 
 
 
