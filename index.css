@@ -25,7 +25,7 @@
   }
 
   .shorter-screen {
-    height: 85vh;
+    height: 84vh;
     overflow: scroll;
   }
 
@@ -290,7 +290,7 @@ ol {
   }
 
   #wikipedia-frame {
-    height: 85vh;
+    height: 84vh;
     width: 97vw;
     margin: auto;
     border: 1px solid white;
@@ -305,7 +305,7 @@ ol {
   margin-bottom: -6px;
   position: fixed;
   bottom: 0;
-  height: 15vh;
+  height: 16vh;
   background-color: white;
   width: 100vw;
 }
