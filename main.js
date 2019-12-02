@@ -8,7 +8,7 @@ const dandelionKey = config.TEXT_WIKI_KEY;
 
 
 
-//when you click on back, hides wikipedia and podcast player, goes back to all short descriptions from search results
+//when you click on back, hides wikipedia and podcast player, goes back to all short descriptions from search results, continues to display podcast player
 function backButton() {
     $('.selected-podcast').on('click', '.go-back', function(event) {
         $('.selected-podcast, .full-description, .listen-notes-link').addClass('hidden');
@@ -21,6 +21,7 @@ function backButton() {
     showOnePodcast();
 }
 
+//hides wikipedia frame
 function hideWikipedia() {
     $('.wikipedia').on('click', '.exit-iframe', function(event) {
         $('.wikipedia').addClass('hidden');
@@ -28,6 +29,7 @@ function hideWikipedia() {
     });
 }
 
+//shows wikipedia frame
 function showWikipedia() {
     $('.wiki-results').on('click', 'a', function(event) {
         $('.wikipedia').removeClass('hidden');
@@ -44,6 +46,7 @@ function removeDuplicates(myArr, prop) {
     });
   }
 
+//renders the results from calling the dandelion API, displays links to related Wikipedia articles
 function displayDandelionResults(responseJson) {
     let arrayOfUniqueResults = removeDuplicates(responseJson.annotations, "label");
     $('.wiki-list').empty();
@@ -64,6 +67,7 @@ function displayDandelionResults(responseJson) {
     backButton();
 }
 
+//takes description from selected podcast and calls dandelion API
 function getEntities(description) {
     const dandelionParams = {
         token: dandelionKey,
@@ -76,7 +80,6 @@ function getEntities(description) {
     const dandelionQueryString = formatQueryParams(dandelionParams);
 
     const url = textEntitiesURL + '?' + dandelionQueryString;
-    console.log(url);
 
     fetch(url)
         .then(response => {
@@ -92,6 +95,7 @@ function getEntities(description) {
         });
 }
 
+//shows a single selected podcast with more detailed information and podcast player
 function showOnePodcast() {
     $('.podcast-results').one('click', '.podcast-card', function(event) {
         $(this).addClass('js-selected');
@@ -107,8 +111,6 @@ function showOnePodcast() {
         if (selectedDescription.length > 2000) {
             selectedDescription = selectedDescription.substring(0, 2000);
         }
-        console.log('your selected description for dandelion api will be')
-        console.log(selectedDescription);
         getEntities(selectedDescription);
 
         //takes idnum from hidden p above and inserts it into embedded player
@@ -118,6 +120,7 @@ function showOnePodcast() {
     })  
 }
 
+//displays the results for the podcast episodes found
 function displayPodcastResults(responseJson) {
 
     if (responseJson.results.length === 0) {
@@ -207,9 +210,8 @@ function watchForm() {
         $('.main').removeClass('shorter-screen');
 
         //if you do another search, empties results and hides everything again
-        $('.podcast-results').empty();
+        $('.podcast-results, .js-error-message').empty();
         $('.podcast-player').addClass('hidden');
-        $('.js-error-message').empty();
     }); 
 }
 
