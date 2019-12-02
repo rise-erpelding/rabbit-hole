@@ -11,14 +11,11 @@ const dandelionKey = config.TEXT_WIKI_KEY;
 //when you click on back, hides wikipedia and podcast player, goes back to all short descriptions from search results
 function backButton() {
     $('.selected-podcast').on('click', '.go-back', function(event) {
-        $('.selected-podcast').addClass('hidden');
-        $('.podcast-results').show();
-        $('.search-container').show();
-        $('.full-description').addClass('hidden');
+        $('.selected-podcast, .full-description, .listen-notes-link').addClass('hidden');
+        $('.podcast-results, .search-container').show();
         $('.podcast-description').removeClass('hidden');
         $('.js-selected').removeClass('js-selected');
         $('.js-error-message').empty();
-        $('.listen-notes-link').addClass('hidden');
     });
 
     showOnePodcast();
@@ -32,7 +29,6 @@ function hideWikipedia() {
 }
 
 function showWikipedia() {
-
     $('.wiki-results').on('click', 'a', function(event) {
         $('.wikipedia').removeClass('hidden');
         $('.selected-podcast').hide();
@@ -49,13 +45,7 @@ function removeDuplicates(myArr, prop) {
   }
 
 function displayDandelionResults(responseJson) {
-    // console.log('responseJson:');
-    // console.log(responseJson);
-    $('.search-container').hide();
-
     let arrayOfUniqueResults = removeDuplicates(responseJson.annotations, "label");
-    // console.log('unique object')
-    // console.log(arrayOfUniqueResults);
     $('.wiki-list').empty();
 
     for (let i = 0; i < arrayOfUniqueResults.length; i++) {
@@ -108,26 +98,28 @@ function showOnePodcast() {
         const selectedPodcastHTML = $('.js-selected').html();
         $('.podcast-info').html(selectedPodcastHTML);
         $('.podcast-description').addClass('hidden');
-        $('.full-description').removeClass('hidden');
-        $('.listen-notes-link').removeClass('hidden');
-        $('.podcast-results').hide();
-        $('.search-container').hide();
-        $('.selected-podcast').removeClass('hidden');
+        $('.full-description, .listen-notes-link, .selected-podcast, .podcast-player').removeClass('hidden');
+        $('.podcast-results, .search-container').hide();
         $('.main').addClass('shorter-screen');
 
         //passes description to getEntities function to search for key phrases
-        const selectedDescription = $('.js-selected > .full-description').text();
+        let selectedDescription = $('.js-selected > .full-description').text();
+        if (selectedDescription.length > 2000) {
+            selectedDescription = selectedDescription.substring(0, 2000);
+        }
+        console.log('your selected description for dandelion api will be')
+        console.log(selectedDescription);
         getEntities(selectedDescription);
 
         //takes idnum from hidden p above and inserts it into embedded player
         const selectedIDNum = $('.js-selected > .idnum').text();
         const playerURL = 'https://www.listennotes.com/embedded/e/' + selectedIDNum + '/';
         $('.player').attr("src",playerURL);
-        $('.podcast-player').removeClass('hidden');
     })  
 }
 
 function displayPodcastResults(responseJson) {
+
     if (responseJson.results.length === 0) {
         $('.podcast-results').append(`
         <div class="no-results">No results found. Try again with a different search.</div>
@@ -221,7 +213,7 @@ function watchForm() {
     }); 
 }
 
-// shows/hides user onboarding screen
+// slides user onboarding screen in and out
 function startUserOnboarding() {
 
     $('.search-container').on('click', '.start-onboarding', function(event) {
@@ -238,7 +230,6 @@ function startUserOnboarding() {
     });
 }
 
-//hides results containers
 function handlePage() {
     watchForm();
     startUserOnboarding();
