@@ -87,7 +87,7 @@ function getEntities(description) {
         })
         .then(responseJson => displayDandelionResults(responseJson))
         .catch(error => {
-            $('.js-error-message').html(`<p><i class="far fa-flushed"></i></p><p>Uh-oh, something went wrong: ${error.message}</p>`);
+            $('.js-error-message').html(`<p><i class="far fa-flushed"></i></p><p>Uh-oh, something went wrong: ${error.message}. Try reloading the page and repeating your request.</p>`);
             $('.js-error-message').addClass('.error-style');
         });
 }
@@ -189,7 +189,7 @@ function getPodcasts(query) {
         })
         .then(responseJson => displayPodcastResults(responseJson))
         .catch(error => {
-            $('.js-error-message').html(`<p><i class="far fa-flushed"></i></p><p>Uh-oh, something went wrong: ${error.message}</p>`);
+            $('.js-error-message').html(`<p><i class="far fa-flushed"></i></p><p>Uh-oh, something went wrong: ${error.message}. Try reloading the page and repeating your request.</p>`);
             $('.js-error-message').addClass('.error-style');
         });
 }
