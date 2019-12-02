@@ -25,10 +25,10 @@ Search results:
 ![podcast search results](Screenshots/search-results.png)
 
 Podcast player and details for podcast episode, with Wikipedia links:
-![podcast player and wikipedia links, with podcast details](Screenshots/podcast-player.png)
+![podcast player and wikipedia links, with podcast details](Screenshots/player-and-links.png)
 
 Wikipedia within the app:
-![wikipedia article within the app](Screenshots/wikipedia-article.png)
+![wikipedia article within the app](Screenshots/wikipedia-view.png)
 
 
 [See Rabbit Hole in action](https://rise-erpelding.github.io/rabbit-hole/)
