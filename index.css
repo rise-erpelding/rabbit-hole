@@ -126,6 +126,7 @@
 
 .user-onboarding {
   position: fixed;
+  overflow: scroll;
   top: 0;
   background: #0b3c85;
   padding-top: 10vh;
@@ -166,6 +167,7 @@
 .back-to-landing {
   text-align: center;
   margin-top: 30px;
+  margin-bottom: 16vh;
 }
 
 .icons-list {
