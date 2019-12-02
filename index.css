@@ -2,109 +2,109 @@
     box-sizing: border-box;
   }
   
-  body {
-    font-family: 'Open Sans', sans-serif;
-    font-size: 1em;
-    margin: 0;
-    background-color: #E5E5E5;
-    background-image: 
-      linear-gradient(
-        rgba(255, 255, 255, 0.5),
-        rgba(255, 255, 255, 0.5)
-      ),
-      url(Images/spiral-staircase-feet.jpg);
-      background-repeat: no-repeat;
-      background-position: center;
-      background-size: cover;
-      background-attachment: fixed;
-  }
+body {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 1em;
+  margin: 0;
+  background-color: #E5E5E5;
+  background-image: 
+    linear-gradient(
+      rgba(255, 255, 255, 0.5),
+      rgba(255, 255, 255, 0.5)
+    ),
+    url(Images/spiral-staircase-feet.jpg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  background-attachment: fixed;
+}
 
-  a {
-    text-decoration: none;
-    color: inherit;
-  }
+a {
+  text-decoration: none;
+  color: inherit;
+}
 
-  .shorter-screen {
-    height: 84vh;
-    overflow: scroll;
-  }
+.shorter-screen {
+  height: 84vh;
+  overflow: scroll;
+}
 
-  .fa-times {
-    font-size: 2em;
-    margin-left: 2px;
-    margin-bottom: 3px;
-    color: #0B3C85;
-  }
+.fa-times {
+  font-size: 2em;
+  margin-left: 2px;
+  margin-bottom: 3px;
+  color: #0B3C85;
+}
 
 /* styles for .search-container and children */
-  .big-title {
-    font-size: 2.5em;
-    font-family: 'Arima Madurai', cursive;
-    color: #541810;
-    margin-top: 15vh;
-    position: relative;
-    left: 50%;
-    margin-left: -140px;
-    width: 280px;
-  }
+.big-title {
+  font-size: 2.5em;
+  font-family: 'Arima Madurai', cursive;
+  color: #541810;
+  margin-top: 15vh;
+  position: relative;
+  left: 50%;
+  margin-left: -140px;
+  width: 280px;
+}
 
-  .small-title {
-    font-size: 1.5em;
-    margin-top: 5vh;
-  }
+.small-title {
+  font-size: 1.5em;
+  margin-top: 5vh;
+}
 
-  .subtitle {
-    font-size: .8em;
-    margin-bottom: 70px;
-    position: relative;
-    left: 50%;
-    margin-left: -140px;
-    width: 280px;
-  }
+.subtitle {
+  font-size: .8em;
+  margin-bottom: 70px;
+  position: relative;
+  left: 50%;
+  margin-left: -140px;
+  width: 280px;
+}
 
-  #podcast-search {
-    background-color: white;
-    display: block;
-    text-align: center;
-    width: 280px;
-    height: 30px;
-    margin: auto;
-    border-radius: 5px;
-    box-shadow: 0px 4px 3px rgba(0, 0, 0, 0.25);
-  }
+.podcast-search {
+  background-color: white;
+  display: block;
+  text-align: center;
+  width: 280px;
+  height: 30px;
+  margin: auto;
+  border-radius: 5px;
+  box-shadow: 0px 4px 3px rgba(0, 0, 0, 0.25);
+}
 
-  #submit {
-    height: 25px;
-    width: 25px;
-    font-size: 1.1em;
-    background-color: white;
-    color: #0B3C85;
-    border: none;
-    position: relative;
-    bottom: -2px;
-  }
+.submit {
+  height: 25px;
+  width: 25px;
+  font-size: 1.1em;
+  background-color: white;
+  color: #0B3C85;
+  border: none;
+  position: relative;
+  bottom: -2px;
+}
 
-  .js-search-term {
-    border: none;
-    width: 220px;
-    height: 25px;
-    margin: 0;
-    position: relative;
-    bottom: 0;
-  }
+.js-search-term {
+  border: none;
+  width: 220px;
+  height: 25px;
+  margin: 0;
+  position: relative;
+  bottom: 0;
+}
 
-  .logos {
-    text-align: center;
-    margin-top: 15px;
-  }
+.logos {
+  text-align: center;
+  margin-top: 15px;
+}
 
-  .listen-notes-logo {
-    height: 15px;
-  }
+.listen-notes-logo {
+  height: 15px;
+}
 
-  .dandelion-logo {
-    height: 20px;
-  }
+.dandelion-logo {
+  height: 20px;
+}
 
 /* styles for user onboarding */
 .start-onboarding {
@@ -190,113 +190,114 @@ ol {
 }
 
 /* styles for .js-error-message */
-  .error-style {
-    margin: 10px;
-    color: #B83422;
-    font-weight: 700;
-    text-align: center;
-    padding: 20px;
-  }
+.error-style {
+  margin: 10px;
+  color: #B83422;
+  font-weight: 700;
+  text-align: center;
+  padding: 20px;
+}
 
-  .fa-flushed {
-    font-size: 3em;
-  }
+.fa-flushed {
+  font-size: 3em;
+}
 
 /* styles for .podcast-results and children */
-  .podcast-card {
-      background: white;
-      padding: 8px;
-      margin: 10px;
-      border-radius: 4px;
-      box-shadow: 0px 4px 3px rgba(0, 0, 0, 0.25);
-  }
+.podcast-card {
+  background: white;
+  padding: 8px;
+  margin: 10px;
+  border-radius: 4px;
+  box-shadow: 0px 4px 3px rgba(0, 0, 0, 0.25);
+}
 
-  .episode-title {
-    color: #B83422;
-    font-weight: 700;
-    font-size: 1.1em;
-    margin-bottom: 10px;
-  }
+.episode-title {
+  color: #B83422;
+  font-weight: 700;
+  font-size: 1.1em;
+  margin-bottom: 10px;
+}
 
-  .podcast-title {
-    font-weight: 700;
-    font-size: .8em;
-    margin-bottom: 5px;
-  }
+.podcast-title {
+  font-weight: 700;
+  font-size: .8em;
+  margin-bottom: 5px;
+}
 
-  .podcast-publisher {
-    margin-bottom: 15px;
-    font-size: .8em;
-  }
+.podcast-publisher {
+  margin-bottom: 15px;
+  font-size: .8em;
+}
 
-  .podcast-image {
-      width: 100px;
-      float: left;
-      padding-right: 10px;
-  }
+.podcast-image {
+  width: 100px;
+  float: left;
+  padding-right: 10px;
+}
 
-  .podcast-description, .full-description {
-    float: clear;
-    font-size: .9em;
-    word-wrap: break-word;
-  }
+.podcast-description, 
+.full-description {
+  clear: left;
+  font-size: .9em;
+  word-wrap: break-word;
+}
 
-  .no-results {
-    color: #B83422;
-    text-align: center;
-    margin: 20px 50px 20px 50px;
-  }
+.no-results {
+  color: #B83422;
+  text-align: center;
+  margin: 20px 50px 20px 50px;
+}
 
 /* styles for .selected-podcast and children */
-  .selected-podcast {
-    background: white;
-    padding: 8px;
-    border-radius: 4px;
-    box-shadow: 0px 4px 3px rgba(0, 0, 0, 0.25);
-  }
+.selected-podcast {
+  background: white;
+  padding: 8px;
+  border-radius: 4px;
+  box-shadow: 0px 4px 3px rgba(0, 0, 0, 0.25);
+}
 
-  .listen-notes-link {
-    color: #B83422;
-    padding-top: .5em;
-    font-size: .8em;
-  }
+.listen-notes-link {
+  color: #B83422;
+  padding-top: .5em;
+  font-size: .8em;
+}
 
-  .wiki-list > li {
-    background: lightgray;
-    font-size: 0.85em;
-    padding: 8px;
-    margin-bottom: 10px;
-    border-radius: 4px;
-    box-shadow: 0px 4px 3px rgba(0, 0, 0, 0.25);
-  }
+.wiki-list > li {
+  background: lightgray;
+  font-size: 0.85em;
+  padding: 8px;
+  margin-bottom: 10px;
+  border-radius: 4px;
+  box-shadow: 0px 4px 3px rgba(0, 0, 0, 0.25);
+}
 
-  .wiki-results > h3 {
-    margin-top: 20px;
-    color: #0B3C85;
-    font-weight: 700;
-    margin-bottom: 5px;
-  }
+.wiki-results > h3 {
+  margin-top: 20px;
+  color: #0B3C85;
+  font-weight: 700;
+  margin-bottom: 5px;
+}
 
-  .wiki-title {
-    color: #0B3C85;
-    font-weight: 700;
-    margin-bottom: 3px;
-  }
+.wiki-title {
+  color: #0B3C85;
+  font-weight: 700;
+  margin-bottom: 3px;
+}
 
 /* styles for .wikipedia and children   */
-  .wikipedia {
-    width: 97vw;
-    margin: auto;
-  }
+.wikipedia {
+  width: 97vw;
+  margin: auto;
+}
 
-  #wikipedia-frame {
-    height: 84vh;
-    width: 97vw;
-    margin: auto;
-    border: 1px solid white;
-    border-radius: 4px;
-    box-shadow: 0px 4px 3px rgba(0, 0, 0, 0.25);
- }
+.wikipedia-frame {
+  height: 84vh;
+  width: 97vw;
+  margin: auto;
+  border: 1px solid white;
+  border-radius: 4px;
+  box-shadow: 0px 4px 3px rgba(0, 0, 0, 0.25);
+}
 
 /* styles for .podcast-player and children */
 .player {
@@ -318,38 +319,44 @@ ol {
 }
 
 @media screen and (min-width: 700px) {
-  .podcast-results, .selected-podcast {
+  .podcast-results, 
+  .selected-podcast {
     width: 75vw;
     margin: auto;
   }
 
-  .wikipedia, #wikipedia-frame {
+  .wikipedia, 
+  .wikipedia-frame {
     width: 80vw;
   }
 }
 
 @media screen and (min-width: 880px) {
-  .podcast-results, .selected-podcast {
+  .podcast-results, 
+  .selected-podcast {
     width: 65vw;
     margin: auto;
   }
 
-  .wikipedia, #wikipedia-frame {
+  .wikipedia, 
+  .wikipedia-frame {
     width: 70vw;
   }
 }
 
 @media screen and (min-width: 1050px) {
-  .podcast-results, .selected-podcast {
+  .podcast-results, 
+  .selected-podcast {
     width: 55vw;
     margin: auto;
   }
 
-  .wikipedia, #wikipedia-frame {
+  .wikipedia, 
+  .wikipedia-frame {
     width: 60vw;
   }
 }
 
- .hidden {
+.hidden {
   display: none;
 }

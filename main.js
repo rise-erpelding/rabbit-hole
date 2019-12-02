@@ -10,7 +10,7 @@ const dandelionKey = config.TEXT_WIKI_KEY;
 
 //when you click on back, hides wikipedia and podcast player, goes back to all short descriptions from search results, continues to display podcast player
 function backButton() {
-    $('.selected-podcast').on('click', '.go-back', function(event) {
+    $('.selected-podcast').on('click', '.go-back', event => {
         $('.selected-podcast, .full-description, .listen-notes-link').addClass('hidden');
         $('.podcast-results, .search-container').show();
         $('.podcast-description').removeClass('hidden');
@@ -23,7 +23,7 @@ function backButton() {
 
 //hides wikipedia frame
 function hideWikipedia() {
-    $('.wikipedia').on('click', '.exit-iframe', function(event) {
+    $('.wikipedia').on('click', '.exit-iframe', event => {
         $('.wikipedia').addClass('hidden');
         $('.selected-podcast').show();
     });
@@ -31,7 +31,7 @@ function hideWikipedia() {
 
 //shows wikipedia frame
 function showWikipedia() {
-    $('.wiki-results').on('click', 'a', function(event) {
+    $('.wiki-results').on('click', 'a', event => {
         $('.wikipedia').removeClass('hidden');
         $('.selected-podcast').hide();
     });
@@ -48,7 +48,7 @@ function removeDuplicates(myArr, prop) {
 
 //renders the results from calling the dandelion API, displays links to related Wikipedia articles
 function displayDandelionResults(responseJson) {
-    let arrayOfUniqueResults = removeDuplicates(responseJson.annotations, "label");
+    let arrayOfUniqueResults = removeDuplicates(responseJson.annotations, 'label');
     $('.wiki-list').empty();
 
     for (let i = 0; i < arrayOfUniqueResults.length; i++) {
@@ -56,7 +56,7 @@ function displayDandelionResults(responseJson) {
             <li><a href="https://en.m.wikipedia.org/wiki/${arrayOfUniqueResults[i].title}" target="wiki_iframe"><p class="wiki-title">${arrayOfUniqueResults[i].title}</p><p class="abstract">${arrayOfUniqueResults[i].abstract}</p></a></li>
         `);
     }
-    $('.abstract').each(function(x) {
+    $('.abstract').each(function() {
         $(this).text(($(this).text().substring(0, 300)));
       });
     $('.abstract').append('...');
@@ -116,7 +116,7 @@ function showOnePodcast() {
         //takes idnum from hidden p above and inserts it into embedded player
         const selectedIDNum = $('.js-selected > .idnum').text();
         const playerURL = 'https://www.listennotes.com/embedded/e/' + selectedIDNum + '/';
-        $('.player').attr("src",playerURL);
+        $('.player').attr('src',playerURL);
     })  
 }
 
@@ -147,7 +147,7 @@ function displayPodcastResults(responseJson) {
     }
 
     //truncates each description at 300 characters and adds '...' to each
-    $(".podcast-description").each(function(x) {
+    $('.podcast-description').each(function() {
         $(this).text(($(this).text().substring(0, 300)));
       });
     $('.podcast-description').append('...');
@@ -199,12 +199,12 @@ function getPodcasts(query) {
 
 // listen for form submit, get input value
 function watchForm() {
-    $('#podcast-search').submit(event => {
+    $('.podcast-search').submit(event => {
         event.preventDefault();
         const searchTerm = $('.js-search-term').val();
         getPodcasts(searchTerm);
         $('.js-search-term').val('');
-        $('body').css("background-image", "none");
+        $('body').css('background-image', 'none');
         $('.subtitle').remove();
         $('.big-title').addClass('small-title');
         $('.main').removeClass('shorter-screen');
@@ -218,14 +218,14 @@ function watchForm() {
 // slides user onboarding screen in and out
 function startUserOnboarding() {
 
-    $('.search-container').on('click', '.start-onboarding', function(event) {
-        $('.user-onboarding').removeClass('hidden').addClass('animated slideInLeft').one('animationend', function() {
+    $('.search-container').on('click', '.start-onboarding', event => {
+        $('.user-onboarding').removeClass('hidden').addClass('animated slideInLeft').one('animationend', () => {
             $(this).removeClass('animated slideInLeft');
         });
     });
 
-    $('.user-onboarding').on('click', '.back-to-landing', function(event) {
-        $('.user-onboarding').addClass('animated slideOutLeft').one('animationend', function() {
+    $('.user-onboarding').on('click', '.back-to-landing', event => {
+        $('.user-onboarding').addClass('animated slideOutLeft').one('animationend', () => {
             $(this).removeClass('animated slideOutLeft').addClass('hidden');
         });
         
