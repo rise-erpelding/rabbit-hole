@@ -348,6 +348,21 @@ footer {
   .wikipedia-frame {
     width: 70vw;
   }
+
+  /* .flex-parent {
+    display: flex;
+  }
+
+  .flex-child {
+    width: 30vw;
+    margin: auto;
+  }
+
+  .selected-podcast, 
+  .wikipedia, 
+  .wikipedia-frame {
+    width: 30vw; */
+  }
 }
 
 @media screen and (min-width: 1050px) {
