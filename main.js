@@ -24,6 +24,7 @@ function backButton() {
 //hides wikipedia frame
 function hideWikipedia() {
     $('.wikipedia').on('click', '.exit-iframe', event => {
+
         $('.wikipedia').addClass('hidden');
         $('.selected-podcast').show();
     });
@@ -32,6 +33,10 @@ function hideWikipedia() {
 //shows wikipedia frame
 function showWikipedia() {
     $('.wiki-results').on('click', 'a', event => {
+
+     
+        // $('.wikipedia-frame').removeAttr("srcdoc");
+        // $('.wikipedia-frame').attr("src", "https://en.m.wikipedia.org/");
         $('.wikipedia').removeClass('hidden');
         $('.selected-podcast').hide();
     });

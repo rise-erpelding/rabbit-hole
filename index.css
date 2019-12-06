@@ -25,12 +25,12 @@ a {
 }
 
 .shorter-screen {
-  height: 84vh;
+  height: calc(100vh - 100px);
   overflow: scroll;
 }
 
 .fa-times {
-  font-size: 2em;
+  font-size: 30px;
   margin-left: 2px;
   margin-bottom: 3px;
   color: #0B3C85;
@@ -288,11 +288,12 @@ ol {
 /* styles for .wikipedia and children   */
 .wikipedia {
   width: 97vw;
+  height: calc(100vh - 100px);
   margin: auto;
 }
 
 .wikipedia-frame {
-  height: 84vh;
+  height: calc(100vh - 130px);
   width: 97vw;
   margin: auto;
   border: 1px solid white;
@@ -300,15 +301,19 @@ ol {
   box-shadow: 0px 4px 3px rgba(0, 0, 0, 0.25);
 }
 
-/* styles for .podcast-player and children */
+
+
+/* styles for footer and children */
+footer {
+  height: 100px;
+}
+
 .player {
   box-shadow: none;
   border: none;
-  margin-bottom: -6px;
   position: fixed;
   bottom: 0;
-  height: 16vh;
-  background-color: white;
+  height: 100px;
   width: 100vw;
 }
 
@@ -355,31 +360,6 @@ ol {
   .wikipedia, 
   .wikipedia-frame {
     width: 60vw;
-  }
-}
-
-.preloader {
-  border: 1px solid black;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 125px;
-  height: 108px;
-
-  background: 
-    url('Images/rabbit-sprite-test.png');
-    animation: animate 1s steps(24) infinite;
-}
-
-
-@keyframes animate {
-  from {
-    background-position: 0;
-  }
-
-  to {
-    background-position: -3000px;
   }
 }
 
