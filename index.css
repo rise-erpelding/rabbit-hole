@@ -358,6 +358,31 @@ ol {
   }
 }
 
+.preloader {
+  border: 1px solid black;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 125px;
+  height: 108px;
+
+  background: 
+    url('Images/rabbit-sprite-test.png');
+    animation: animate 1s steps(24) infinite;
+}
+
+
+@keyframes animate {
+  from {
+    background-position: 0;
+  }
+
+  to {
+    background-position: -3000px;
+  }
+}
+
 .hidden {
   display: none;
 }

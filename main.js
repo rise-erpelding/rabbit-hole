@@ -117,6 +117,7 @@ function showOnePodcast() {
         const selectedIDNum = $('.js-selected > .idnum').text();
         const playerURL = 'https://www.listennotes.com/embedded/e/' + selectedIDNum + '/';
         $('.player').attr('src',playerURL);
+        $('.player').removeAttr('srcdoc');
     })  
 }
 
