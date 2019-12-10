@@ -30,7 +30,40 @@
 
         <section class="js-error-message"></section>
 
-        <section class="user-onboarding hidden">
+
+
+        
+        <section class="podcast-results"></section>
+
+        <div class="flex-parent">
+        <div class="flex-child">
+        <section class="selected-podcast hidden">
+            <div class="go-back"><i class="fas fa-times"></i></div>
+            <div class="podcast-info"></div>
+            <div class="wiki-results">
+                <h3>Wikipedia results related to your podcast:</h3>
+                <ul class="wiki-list"></ul>
+            </div>
+            <div class="podcast-player hidden">
+                <iframe class="player" srcdoc="Loading..."></iframe>
+            </div>
+        </section>
+        </div>
+        <div class="flex-child">
+        <section class="wikipedia hidden">
+            <i class="fas fa-times exit-iframe"></i>
+            <iframe class="wikipedia-frame"
+                title="Wikipedia Page"
+                name="wiki_iframe"
+                sandbox 
+                srcdoc="<div class='preloader'></div>">
+            </iframe>
+        </section>
+        </div>
+        </div>
+    </main>
+
+    <section class="user-onboarding hidden">
             <div class="onboarding-title-container">
                 <h3>Welcome to Rabbit Hole</h3>
                 <h4>Using Rabbit Hole is easy. Here's how to get started:</h4>
@@ -53,38 +86,8 @@
 
         </section>
 
-        
-        <section class="podcast-results"></section>
 
-        <div class="flex-parent">
-        <div class="flex-child">
-        <section class="selected-podcast hidden">
-            <div class="go-back"><i class="fas fa-times"></i></div>
-            <div class="podcast-info"></div>
-            <div class="wiki-results">
-                <h3>Wikipedia results related to your podcast:</h3>
-                <ul class="wiki-list"></ul>
-            </div>
-        </section>
-        </div>
-        <div class="flex-child">
-        <section class="wikipedia hidden">
-            <i class="fas fa-times exit-iframe"></i>
-            <iframe class="wikipedia-frame"
-                title="Wikipedia Page"
-                name="wiki_iframe"
-                sandbox 
-                srcdoc="<div class='preloader'></div>">
-            </iframe>
-        </section>
-        </div>
-        </div>
-    </main>
-
-
-    <footer class="podcast-player hidden">
-        <iframe class="player" srcdoc="Loading..."></iframe>
-    </footer>
+    
 
 
 
