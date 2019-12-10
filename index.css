@@ -317,6 +317,33 @@ footer {
   width: 100vw;
 }
 
+/*loader*/
+/* animation: name duration timing-function delay iteration-count direction fill-mode play-state; */
+.preloader {
+  border: 1px solid black;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 125px; /*width is 1536/6 */
+  height: 108px;
+
+  background: 
+    url('rabbit-sprite-test.png');
+    animation: animate 1s steps(24) infinite;
+}
+
+
+@keyframes animate {
+  from {
+    background-position: 0;
+  }
+
+  to {
+    background-position: -3000px;
+  }
+}
+
 /* media queries for screen widths */
 @media screen and (min-width: 480px) {
   .js-search-term {
@@ -362,7 +389,7 @@ footer {
   .wikipedia, 
   .wikipedia-frame {
     width: 30vw; */
-  }
+  /* } */
 }
 
 @media screen and (min-width: 1050px) {
@@ -377,6 +404,8 @@ footer {
     width: 60vw;
   }
 }
+
+
 
 .hidden {
   display: none;
