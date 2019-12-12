@@ -37,28 +37,35 @@ a {
 }
 
 /* styles for .search-container and children */
+.search-container {
+  position: fixed;
+  z-index: 1;
+  width: 100%;
+  height: 80px; /*NOTE THIS HEIGHT AND USE LATER TO CALCULATE HEIGHT FOR .flex-child*/
+}
+
 .big-title {
   font-size: 2.5em;
   font-family: 'Arima Madurai', cursive;
   color: #541810;
-  margin-top: 15vh;
+  /* margin-top: 15vh; */
   position: relative;
   left: 50%;
-  margin-left: -140px;
+  /* margin-left: -140px; */
   width: 280px;
 }
 
 .small-title {
   font-size: 1.5em;
-  margin-top: 5vh;
+  /* margin-top: 5vh; */
 }
 
 .subtitle {
   font-size: .8em;
-  margin-bottom: 70px;
+  /* margin-bottom: 70px; */
   position: relative;
   left: 50%;
-  margin-left: -140px;
+  /* margin-left: -140px; */
   width: 280px;
 }
 
@@ -95,7 +102,7 @@ a {
 
 .logos {
   text-align: center;
-  margin-top: 15px;
+  /* margin-top: 15px; */
 }
 
 .listen-notes-logo {
@@ -202,6 +209,40 @@ ol {
   font-size: 3em;
 }
 
+/* styles for .results-navigation and children */
+.results-navigation {
+  float: left;
+  /* width: 30px; */
+  height: calc(100vh - 80px);
+  /* height calculated from height of search-container */
+  position: fixed;
+  left: 0;
+  top: 80px;
+  z-index: 1;
+}
+
+.results-navigation > li {
+  height: 30px;
+}
+
+.desktop-back-to-results {
+  display: none;
+}
+
+/* styles for flex-parent and flex-child*/
+.flex-parent {
+  position: relative;
+  top: 80px;
+  /* set to same value as height from .search-container */
+}
+
+.flex-child {
+  width: 90vw;
+  height: calc(100vh-80px);
+  /* calculated from height of search-container */
+  margin: auto;
+}
+
 /* styles for .podcast-results and children */
 .podcast-card {
   background: white;
@@ -285,6 +326,16 @@ ol {
   margin-bottom: 3px;
 }
 
+.player {
+  box-shadow: none;
+  border: none;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 100px;
+  width: 100vw;
+}
+
 /* styles for .wikipedia and children   */
 .wikipedia {
   width: 97vw;
@@ -302,21 +353,6 @@ ol {
 }
 
 
-
-/* styles for footer and children */
-footer {
-  height: 100px;
-}
-
-.player {
-  box-shadow: none;
-  border: none;
-  position: fixed;
-  bottom: 0;
-  height: 100px;
-  width: 100vw;
-}
-
 /* media queries for screen widths */
 @media screen and (min-width: 480px) {
   .js-search-term {
@@ -325,58 +361,31 @@ footer {
 }
 
 @media screen and (min-width: 700px) {
-  .podcast-results, 
-  .selected-podcast {
-    width: 75vw;
-    margin: auto;
-  }
-
-  .wikipedia, 
-  .wikipedia-frame {
-    width: 80vw;
-  }
-}
-
-@media screen and (min-width: 880px) {
-  .podcast-results, 
-  .selected-podcast {
-    width: 65vw;
-    margin: auto;
-  }
-
-  .wikipedia, 
-  .wikipedia-frame {
-    width: 70vw;
-  }
-
-  /* .flex-parent {
+  .flex-parent {
     display: flex;
   }
 
   .flex-child {
-    width: 30vw;
-    margin: auto;
+    width: 48vw;
   }
 
-  .selected-podcast, 
-  .wikipedia, 
-  .wikipedia-frame {
-    width: 30vw; */
+  .mobile-back-to-results,
+  .mobile-back-to-selected-podcast {
+    display: none;
   }
+
+  .desktop-back-to-results {
+    display: block;
+  }
+}
+
+/* @media screen and (min-width: 880px) {
+
 }
 
 @media screen and (min-width: 1050px) {
-  .podcast-results, 
-  .selected-podcast {
-    width: 55vw;
-    margin: auto;
-  }
 
-  .wikipedia, 
-  .wikipedia-frame {
-    width: 60vw;
-  }
-}
+} */
 
 .hidden {
   display: none;
