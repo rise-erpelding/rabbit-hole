@@ -135,7 +135,7 @@ a {
 
 .user-onboarding {
   position: fixed;
-  /* z-index: 1; */
+  z-index: 1;
   overflow: scroll;
   top: 0;
   background: #0b3c85;
