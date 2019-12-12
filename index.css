@@ -38,10 +38,12 @@ a {
 
 /* styles for .search-container and children */
 .search-container {
-  position: fixed;
+  position: absolute;
+  top: 15vh;
   z-index: 1;
   width: 100%;
-  height: 80px; /*NOTE THIS HEIGHT AND USE LATER TO CALCULATE HEIGHT FOR .flex-child*/
+  /* border: 3px solid purple; */
+  height: 120px; /*NOTE THIS HEIGHT AND USE LATER TO CALCULATE HEIGHT FOR .flex-child*/
 }
 
 .big-title {
@@ -51,21 +53,23 @@ a {
   /* margin-top: 15vh; */
   position: relative;
   left: 50%;
-  /* margin-left: -140px; */
+  margin-left: -140px;
   width: 280px;
 }
 
 .small-title {
   font-size: 1.5em;
-  /* margin-top: 5vh; */
+  margin-top: 20px;
+  position: relative;
+  left: 40%;
 }
 
 .subtitle {
   font-size: .8em;
-  /* margin-bottom: 70px; */
+  margin-bottom: 70px;
   position: relative;
   left: 50%;
-  /* margin-left: -140px; */
+  margin-left: -140px;
   width: 280px;
 }
 
@@ -102,7 +106,7 @@ a {
 
 .logos {
   text-align: center;
-  /* margin-top: 15px; */
+  margin-top: 15px;
 }
 
 .listen-notes-logo {
@@ -131,6 +135,7 @@ a {
 
 .user-onboarding {
   position: fixed;
+  /* z-index: 1; */
   overflow: scroll;
   top: 0;
   background: #0b3c85;
@@ -197,12 +202,14 @@ ol {
 }
 
 /* styles for .js-error-message */
-.error-style {
+.js-error-message {
   margin: 10px;
   color: #B83422;
   font-weight: 700;
   text-align: center;
-  padding: 20px;
+  /* padding: 20px; */
+  position: relative;
+  top: 120px;
 }
 
 .fa-flushed {
@@ -213,11 +220,11 @@ ol {
 .results-navigation {
   float: left;
   /* width: 30px; */
-  height: calc(100vh - 80px);
+  height: calc(100vh - 120px);
   /* height calculated from height of search-container */
   position: fixed;
   left: 0;
-  top: 80px;
+  top: 140px;
   z-index: 1;
 }
 
@@ -232,22 +239,26 @@ ol {
 /* styles for flex-parent and flex-child*/
 .flex-parent {
   position: relative;
-  top: 80px;
+  top: 120px;
   /* set to same value as height from .search-container */
 }
 
 .flex-child {
   width: 90vw;
-  height: calc(100vh-80px);
+  /* border: 4px solid orange; */
+  min-height: calc(100vh - 120px);
   /* calculated from height of search-container */
   margin: auto;
+  padding-bottom: 100px;
+  /* ideally would like to change this to margin-bottom */
 }
 
 /* styles for .podcast-results and children */
+
 .podcast-card {
   background: white;
   padding: 8px;
-  margin: 10px;
+  margin-bottom: 15px;
   border-radius: 4px;
   box-shadow: 0px 4px 3px rgba(0, 0, 0, 0.25);
 }
@@ -329,7 +340,7 @@ ol {
 .player {
   box-shadow: none;
   border: none;
-  position: absolute;
+  position: fixed;
   bottom: 0;
   left: 0;
   height: 100px;
@@ -337,15 +348,10 @@ ol {
 }
 
 /* styles for .wikipedia and children   */
-.wikipedia {
-  width: 97vw;
-  height: calc(100vh - 100px);
-  margin: auto;
-}
 
 .wikipedia-frame {
-  height: calc(100vh - 130px);
-  width: 97vw;
+  height: calc(100vh - 120px);
+  width: inherit;
   margin: auto;
   border: 1px solid white;
   border-radius: 4px;
@@ -360,7 +366,11 @@ ol {
   }
 }
 
-@media screen and (min-width: 700px) {
+/* @media screen and (min-width: 700px) {
+
+} */
+
+@media screen and (min-width: 880px) {
   .flex-parent {
     display: flex;
   }
@@ -379,11 +389,9 @@ ol {
   }
 }
 
-/* @media screen and (min-width: 880px) {
 
-}
 
-@media screen and (min-width: 1050px) {
+/* @media screen and (min-width: 1050px) {
 
 } */
 

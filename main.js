@@ -17,6 +17,14 @@ function windowScrollMobile() {
             $('.mobile-back-to-results').addClass('hidden');
         }
     })
+    console.log('`windowScrollMobile` ran');
+}
+
+function exitError() {
+    $('.results-navigation').on('click', '.exit-error', event => {
+        $('.js-error-message').empty();
+    })
+    console.log('`exitError` ran');
 }
 
 function mobileBackToResults() {
@@ -24,6 +32,8 @@ function mobileBackToResults() {
         $('.mobile-back-to-results, .selected-podcast, .wikipedia').addClass('hidden');
         $('.podcast-results').removeClass('hidden');
     });
+
+    console.log('`mobileBackToResults` ran');
 }
 
 function desktopBackToResults() {
@@ -31,22 +41,9 @@ function desktopBackToResults() {
         $('.podcast-results').removeClass('hidden');
         $('.selected-podcast, .wikipedia, .desktop-back-to-results').addClass('hidden');
     });
+
+    console.log('`desktopBackToResults` ran');
 }
-
-
-//when you click on back, hides wikipedia and podcast player, goes back to all short descriptions from search results, continues to display podcast player
-function backButton() {
-    $('.selected-podcast').on('click', '.go-back', event => {
-        $('.selected-podcast, .full-description, .listen-notes-link').addClass('hidden');
-        $('.podcast-results, .search-container').show();
-        $('.podcast-description').removeClass('hidden');
-        $('.js-selected').removeClass('js-selected');
-        $('.js-error-message').empty();
-    });
-
-    showOnePodcast();
-}
-
 
 function mobileBackToSelectedPodcast() {
     $('.results-navigation').on('click', '.mobile-back-to-selected-podcast', event => {
@@ -54,6 +51,7 @@ function mobileBackToSelectedPodcast() {
         $('.mobile-back-to-selected-podcast').addClass('hidden');
         $('.mobile-back-to-results').removeClass('hidden');
     });
+    console.log('`mobileBackToSelectedPodcast` ran');
 }
 
 
@@ -72,10 +70,12 @@ function showWikipedia() {
     windowScrollMobile();
     mobileBackToSelectedPodcast();
     desktopBackToResults();
+    console.log('`showWikipedia` ran');
 }
 
 //since Dandelion API will sometimes return duplicate objects in the results, this filters out all the duplicates and returns an array containing only unique objects
 function removeDuplicates(myArr, prop) {
+    console.log('`removeDuplicates` ran');
     return myArr.filter((obj, ind, arr) => {
       return arr.map(mapObj => mapObj[prop]).indexOf(obj[prop]) === ind;
     });
@@ -84,6 +84,7 @@ function removeDuplicates(myArr, prop) {
 //renders the results from calling the dandelion API, displays links to related Wikipedia articles
 function displayDandelionResults(responseJson) {
     let arrayOfUniqueResults = removeDuplicates(responseJson.annotations, 'label');
+
     $('.wiki-list').empty();
 
     for (let i = 0; i < arrayOfUniqueResults.length; i++) {
@@ -99,6 +100,8 @@ function displayDandelionResults(responseJson) {
     $('.wiki-list').append(`<li class="wiki-title"><a href="https://m.wikipedia.org" target="wiki_iframe">Search Wikipedia <i class="fas fa-search"></i></a></li>`);
 
     showWikipedia();
+
+    console.log('`displayDandelionResults` ran');
 }
 
 //takes description from selected podcast and calls dandelion API
@@ -125,14 +128,28 @@ function getEntities(description) {
         .then(responseJson => displayDandelionResults(responseJson))
         .catch(error => {
             $('.js-error-message').html(`<p><i class="far fa-flushed"></i></p><p>Uh-oh, something went wrong: ${error.message}. Try reloading the page and repeating your request.</p>`);
-            $('.js-error-message').addClass('.error-style');
+            $('.exit-error').removeClass('.hidden');
         });
+        console.log('`getEntities` ran');
+}
+
+function showSelectedPodcast() {
+
+    $('.selected-podcast, .mobile-back-to-results').removeClass('hidden');
+    const winHeight = $(window).height();
+    $(window).scrollTop(winHeight);
+
+    fillSelectedPodcast();
+    mobileBackToResults();
+
+    console.log('`showSelectedPodcast` ran');
+
 }
 
 //shows a single selected podcast with more detailed information and podcast player
-//rename this to fillSelectedPodcast
-function showOnePodcast() {
+function fillSelectedPodcast() {
     $('.podcast-results').one('click', '.podcast-card', function(event) {
+        $('.podcast-info, .wiki-list').empty();
         $(this).addClass('js-selected');
         const selectedPodcastHTML = $('.js-selected').html();
         $('.podcast-info').html(selectedPodcastHTML);
@@ -140,14 +157,7 @@ function showOnePodcast() {
         $('.podcast-info > .full-description').removeClass('hidden');
         $('.podcast-info > .listen-notes-link').removeClass('hidden');
 
-        //take this and move to showSelectedPodcast function
-        //don't forget to call the showSelectedPodcast function here though bc you want it to fire on this click
-        $('.selected-podcast, .mobile-back-to-results').removeClass('hidden');
-        const winHeight = $(window).height();
-        $(window).scrollTop(winHeight);
-        // listen for clicking on x so fire new function called MobileBackToResults
-        mobileBackToResults();
-        //end of the stuff that belongs in showSelectedPodcast function
+        showSelectedPodcast();
 
         // $('.full-description, .listen-notes-link, .selected-podcast, .podcast-player').removeClass('hidden');
         // $('.podcast-results, .search-container').hide();
@@ -166,6 +176,7 @@ function showOnePodcast() {
         $('.player').attr('src',playerURL);
         $('.player').removeAttr('srcdoc');
     })  
+    console.log('`fillSelectedPodcast` ran');
 }
 
 //displays the results for the podcast episodes found
@@ -200,12 +211,15 @@ function displayPodcastResults(responseJson) {
       });
     $('.podcast-description').append('...');
 
-    showOnePodcast();
+    fillSelectedPodcast(); 
+    console.log('`displayPodcastResults` ran');
+    //test before turning in: change the name of this function to anything else to make an error message show up
 }
 
 //formats the query parameters as a string that can be added to the url
 function formatQueryParams(params) {
     const QueryParams = Object.keys(params).map(key => `${encodeURIComponent(key)}=${encodeURIComponent(params[key])}`);
+    console.log('`formatQueryParams` ran');
     return QueryParams.join('&');
 }
 
@@ -241,8 +255,9 @@ function getPodcasts(query) {
         .then(responseJson => displayPodcastResults(responseJson))
         .catch(error => {
             $('.js-error-message').html(`<p><i class="far fa-flushed"></i></p><p>Uh-oh, something went wrong: ${error.message}. Try reloading the page and repeating your request.</p>`);
-            $('.js-error-message').addClass('.error-style');
+            $('.exit-error').removeClass('.hidden');
         });
+        console.log('`getPodcasts` ran');
 }
 
 // listen for form submit, get input value
@@ -253,31 +268,36 @@ function watchForm() {
         getPodcasts(searchTerm);
         $('.js-search-term').val('');
         $('body').css('background-image', 'none');
-        $('.subtitle').remove();
+        $('.search-container').css('top', '0');
+        $('.subtitle, .logos, .start-onboarding').remove();
         $('.big-title').addClass('small-title');
-        $('.main').removeClass('shorter-screen');
+        // $('.main').removeClass('shorter-screen');
 
         //if you do another search, empties results and hides everything again
         $('.podcast-results, .js-error-message').empty();
         $('.podcast-player').addClass('hidden');
     }); 
+    console.log('`watchForm` ran');
 }
 
 // slides user onboarding screen in and out
 function startUserOnboarding() {
 
     $('.search-container').on('click', '.start-onboarding', event => {
+        // $('.search-container').addClass('hidden');
         $('.user-onboarding').removeClass('hidden').addClass('animated slideInLeft').one('animationend', () => {
             $(this).removeClass('animated slideInLeft');
         });
     });
 
     $('.user-onboarding').on('click', '.back-to-landing', event => {
+        // $('.search-container').removeClass('hidden');
         $('.user-onboarding').addClass('animated slideOutLeft').one('animationend', () => {
             $(this).removeClass('animated slideOutLeft').addClass('hidden');
         });
         
     });
+    console.log('`startUserOnboarding` ran');
 }
 
 function handlePage() {
