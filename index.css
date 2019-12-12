@@ -24,10 +24,10 @@ a {
   color: inherit;
 }
 
-.shorter-screen {
+/* .shorter-screen {
   height: calc(100vh - 100px);
   overflow: scroll;
-}
+} */
 
 .fa-times {
   font-size: 30px;

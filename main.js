@@ -6,6 +6,32 @@ const textEntitiesURL = 'https://api.dandelion.eu/datatxt/nex/v1/';
 const listenNotesKey = config.PODCAST_KEY;
 const dandelionKey = config.TEXT_WIKI_KEY;
 
+function windowScrollMobile() {
+    $(window).scroll(event => {
+        const scrollPosition = $(window).scrollTop();
+        if (scrollPosition === 0) {
+            $('.mobile-back-to-selected-podcast').addClass('hidden');
+            $('.mobile-back-to-results').removeClass('hidden');
+        } else if (scrollPosition > 0) {
+            $('.mobile-back-to-selected-podcast').removeClass('hidden');
+            $('.mobile-back-to-results').addClass('hidden');
+        }
+    })
+}
+
+function mobileBackToResults() {
+    $('.results-navigation').on('click', '.mobile-back-to-results', event => {
+        $('.mobile-back-to-results, .selected-podcast, .wikipedia').addClass('hidden');
+        $('.podcast-results').removeClass('hidden');
+    });
+}
+
+function desktopBackToResults() {
+    $('.results-navigation').on('click', '.desktop-back-to-results', event => {
+        $('.podcast-results').removeClass('hidden');
+        $('.selected-podcast, .wikipedia, .desktop-back-to-results').addClass('hidden');
+    });
+}
 
 
 //when you click on back, hides wikipedia and podcast player, goes back to all short descriptions from search results, continues to display podcast player
@@ -21,27 +47,31 @@ function backButton() {
     showOnePodcast();
 }
 
-//hides wikipedia frame
-function hideWikipedia() {
-    $('.wikipedia').on('click', '.exit-iframe', event => {
 
-        $('.wikipedia').addClass('hidden');
-        $('.selected-podcast').show();
+function mobileBackToSelectedPodcast() {
+    $('.results-navigation').on('click', '.mobile-back-to-selected-podcast', event => {
+        $(window).scrollTop(0);
+        $('.mobile-back-to-selected-podcast').addClass('hidden');
+        $('.mobile-back-to-results').removeClass('hidden');
     });
 }
 
-//shows wikipedia frame
+
 function showWikipedia() {
     $('.wiki-results').on('click', 'a', event => {
 
      
         // $('.wikipedia-frame').removeAttr("srcdoc");
         // $('.wikipedia-frame').attr("src", "https://en.m.wikipedia.org/");
-        $('.wikipedia').removeClass('hidden');
-        $('.selected-podcast').hide();
+
+        $('.podcast-results, .mobile-back-to-results').addClass('hidden');
+        $('.wikipedia, .mobile-back-to-selected-podcast, .desktop-back-to-results').removeClass('hidden');
+        // $('.selected-podcast').hide();
     });
 
-    hideWikipedia();
+    windowScrollMobile();
+    mobileBackToSelectedPodcast();
+    desktopBackToResults();
 }
 
 //since Dandelion API will sometimes return duplicate objects in the results, this filters out all the duplicates and returns an array containing only unique objects
@@ -69,7 +99,6 @@ function displayDandelionResults(responseJson) {
     $('.wiki-list').append(`<li class="wiki-title"><a href="https://m.wikipedia.org" target="wiki_iframe">Search Wikipedia <i class="fas fa-search"></i></a></li>`);
 
     showWikipedia();
-    backButton();
 }
 
 //takes description from selected podcast and calls dandelion API
@@ -101,15 +130,28 @@ function getEntities(description) {
 }
 
 //shows a single selected podcast with more detailed information and podcast player
+//rename this to fillSelectedPodcast
 function showOnePodcast() {
     $('.podcast-results').one('click', '.podcast-card', function(event) {
         $(this).addClass('js-selected');
         const selectedPodcastHTML = $('.js-selected').html();
         $('.podcast-info').html(selectedPodcastHTML);
-        $('.podcast-description').addClass('hidden');
-        $('.full-description, .listen-notes-link, .selected-podcast, .podcast-player').removeClass('hidden');
-        $('.podcast-results, .search-container').hide();
-        $('.main').addClass('shorter-screen');
+        $('.podcast-info > .podcast-description').addClass('hidden');
+        $('.podcast-info > .full-description').removeClass('hidden');
+        $('.podcast-info > .listen-notes-link').removeClass('hidden');
+
+        //take this and move to showSelectedPodcast function
+        //don't forget to call the showSelectedPodcast function here though bc you want it to fire on this click
+        $('.selected-podcast, .mobile-back-to-results').removeClass('hidden');
+        const winHeight = $(window).height();
+        $(window).scrollTop(winHeight);
+        // listen for clicking on x so fire new function called MobileBackToResults
+        mobileBackToResults();
+        //end of the stuff that belongs in showSelectedPodcast function
+
+        // $('.full-description, .listen-notes-link, .selected-podcast, .podcast-player').removeClass('hidden');
+        // $('.podcast-results, .search-container').hide();
+        // $('.main').addClass('shorter-screen');
 
         //passes description to getEntities function to search for key phrases
         let selectedDescription = $('.js-selected > .full-description').text();
