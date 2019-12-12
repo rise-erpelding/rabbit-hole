@@ -50,40 +50,44 @@
                 </ol>
             </div>
             <div class="back-to-landing">Ready? Let's hop to it. <i class="fas fa-chevron-circle-right"></i></div>
-
         </section>
 
-        
-        <section class="podcast-results"></section>
+        <nav class="results-navigation">
+            <ul>
+                <li class="mobile-back-to-results hidden">X</li>
+                <li class="desktop-back-to-results hidden">X</li>
+                <li class="mobile-back-to-selected-podcast hidden">X</li>
+            </ul>
+        </nav>
 
         <div class="flex-parent">
-        <div class="flex-child">
-        <section class="selected-podcast hidden">
-            <div class="go-back"><i class="fas fa-times"></i></div>
-            <div class="podcast-info"></div>
-            <div class="wiki-results">
-                <h3>Wikipedia results related to your podcast:</h3>
-                <ul class="wiki-list"></ul>
-            </div>
-        </section>
-        </div>
-        <div class="flex-child">
-        <section class="wikipedia hidden">
-            <i class="fas fa-times exit-iframe"></i>
-            <iframe class="wikipedia-frame"
-                title="Wikipedia Page"
-                name="wiki_iframe"
-                srcdoc="#">
-            </iframe>
-        </section>
-        </div>
+            <section class="flex-child podcast-results"></section>
+
+            <section class="flex-child selected-podcast hidden">
+                <div class="go-back"><i class="fas fa-times"></i></div>
+                <div class="podcast-info"></div>
+                <div class="wiki-results">
+                    <h3>Wikipedia results related to your podcast:</h3>
+                    <ul class="wiki-list"></ul>
+                </div>
+                <iframe class="player" srcdoc="Loading..."></iframe>
+            </section>
+
+
+            <section class="flex-child wikipedia hidden">
+                <i class="fas fa-times exit-iframe"></i>
+                <iframe class="wikipedia-frame"
+                    title="Wikipedia Page"
+                    name="wiki_iframe"
+                    srcdoc="#">
+                </iframe>
+            </section>
+
         </div>
     </main>
 
 
-    <footer class="podcast-player hidden">
-        <iframe class="player" srcdoc="Loading..."></iframe>
-    </footer>
+
 
 
 
