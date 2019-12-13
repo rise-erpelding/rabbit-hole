@@ -1,7 +1,7 @@
 * {
-    box-sizing: border-box;
-  }
-  
+  box-sizing: border-box;
+}
+
 body {
   font-family: 'Open Sans', sans-serif;
   font-size: 1em;
@@ -24,26 +24,28 @@ a {
   color: inherit;
 }
 
-/* .shorter-screen {
-  height: calc(100vh - 100px);
-  overflow: scroll;
-} */
-
 .fa-times {
   font-size: 30px;
-  margin-left: 2px;
-  margin-bottom: 3px;
+  /* margin-left: 2px;
+  margin-bottom: 3px; */
   color: #0B3C85;
+}
+
+/* styles that will be changed for desktop */
+
+.hidden-mobile {
+  display: none;
 }
 
 /* styles for .search-container and children */
 .search-container {
   position: absolute;
   top: 15vh;
-  z-index: 1;
+  /* z-index: 1; */
   width: 100%;
-  /* border: 3px solid purple; */
-  height: 120px; /*NOTE THIS HEIGHT AND USE LATER TO CALCULATE HEIGHT FOR .flex-child*/
+  border: 3px solid purple;
+  height: 110px; 
+  /*NOTE THIS HEIGHT AND USE LATER TO CALCULATE HEIGHT FOR .flex-child*/
 }
 
 .big-title {
@@ -116,6 +118,157 @@ a {
 .dandelion-logo {
   height: 20px;
 }
+
+/* styles for .js-error-message */
+.js-error-message {
+  margin: 10px;
+  color: #B83422;
+  font-weight: 700;
+  text-align: center;
+  /* padding: 20px; */
+  position: relative;
+  top: 110px;
+}
+
+.fa-flushed {
+  font-size: 3em;
+}
+
+/* styles for .results-navigation and children */
+.results-navigation {
+  /* float: right; */
+  /* width: 30px; */
+  height: calc(100vh - 110px);
+  /* height calculated from height of search-container */
+  position: absolute;
+  right: 5px;
+  top: 80px;
+  z-index: 1;
+}
+
+.results-navigation > li {
+  height: 30px;
+}
+
+.desktop-back-to-results {
+  display: none;
+}
+
+
+/* styles for flex-parent and flex-child*/
+.flex-parent {
+  position: relative;
+  top: 110px;
+  border: 5px solid green;
+  /* set to same value as height from .search-container */
+}
+
+.flex-child {
+  width: 90vw;
+  border: 4px solid lightgreen;
+  height: calc(100vh - 240px);
+  /* calculated from height of search-container */
+  margin-left: auto;
+  margin-right: auto;
+  overflow: scroll;
+  /* padding-bottom: 100px; */
+  /* ideally would like to change this to margin-bottom */
+}
+
+
+/* styles for .podcast-results and children */
+.podcast-card {
+  background: white;
+  padding: 8px;
+  margin-bottom: 15px;
+  border-radius: 4px;
+  box-shadow: 0px 4px 3px rgba(0, 0, 0, 0.25);
+}
+
+.episode-title {
+  color: #B83422;
+  font-weight: 700;
+  font-size: 1.1em;
+  margin-bottom: 10px;
+}
+
+.podcast-title {
+  font-weight: 700;
+  font-size: .8em;
+  margin-bottom: 5px;
+}
+
+.podcast-publisher {
+  margin-bottom: 15px;
+  font-size: .8em;
+}
+
+.podcast-image {
+  width: 100px;
+  float: left;
+  padding-right: 10px;
+}
+
+.podcast-description, 
+.full-description {
+  padding-top: 15px;
+  clear: left;
+  font-size: .9em;
+  word-wrap: break-word;
+}
+
+.no-results {
+  color: #B83422;
+  text-align: center;
+  margin: 20px 50px 20px 50px;
+}
+
+/* styles for .selected-podcast and children */
+.selected-podcast {
+  padding: 8px;
+  border-radius: 4px;
+  box-shadow: 0px 4px 3px rgba(0, 0, 0, 0.25);
+}
+
+.listen-notes-link {
+  color: #B83422;
+  padding-top: .5em;
+  font-size: .8em;
+}
+
+.wiki-list > li {
+  background: lightgray;
+  font-size: 0.85em;
+  padding: 13px;
+  margin-bottom: 10px;
+  border-radius: 4px;
+  box-shadow: 0px 4px 3px rgba(0, 0, 0, 0.25);
+}
+
+.wiki-results > h3 {
+  margin-top: 20px;
+  color: #0B3C85;
+  font-weight: 700;
+  margin-bottom: 5px;
+}
+
+.wiki-title {
+  color: #0B3C85;
+  font-weight: 700;
+  margin-bottom: 3px;
+}
+
+/* styles for .wikipedia and children */
+.wikipedia-frame {
+  height: calc(100vh - 110px);
+  width: inherit;
+  margin-left: auto;
+  margin-right: auto;
+  border: 1px solid white;
+  border-radius: 4px;
+  box-shadow: 0px 4px 3px rgba(0, 0, 0, 0.25);
+}
+
 
 /* styles for user onboarding */
 .start-onboarding {
@@ -201,182 +354,26 @@ ol {
   margin-top: 30px;
 }
 
-/* styles for .js-error-message */
-.js-error-message {
-  margin: 10px;
-  color: #B83422;
-  font-weight: 700;
-  text-align: center;
-  /* padding: 20px; */
-  position: relative;
-  top: 120px;
-}
-
-.fa-flushed {
-  font-size: 3em;
-}
-
-/* styles for .results-navigation and children */
-.results-navigation {
-  float: left;
-  /* width: 30px; */
-  height: calc(100vh - 120px);
-  /* height calculated from height of search-container */
-  position: fixed;
-  left: 0;
-  top: 140px;
-  z-index: 1;
-}
-
-.results-navigation > li {
-  height: 30px;
-}
-
-.desktop-back-to-results {
-  display: none;
-}
-
-/* styles for flex-parent and flex-child*/
-.flex-parent {
-  position: relative;
-  top: 120px;
-  /* set to same value as height from .search-container */
-}
-
-.flex-child {
-  width: 90vw;
-  /* border: 4px solid orange; */
-  min-height: calc(100vh - 120px);
-  /* calculated from height of search-container */
-  margin: auto;
-  padding-bottom: 100px;
-  /* ideally would like to change this to margin-bottom */
-}
-
-/* styles for .podcast-results and children */
-
-.podcast-card {
-  background: white;
-  padding: 8px;
-  margin-bottom: 15px;
-  border-radius: 4px;
-  box-shadow: 0px 4px 3px rgba(0, 0, 0, 0.25);
-}
-
-.episode-title {
-  color: #B83422;
-  font-weight: 700;
-  font-size: 1.1em;
-  margin-bottom: 10px;
-}
-
-.podcast-title {
-  font-weight: 700;
-  font-size: .8em;
-  margin-bottom: 5px;
-}
-
-.podcast-publisher {
-  margin-bottom: 15px;
-  font-size: .8em;
-}
-
-.podcast-image {
-  width: 100px;
-  float: left;
-  padding-right: 10px;
-}
-
-.podcast-description, 
-.full-description {
-  padding-top: 15px;
-  clear: left;
-  font-size: .9em;
-  word-wrap: break-word;
-}
-
-.no-results {
-  color: #B83422;
-  text-align: center;
-  margin: 20px 50px 20px 50px;
-}
-
-/* styles for .selected-podcast and children */
-.selected-podcast {
-  background: white;
-  padding: 8px;
-  border-radius: 4px;
-  box-shadow: 0px 4px 3px rgba(0, 0, 0, 0.25);
-}
-
-.listen-notes-link {
-  color: #B83422;
-  padding-top: .5em;
-  font-size: .8em;
-}
-
-.wiki-list > li {
-  background: lightgray;
-  font-size: 0.85em;
-  padding: 13px;
-  margin-bottom: 10px;
-  border-radius: 4px;
-  box-shadow: 0px 4px 3px rgba(0, 0, 0, 0.25);
-}
-
-.wiki-results > h3 {
-  margin-top: 20px;
-  color: #0B3C85;
-  font-weight: 700;
-  margin-bottom: 5px;
-}
-
-.wiki-title {
-  color: #0B3C85;
-  font-weight: 700;
-  margin-bottom: 3px;
-}
-
+/* styles for footer (podcast-player) */
 .player {
   box-shadow: none;
   border: none;
   position: fixed;
   bottom: 0;
   left: 0;
-  height: 100px;
+  height: 110px;
   width: 100vw;
 }
 
-/* styles for .wikipedia and children   */
-
-.wikipedia-frame {
-  height: calc(100vh - 120px);
-  width: inherit;
-  margin: auto;
-  border: 1px solid white;
-  border-radius: 4px;
-  box-shadow: 0px 4px 3px rgba(0, 0, 0, 0.25);
-}
-
-
 /* media queries for screen widths */
-@media screen and (min-width: 480px) {
-  .js-search-term {
-    width: 240px;
-  }
-}
-
-/* @media screen and (min-width: 700px) {
-
-} */
-
 @media screen and (min-width: 880px) {
   .flex-parent {
     display: flex;
+    align-items: flex-start;
   }
 
   .flex-child {
-    width: 48vw;
+    width: 45vw;
   }
 
   .mobile-back-to-results,
@@ -387,13 +384,12 @@ ol {
   .desktop-back-to-results {
     display: block;
   }
+
+  .hidden-mobile {
+    display: block;
+  }
 }
 
-
-
-/* @media screen and (min-width: 1050px) {
-
-} */
 
 .hidden {
   display: none;

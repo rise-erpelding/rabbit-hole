@@ -6,19 +6,19 @@ const textEntitiesURL = 'https://api.dandelion.eu/datatxt/nex/v1/';
 const listenNotesKey = config.PODCAST_KEY;
 const dandelionKey = config.TEXT_WIKI_KEY;
 
-function windowScrollMobile() {
-    $(window).scroll(event => {
-        const scrollPosition = $(window).scrollTop();
-        if (scrollPosition === 0) {
-            $('.mobile-back-to-selected-podcast').addClass('hidden');
-            $('.mobile-back-to-results').removeClass('hidden');
-        } else if (scrollPosition > 0) {
-            $('.mobile-back-to-selected-podcast').removeClass('hidden');
-            $('.mobile-back-to-results').addClass('hidden');
-        }
-    })
-    console.log('`windowScrollMobile` ran');
-}
+// function windowScrollMobile() {
+//     $(window).scroll(event => {
+//         const scrollPosition = $(window).scrollTop();
+//         if (scrollPosition === 0) {
+//             $('.mobile-back-to-selected-podcast').addClass('hidden');
+//             $('.mobile-back-to-results').removeClass('hidden');
+//         } else if (scrollPosition > 0) {
+//             $('.mobile-back-to-selected-podcast').removeClass('hidden');
+//             $('.mobile-back-to-results').addClass('hidden');
+//         }
+//     })
+//     console.log('`windowScrollMobile` ran');
+// }
 
 function exitError() {
     $('.results-navigation').on('click', '.exit-error', event => {
@@ -32,6 +32,8 @@ function mobileBackToResults() {
         $('.mobile-back-to-results, .selected-podcast, .wikipedia').addClass('hidden');
         $('.podcast-results').removeClass('hidden');
     });
+
+    fillSelectedPodcast();
 
     console.log('`mobileBackToResults` ran');
 }
@@ -47,7 +49,7 @@ function desktopBackToResults() {
 
 function mobileBackToSelectedPodcast() {
     $('.results-navigation').on('click', '.mobile-back-to-selected-podcast', event => {
-        $(window).scrollTop(0);
+        // $(window).scrollTop(0);
         $('.mobile-back-to-selected-podcast').addClass('hidden');
         $('.mobile-back-to-results').removeClass('hidden');
     });
@@ -67,7 +69,7 @@ function showWikipedia() {
         // $('.selected-podcast').hide();
     });
 
-    windowScrollMobile();
+    // windowScrollMobile();
     mobileBackToSelectedPodcast();
     desktopBackToResults();
     console.log('`showWikipedia` ran');
@@ -136,8 +138,9 @@ function getEntities(description) {
 function showSelectedPodcast() {
 
     $('.selected-podcast, .mobile-back-to-results').removeClass('hidden');
-    const winHeight = $(window).height();
-    $(window).scrollTop(winHeight);
+    const resultsHeight = $('.podcast-results').height();
+    // $(window).scrollTop(resultsHeight + 240);
+    //using 240 because it is 120 + 120 (.search-container height doubled)
 
     fillSelectedPodcast();
     mobileBackToResults();
@@ -149,13 +152,23 @@ function showSelectedPodcast() {
 //shows a single selected podcast with more detailed information and podcast player
 function fillSelectedPodcast() {
     $('.podcast-results').one('click', '.podcast-card', function(event) {
-        $('.podcast-info, .wiki-list').empty();
+        // $('.podcast-info, .wiki-list').empty();
         $(this).addClass('js-selected');
         const selectedPodcastHTML = $('.js-selected').html();
         $('.podcast-info').html(selectedPodcastHTML);
         $('.podcast-info > .podcast-description').addClass('hidden');
         $('.podcast-info > .full-description').removeClass('hidden');
         $('.podcast-info > .listen-notes-link').removeClass('hidden');
+        $('.podcast-player').removeClass('hidden');
+
+        //takes idnum from hidden p above and inserts it into embedded player
+        const selectedIDNum = $('.podcast-info > .idnum').text();
+        const playerURL = 'https://www.listennotes.com/embedded/e/' + selectedIDNum + '/';
+        console.log(playerURL);
+        $('.player').attr('src',playerURL);
+        const playerHTML = $('.podcast-player').html();
+        console.log(playerHTML);
+        // $('.player').removeAttr('srcdoc');
 
         showSelectedPodcast();
 
@@ -168,19 +181,17 @@ function fillSelectedPodcast() {
         if (selectedDescription.length > 2000) {
             selectedDescription = selectedDescription.substring(0, 2000);
         }
+        $('.js-selected').removeClass('js-selected');
         getEntities(selectedDescription);
 
-        //takes idnum from hidden p above and inserts it into embedded player
-        const selectedIDNum = $('.js-selected > .idnum').text();
-        const playerURL = 'https://www.listennotes.com/embedded/e/' + selectedIDNum + '/';
-        $('.player').attr('src',playerURL);
-        $('.player').removeAttr('srcdoc');
+
     })  
     console.log('`fillSelectedPodcast` ran');
 }
 
 //displays the results for the podcast episodes found
 function displayPodcastResults(responseJson) {
+    $('.podcast-results').removeClass('hidden');
 
     if (responseJson.results.length === 0) {
         $('.podcast-results').append(`
@@ -211,8 +222,8 @@ function displayPodcastResults(responseJson) {
       });
     $('.podcast-description').append('...');
 
-    fillSelectedPodcast(); 
     console.log('`displayPodcastResults` ran');
+    fillSelectedPodcast(); 
     //test before turning in: change the name of this function to anything else to make an error message show up
 }
 
@@ -283,16 +294,17 @@ function watchForm() {
 // slides user onboarding screen in and out
 function startUserOnboarding() {
 
+
     $('.search-container').on('click', '.start-onboarding', event => {
-        // $('.search-container').addClass('hidden');
-        $('.user-onboarding').removeClass('hidden').addClass('animated slideInLeft').one('animationend', () => {
+
+        $('.user-onboarding').removeClass('hidden').addClass('animated slideInLeft').one('animationend', function() {
             $(this).removeClass('animated slideInLeft');
         });
     });
 
     $('.user-onboarding').on('click', '.back-to-landing', event => {
-        // $('.search-container').removeClass('hidden');
-        $('.user-onboarding').addClass('animated slideOutLeft').one('animationend', () => {
+
+        $('.user-onboarding').addClass('animated slideOutLeft').one('animationend', function() {
             $(this).removeClass('animated slideOutLeft').addClass('hidden');
         });
         
