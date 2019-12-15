@@ -141,9 +141,9 @@ function showSelectedPodcast() {
     $('.podcast-player').removeClass('hidden');
     $('.search-container').addClass('hidden-mobile');
     $('.flex-parent').addClass('mobile-top-player');
-    const resultsHeight = $('.podcast-results').height();
+    const resultsHeight = $('.podcast-results').height() + 20;
     console.log(resultsHeight);
-    $(window).scrollTop(resultsHeight + 20);
+    $('html, body').animate({scrollTop: resultsHeight});
     // const element = $('.selected-podcast');
     // const selectedTop = $('.selected-podcast').offset().top;
     // console.log(selectedTop);
