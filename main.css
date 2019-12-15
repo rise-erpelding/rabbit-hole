@@ -43,7 +43,7 @@ a {
   top: 15vh;
   /* z-index: 1; */
   width: 100%;
-  border: 3px solid purple;
+  border: 3px solid gainsboro;
   height: 110px; 
   /*NOTE THIS HEIGHT AND USE LATER TO CALCULATE HEIGHT FOR .flex-child*/
 }
@@ -138,12 +138,13 @@ a {
 .results-navigation {
   /* float: right; */
   /* width: 30px; */
-  height: calc(100vh - 110px);
+  /* height: calc(100vh - 110px); */
+  border: 3px solid orange;
   /* height calculated from height of search-container */
   position: absolute;
   right: 5px;
   top: 80px;
-  z-index: 1;
+  /* z-index: 1; */
 }
 
 .results-navigation > li {
@@ -159,20 +160,27 @@ a {
 .flex-parent {
   position: relative;
   top: 110px;
-  border: 5px solid green;
+  border: 5px solid black;
   /* set to same value as height from .search-container */
 }
 
 .flex-child {
   width: 90vw;
-  border: 4px solid lightgreen;
-  height: calc(100vh - 240px);
+  border: 4px solid gray;
+  height: calc(100vh - 130px);
   /* calculated from height of search-container */
   margin-left: auto;
   margin-right: auto;
   overflow: scroll;
   /* padding-bottom: 100px; */
   /* ideally would like to change this to margin-bottom */
+}
+
+.player-height {
+  height: calc(100vh - 240px);
+  position: relative;
+  top: 0;
+  /* bottom: 110px; */
 }
 
 

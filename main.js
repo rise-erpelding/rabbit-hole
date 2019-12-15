@@ -138,7 +138,12 @@ function getEntities(description) {
 function showSelectedPodcast() {
 
     $('.selected-podcast, .mobile-back-to-results').removeClass('hidden');
-    const resultsHeight = $('.podcast-results').height();
+    $('.podcast-player').removeClass('hidden');
+    $('.search-container').addClass('hidden-mobile');
+    const element = $('.selected-podcast');
+    const selectedTop = $('.selected-podcast').offset().top;
+    console.log(selectedTop);
+    $('html, body').animate({scrollTop: selectedTop});
     // $(window).scrollTop(resultsHeight + 240);
     //using 240 because it is 120 + 120 (.search-container height doubled)
 
@@ -159,7 +164,8 @@ function fillSelectedPodcast() {
         $('.podcast-info > .podcast-description').addClass('hidden');
         $('.podcast-info > .full-description').removeClass('hidden');
         $('.podcast-info > .listen-notes-link').removeClass('hidden');
-        $('.podcast-player').removeClass('hidden');
+
+
 
         //takes idnum from hidden p above and inserts it into embedded player
         const selectedIDNum = $('.podcast-info > .idnum').text();
