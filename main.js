@@ -140,11 +140,13 @@ function showSelectedPodcast() {
     $('.selected-podcast, .mobile-back-to-results').removeClass('hidden');
     $('.podcast-player').removeClass('hidden');
     $('.search-container').addClass('hidden-mobile');
-    const element = $('.selected-podcast');
-    const selectedTop = $('.selected-podcast').offset().top;
-    console.log(selectedTop);
-    $('html, body').animate({scrollTop: selectedTop});
-    // $(window).scrollTop(resultsHeight + 240);
+    const resultsHeight = $('.podcast-results').height();
+    console.log(resultsHeight);
+    $(window).scrollTop(resultsHeight);
+    // const element = $('.selected-podcast');
+    // const selectedTop = $('.selected-podcast').offset().top;
+    // console.log(selectedTop);
+    // $('html, body').animate({scrollTop: selectedTop});
     //using 240 because it is 120 + 120 (.search-container height doubled)
 
     fillSelectedPodcast();
