@@ -6,18 +6,35 @@ const textEntitiesURL = 'https://api.dandelion.eu/datatxt/nex/v1/';
 const listenNotesKey = config.PODCAST_KEY;
 const dandelionKey = config.TEXT_WIKI_KEY;
 
-// function windowScrollMobile() {
-//     $(window).scroll(event => {
-//         const scrollPosition = $(window).scrollTop();
-//         if (scrollPosition === 0) {
-//             $('.mobile-back-to-selected-podcast').addClass('hidden');
-//             $('.mobile-back-to-results').removeClass('hidden');
-//         } else if (scrollPosition > 0) {
-//             $('.mobile-back-to-selected-podcast').removeClass('hidden');
-//             $('.mobile-back-to-results').addClass('hidden');
-//         }
+function windowScrollMobile() {
+    $(window).scroll(event => {
+        const scrollPosition = $(window).scrollTop();
+        if (scrollPosition === 0) {
+            $('.mobile-back-to-results, .selected-podcast, .wikipedia').addClass('hidden');
+            $('.podcast-results, .search-container').removeClass('hidden-mobile');
+            $('.flex-parent').css('top', '110px');
+            $('.flex-parent').css('margin-bottom', '0px');
+            $('.results-navigation').css('top', '80px');
+        } else if (scrollPosition > 0) {
+            // scrollToTop();
+            // $('.mobile-back-to-selected-podcast').removeClass('hidden');
+            // $('.mobile-back-to-results').addClass('hidden');
+        }
+    })
+    console.log('`windowScrollMobile` ran');
+}
+
+// function scrollToTop() {
+//     $('.mobile-scroll-up').removeClass('hidden');
+//     $('.results-navigation').on('click', '.mobile-scroll-up', event => {
+//         $(window).scrollTop(0);
+//         $('.mobile-back-to-results, .selected-podcast, .wikipedia').addClass('hidden');
+//         $('.podcast-results, .search-container').removeClass('hidden-mobile');
+//         $('.flex-parent').css('top', '110px');
+//         $('.flex-parent').css('margin-bottom', '0px');
+//         $('.results-navigation').css('top', '80px');
 //     })
-//     console.log('`windowScrollMobile` ran');
+
 // }
 
 function exitError() {
@@ -29,11 +46,15 @@ function exitError() {
 
 function mobileBackToResults() {
     $('.results-navigation').on('click', '.mobile-back-to-results', event => {
+        $(window).scrollTop(0);
         $('.mobile-back-to-results, .selected-podcast, .wikipedia').addClass('hidden');
-        $('.podcast-results').removeClass('hidden');
+        $('.podcast-results, .search-container').removeClass('hidden-mobile');
+        $('.flex-parent').css('top', '110px');
+        $('.flex-parent').css('margin-bottom', '0px');
+        $('.results-navigation').css('top', '80px');
     });
 
-    fillSelectedPodcast();
+    // fillSelectedPodcast();
 
     console.log('`mobileBackToResults` ran');
 }
@@ -59,8 +80,9 @@ function mobileBackToSelectedPodcast() {
 
 function showWikipedia() {
     $('.wiki-results').on('click', 'a', event => {
+        console.log('It should be showing wikipedia now');
 
-     
+     //TODO: Figure out why this is not showing up
         // $('.wikipedia-frame').removeAttr("srcdoc");
         // $('.wikipedia-frame').attr("src", "https://en.m.wikipedia.org/");
 
@@ -140,17 +162,22 @@ function showSelectedPodcast() {
     $('.selected-podcast, .mobile-back-to-results').removeClass('hidden');
     $('.podcast-player').removeClass('hidden');
     $('.search-container').addClass('hidden-mobile');
-    $('.flex-parent').addClass('mobile-top-player');
+    $('.flex-parent').css('top', '0px');
+    $('.flex-parent').css('margin-bottom', '110px');
+    $('.results-navigation').css('top', '10px');
     const resultsHeight = $('.podcast-results').height() + 20;
+    //TODO: add px units here
     console.log(resultsHeight);
     $('html, body').animate({scrollTop: resultsHeight});
+
+    windowScrollMobile();
     // const element = $('.selected-podcast');
     // const selectedTop = $('.selected-podcast').offset().top;
     // console.log(selectedTop);
     // $('html, body').animate({scrollTop: selectedTop});
     //using 240 because it is 120 + 120 (.search-container height doubled)
 
-    fillSelectedPodcast();
+    // fillSelectedPodcast();
     mobileBackToResults();
 
     console.log('`showSelectedPodcast` ran');
@@ -173,10 +200,10 @@ function fillSelectedPodcast() {
         //takes idnum from hidden p above and inserts it into embedded player
         const selectedIDNum = $('.podcast-info > .idnum').text();
         const playerURL = 'https://www.listennotes.com/embedded/e/' + selectedIDNum + '/';
-        console.log(playerURL);
+        // console.log(playerURL);
         $('.player').attr('src',playerURL);
         const playerHTML = $('.podcast-player').html();
-        console.log(playerHTML);
+        // console.log(playerHTML);
         // $('.player').removeAttr('srcdoc');
 
         showSelectedPodcast();
