@@ -6,23 +6,23 @@ const textEntitiesURL = 'https://api.dandelion.eu/datatxt/nex/v1/';
 const listenNotesKey = config.PODCAST_KEY;
 const dandelionKey = config.TEXT_WIKI_KEY;
 
-function windowScrollMobile() {
-    $(window).scroll(event => {
-        const scrollPosition = $(window).scrollTop();
-        if (scrollPosition === 0) {
-            $('.mobile-back-to-results, .selected-podcast, .wikipedia').addClass('hidden');
-            $('.podcast-results, .search-container').removeClass('hidden-mobile');
-            $('.flex-parent').css('top', '110px');
-            $('.flex-parent').css('margin-bottom', '0px');
-            $('.results-navigation').css('top', '80px');
-        } else if (scrollPosition > 0) {
-            // scrollToTop();
-            // $('.mobile-back-to-selected-podcast').removeClass('hidden');
-            // $('.mobile-back-to-results').addClass('hidden');
-        }
-    })
-    console.log('`windowScrollMobile` ran');
-}
+// function windowScrollMobile() {
+//     $(window).scroll(event => {
+//         const scrollPosition = $(window).scrollTop();
+//         if (scrollPosition === 0) {
+//             $('.mobile-back-to-results, .selected-podcast, .wikipedia').addClass('hidden');
+//             $('.podcast-results, .search-container').removeClass('hidden-mobile');
+//             $('.flex-parent').css('top', '110px');
+//             $('.flex-parent').css('margin-bottom', '0px');
+//             $('.results-navigation').css('top', '80px');
+//         } else if (scrollPosition > 0) {
+//             // scrollToTop();
+//             // $('.mobile-back-to-selected-podcast').removeClass('hidden');
+//             // $('.mobile-back-to-results').addClass('hidden');
+//         }
+//     })
+//     console.log('`windowScrollMobile` ran');
+// }
 
 // function scrollToTop() {
 //     $('.mobile-scroll-up').removeClass('hidden');
@@ -37,63 +37,62 @@ function windowScrollMobile() {
 
 // }
 
-function exitError() {
-    $('.results-navigation').on('click', '.exit-error', event => {
-        $('.js-error-message').empty();
-    })
-    console.log('`exitError` ran');
-}
+// function exitError() {
+//     $('.results-navigation').on('click', '.exit-error', event => {
+//         $('.js-error-message').empty();
+//     })
+//     console.log('`exitError` ran');
+// }
 
-function mobileBackToResults() {
-    $('.results-navigation').on('click', '.mobile-back-to-results', event => {
-        $(window).scrollTop(0);
-        $('.mobile-back-to-results, .selected-podcast, .wikipedia').addClass('hidden');
-        $('.podcast-results, .search-container').removeClass('hidden-mobile');
-        $('.flex-parent').css('top', '110px');
-        $('.flex-parent').css('margin-bottom', '0px');
-        $('.results-navigation').css('top', '80px');
-    });
+// function mobileBackToResults() {
+//     $('.results-navigation').on('click', '.mobile-back-to-results', event => {
+//         $(window).scrollTop(0);
+//         $('.mobile-back-to-results, .selected-podcast, .wikipedia').addClass('hidden');
+//         $('.podcast-results, .search-container').removeClass('hidden-mobile');
+//         $('.flex-parent').css('top', '110px');
+//         $('.flex-parent').css('margin-bottom', '0px');
+//         $('.results-navigation').css('top', '80px');
+//     });
 
-    // fillSelectedPodcast();
+//     // fillSelectedPodcast();
 
-    console.log('`mobileBackToResults` ran');
-}
+//     console.log('`mobileBackToResults` ran');
+// }
 
-function desktopBackToResults() {
-    $('.results-navigation').on('click', '.desktop-back-to-results', event => {
-        $('.podcast-results').removeClass('hidden');
-        $('.selected-podcast, .wikipedia, .desktop-back-to-results').addClass('hidden');
-    });
+// function desktopBackToResults() {
+//     $('.results-navigation').on('click', '.desktop-back-to-results', event => {
+//         $('.podcast-results').removeClass('hidden');
+//         $('.selected-podcast, .wikipedia, .desktop-back-to-results').addClass('hidden');
+//     });
 
-    console.log('`desktopBackToResults` ran');
-}
+//     console.log('`desktopBackToResults` ran');
+// }
 
-function mobileBackToSelectedPodcast() {
-    $('.results-navigation').on('click', '.mobile-back-to-selected-podcast', event => {
-        // $(window).scrollTop(0);
-        $('.mobile-back-to-selected-podcast').addClass('hidden');
-        $('.mobile-back-to-results').removeClass('hidden');
-    });
-    console.log('`mobileBackToSelectedPodcast` ran');
-}
+// function mobileBackToSelectedPodcast() {
+//     $('.results-navigation').on('click', '.mobile-back-to-selected-podcast', event => {
+//         // $(window).scrollTop(0);
+//         $('.mobile-back-to-selected-podcast').addClass('hidden');
+//         $('.mobile-back-to-results').removeClass('hidden');
+//     });
+//     console.log('`mobileBackToSelectedPodcast` ran');
+// }
 
 
 function showWikipedia() {
-    $('.wiki-results').on('click', 'a', event => {
+    $('.wiki-results').on('click', 'a', () => {
         console.log('It should be showing wikipedia now');
-
-     //TODO: Figure out why this is not showing up
-        // $('.wikipedia-frame').removeAttr("srcdoc");
-        // $('.wikipedia-frame').attr("src", "https://en.m.wikipedia.org/");
-
-        $('.podcast-results, .mobile-back-to-results').addClass('hidden');
-        $('.wikipedia, .mobile-back-to-selected-podcast, .desktop-back-to-results').removeClass('hidden');
+        $('.wikipedia').removeClass('hidden');
+        // $('.podcast-results, .mobile-back-to-results').addClass('hidden');
+        const selectedPodcastHeight = $('.selected-podcast').height() + 20;
+        //TODO: add px units here
+        $('html, body').animate({scrollTop: selectedPodcastHeight});
+        // $('.wikipedia, .mobile-back-to-selected-podcast, .desktop-back-to-results').removeClass('hidden');
         // $('.selected-podcast').hide();
     });
 
     // windowScrollMobile();
-    mobileBackToSelectedPodcast();
-    desktopBackToResults();
+    // mobileBackToSelectedPodcast();
+    // desktopBackToResults();
     console.log('`showWikipedia` ran');
 }
 
@@ -167,10 +166,9 @@ function showSelectedPodcast() {
     $('.results-navigation').css('top', '10px');
     const resultsHeight = $('.podcast-results').height() + 20;
     //TODO: add px units here
-    console.log(resultsHeight);
     $('html, body').animate({scrollTop: resultsHeight});
 
-    windowScrollMobile();
+    // windowScrollMobile();
     // const element = $('.selected-podcast');
     // const selectedTop = $('.selected-podcast').offset().top;
     // console.log(selectedTop);
@@ -178,7 +176,7 @@ function showSelectedPodcast() {
     //using 240 because it is 120 + 120 (.search-container height doubled)
 
     // fillSelectedPodcast();
-    mobileBackToResults();
+    // mobileBackToResults();
 
     console.log('`showSelectedPodcast` ran');
 

@@ -26,8 +26,6 @@ a {
 
 .fa-times {
   font-size: 30px;
-  /* margin-left: 2px;
-  margin-bottom: 3px; */
   color: #0B3C85;
 }
 
@@ -41,9 +39,7 @@ a {
 .search-container {
   position: absolute;
   top: 15vh;
-  /* z-index: 1; */
   width: 100%;
-  /* border: 3px solid gainsboro; */
   height: 110px; 
   /*NOTE THIS HEIGHT AND USE LATER TO CALCULATE HEIGHT FOR .flex-child*/
 }
@@ -52,7 +48,6 @@ a {
   font-size: 2.5em;
   font-family: 'Arima Madurai', cursive;
   color: #541810;
-  /* margin-top: 15vh; */
   position: relative;
   left: 50%;
   margin-left: -140px;
@@ -125,7 +120,6 @@ a {
   color: #B83422;
   font-weight: 700;
   text-align: center;
-  /* padding: 20px; */
   position: relative;
   top: 110px;
 }
@@ -141,10 +135,10 @@ a {
   /* height: calc(100vh - 110px); */
   /* border: 3px solid orange; */
   /* height calculated from height of search-container */
-  position: fixed;
-  right: 5px;
-  top: 80px;
-  z-index: 1;
+  /* position: fixed; */
+  /* right: 5px; */
+  /* top: 80px; */
+  /* z-index: 1; */
 }
 
 /* .mobile-back-to-results {
@@ -160,11 +154,11 @@ a {
 } */
 
 .results-navigation > li {
-  height: 30px;
+  /* height: 30px; */
 }
 
 .desktop-back-to-results {
-  display: none;
+  /* display: none; */
 }
 
 
@@ -172,14 +166,12 @@ a {
 .flex-parent {
   position: relative;
   top: 110px;
-  /* border: 5px solid black; */
   margin-bottom: 0px;
   /* set to same value as height from .search-container */
 }
 
 .flex-child {
   width: 90vw;
-  /* border: 4px solid gray; */
   height: calc(100vh - 130px);
   /* calculated from height of search-container */
   margin-left: auto;
@@ -199,6 +191,7 @@ a {
 
 
 /* styles for .podcast-results and children */
+
 .podcast-card {
   background: white;
   padding: 8px;
@@ -281,16 +274,11 @@ a {
 }
 
 /* styles for .wikipedia and children */
-.wikipedia {
-  /* border: 1px solid purple; */
-}
-
 .wikipedia-frame {
   height: calc(100vh - 110px);
   width: inherit;
   margin-left: auto;
   margin-right: auto;
-  /* border: 1px solid green; */
   border-radius: 4px;
   box-shadow: 0px 4px 3px rgba(0, 0, 0, 0.25);
 }
@@ -392,7 +380,7 @@ ol {
 }
 
 /* media queries for screen widths */
-@media screen and (min-width: 880px) {
+/* @media screen and (min-width: 880px) {
   .flex-parent {
     display: flex;
     align-items: flex-start;
@@ -414,9 +402,22 @@ ol {
   .hidden-mobile {
     display: block;
   }
-}
+} */
 
 
 .hidden {
   display: none;
+}
+
+/* temporary styles to delete when you're done */
+.podcast-results {
+  border: 2px dotted red;
+}
+
+.selected-podcast {
+  border: 2px dotted orangered;
+}
+
+.wikipedia {
+  border: 2px dotted orange;
 }
