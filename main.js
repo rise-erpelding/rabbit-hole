@@ -10,7 +10,7 @@ const dandelionKey = config.TEXT_WIKI_KEY;
 
 //when you click on back, hides wikipedia and podcast player, goes back to all short descriptions from search results, continues to display podcast player
 function backButton() {
-    $('.selected-podcast').on('click', '.go-back', event => {
+    $('.flex-parent').on('click', '.go-back', event => {
         $('.selected-podcast, .full-description, .listen-notes-link').addClass('hidden');
         $('.podcast-results, .search-container').show();
         $('.podcast-description').removeClass('hidden');
@@ -23,20 +23,26 @@ function backButton() {
 
 //hides wikipedia frame
 function hideWikipedia() {
-    $('.wikipedia').on('click', '.exit-iframe', event => {
-        $('.wikipedia').addClass('hidden');
-        $('.selected-podcast').show();
-    });
+  console.log('hideWikipedia ran, but it is just a function stub right now');
+    // $('.wikipedia').on('click', '.exit-iframe', event => {
+    //     $('.wikipedia').addClass('hidden');
+    //     $('.selected-podcast').show();
+    // });
 }
 
 //shows wikipedia frame
 function showWikipedia() {
+    // $('.wiki-results').on('click', 'a', event => {
+    //     $('.wikipedia').removeClass('hidden');
+    //     $('.selected-podcast').hide();
+    // });
+
     $('.wiki-results').on('click', 'a', event => {
-        $('.wikipedia').removeClass('hidden');
-        $('.selected-podcast').hide();
+      $('.wikipedia-frame').offset({top: 0});
     });
 
     hideWikipedia();
+    console.log('showWikipedia ran, but it is just a function stub right now');
 }
 
 //since Dandelion API will sometimes return duplicate objects in the results, this filters out all the duplicates and returns an array containing only unique objects
@@ -102,7 +108,15 @@ function showOnePodcast() {
         const selectedPodcastHTML = $('.js-selected').html();
         $('.podcast-info').html(selectedPodcastHTML);
         $('.podcast-description').addClass('hidden');
+
+        //NEW ADD
+        $('.flex-parent').removeClass('hidden');
+
         $('.full-description, .listen-notes-link, .selected-podcast, .podcast-player').removeClass('hidden');
+
+        //NEW ADD: this is redundant and you will need to clean it up
+        $('.wikipedia').removeClass('hidden');
+   
         $('.podcast-results, .search-container').hide();
         $('.main').addClass('shorter-screen');
 

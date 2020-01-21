@@ -55,8 +55,9 @@
 
         <section class="podcast-results"></section>
 
-        <section class="selected-podcast hidden">
-            <div class="go-back"><i class="fas fa-times"></i></div>
+        <div class="flex-parent hidden">
+          <div class="go-back"><i class="fas fa-times"></i></div>
+          <section class="selected-podcast hidden">
             <div class="podcast-info"></div>
             <div class="wiki-results">
                 <h3>Wikipedia results related to your podcast:</h3>
@@ -65,13 +66,14 @@
         </section>
 
         <section class="wikipedia hidden">
-            <i class="fas fa-times exit-iframe"></i>
             <iframe class="wikipedia-frame"
                 title="Wikipedia Page"
                 name="wiki_iframe"
                 src="#">
             </iframe>
         </section>
+        </div>
+        
     </main>
 
     <footer class="podcast-player hidden">

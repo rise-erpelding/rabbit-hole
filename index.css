@@ -253,6 +253,9 @@ ol {
 .selected-podcast {
   background: white;
   padding: 8px;
+  width: 97vw;
+  margin-left: auto;
+  margin-right: auto;
   border-radius: 4px;
   box-shadow: 0px 4px 3px rgba(0, 0, 0, 0.25);
 }
@@ -288,13 +291,16 @@ ol {
 /* styles for .wikipedia and children   */
 .wikipedia {
   width: 97vw;
-  margin: auto;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .wikipedia-frame {
-  height: 84vh;
+  margin-top: 10px;
+  height: 83vh;
   width: 97vw;
-  margin: auto;
+  margin-left: auto;
+  margin-right: auto;
   border: 1px solid white;
   border-radius: 4px;
   box-shadow: 0px 4px 3px rgba(0, 0, 0, 0.25);
@@ -320,19 +326,36 @@ ol {
 }
 
 @media screen and (min-width: 700px) {
-  .podcast-results, 
-  .selected-podcast {
+  .podcast-results {
     width: 75vw;
     margin: auto;
+  } 
+
+  .selected-podcast {
+    width: 48vw;
+    margin-top: 4vh;
+    height: 80vh;
+    overflow: scroll;
   }
 
-  .wikipedia, 
+  .wikipedia {
+    width: 48vw;
+  } 
+
   .wikipedia-frame {
-    width: 80vw;
+    width: 48vw;
+    margin-top: 4vh;
+    height: 80vh;
   }
+
+  .flex-parent {
+    display: flex;
+  }
+
+
 }
 
-@media screen and (min-width: 880px) {
+/* @media screen and (min-width: 880px) {
   .podcast-results, 
   .selected-podcast {
     width: 65vw;
@@ -356,7 +379,7 @@ ol {
   .wikipedia-frame {
     width: 60vw;
   }
-}
+} */
 
 .hidden {
   display: none;
