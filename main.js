@@ -38,7 +38,10 @@ function showWikipedia() {
     // });
 
     $('.wiki-results').on('click', 'a', event => {
-      $('.wikipedia-frame').offset({top: 0});
+      // $('.wikipedia-frame').offset({top: 0});
+      // $('html, body').animate({scrollTop: $('.wikipedia-frame').offset().top}, 1000);
+
+      console.log('implement scrolling behavior');
     });
 
     hideWikipedia();
