@@ -26,7 +26,7 @@ a {
 
 .shorter-screen {
   height: 84vh;
-  overflow: scroll;
+  /* overflow: scroll; */
 }
 
 .fa-times {
@@ -34,6 +34,24 @@ a {
   margin-left: 2px;
   margin-bottom: 3px;
   color: #0B3C85;
+}
+
+.back-to-top {
+  border-top: 3px solid white;
+  border-bottom: 3px solid white;
+  border-left: 3px solid white;
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+  background-color: #0b3c85;
+  padding: 0.2em;
+  color: white;
+  font-size: 1.4em;
+  text-align: center;
+  position: fixed;
+  /* left: calc(100vw - 1.8em); */
+  right: 0px;
+  top: 70vh;
+  max-width: 1.8em;
 }
 
 /* styles for .search-container and children */
@@ -203,6 +221,11 @@ ol {
 }
 
 /* styles for .podcast-results and children */
+.podcast-results {
+  max-height: 500px;
+  overflow: auto;
+}
+
 .podcast-card {
   background: white;
   padding: 8px;
@@ -304,6 +327,7 @@ ol {
   border: 1px solid white;
   border-radius: 4px;
   box-shadow: 0px 4px 3px rgba(0, 0, 0, 0.25);
+  margin-bottom: 16vh; /*matches height of player */
 }
 
 /* styles for .podcast-player and children */

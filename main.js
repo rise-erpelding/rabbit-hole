@@ -6,12 +6,30 @@ const textEntitiesURL = 'https://api.dandelion.eu/datatxt/nex/v1/';
 const listenNotesKey = config.PODCAST_KEY;
 const dandelionKey = config.TEXT_WIKI_KEY;
 
+//when you click on this back to top button, scrolls back to top
+function backToTop() {
+  const backToTop = $('.back-to-top');
 
+  $(window).scroll(function() {
+    console.log('you are scrolling');
+
+    if ($(window).scrollTop() > 300) {
+      backToTop.removeClass('hidden');
+    } else {
+      backToTop.addClass('hidden');
+    }
+  });
+
+  backToTop.on('click', function() {
+    console.log('you clicked back to top')
+    $('html, body').animate({scrollTop:0}, '300');
+  });
+}
 
 //when you click on back, hides wikipedia and podcast player, goes back to all short descriptions from search results, continues to display podcast player
 function backButton() {
     $('.flex-parent').on('click', '.go-back', event => {
-        $('.selected-podcast, .full-description, .listen-notes-link').addClass('hidden');
+        $('.selected-podcast, .full-description, .listen-notes-link, .wikipedia').addClass('hidden');
         $('.podcast-results, .search-container').show();
         $('.podcast-description').removeClass('hidden');
         $('.js-selected').removeClass('js-selected');
@@ -38,8 +56,11 @@ function showWikipedia() {
     // });
 
     $('.wiki-results').on('click', 'a', event => {
+    //   $('.wikipedia-frame').stop().animate({
+    //     scrollTop: $($(this).attr('href')).offset().top
+    // }, 1000, 'linear');
       // $('.wikipedia-frame').offset({top: 0});
-      // $('html, body').animate({scrollTop: $('.wikipedia-frame').offset().top}, 1000);
+      $('html, body').animate({scrollTop: $('.wikipedia-frame').offset().top}, 500);
 
       console.log('implement scrolling behavior');
     });
@@ -74,6 +95,7 @@ function displayDandelionResults(responseJson) {
 
     showWikipedia();
     backButton();
+    backToTop();
 }
 
 //takes description from selected podcast and calls dandelion API
@@ -250,8 +272,8 @@ function startUserOnboarding() {
 }
 
 function handlePage() {
-    watchForm();
-    startUserOnboarding();
+  watchForm();
+  startUserOnboarding();
 }
 
 $(handlePage);
