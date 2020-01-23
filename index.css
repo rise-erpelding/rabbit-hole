@@ -57,7 +57,7 @@ a {
 /* styles for .search-container and children */
 .big-title {
   font-size: 2.5em;
-  font-family: 'Arima Madurai', cursive;
+  font-family: 'Arima Madurai', sans-serif;
   color: #541810;
   margin-top: 15vh;
   position: relative;

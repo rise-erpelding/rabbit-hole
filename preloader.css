@@ -1,0 +1,35 @@
+body {
+  background: white;
+  font-family: 'Arima Madurai', sans-serif;
+}
+
+.preloader-text {
+  text-align: center;
+  position: relative;
+  top: calc(50vh + 138px);
+}
+
+.preloader {
+  /* border: 1px solid black; */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 320px;
+  height: 276px;
+
+  background: 
+    url('Images/rabbit-sprite-strip-7360-min.png');
+    animation: animate 1s steps(23) infinite;
+}
+
+
+@keyframes animate {
+  from {
+    background-position: 0;
+  }
+
+  to {
+    background-position: -7360px;
+  }
+}

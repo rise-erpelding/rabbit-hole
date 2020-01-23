@@ -34,6 +34,15 @@ function backButton() {
         $('.podcast-description').removeClass('hidden');
         $('.js-selected').removeClass('js-selected');
         $('.js-error-message').empty();
+        //TODO: This is where I left off
+        $('.wikipedia-frame').remove();
+        $('.wikipedia').append(`
+          <iframe class="wikipedia-frame"
+            title="Wikipedia Page"
+            name="wiki_iframe"
+            src="preloader.html">
+          </iframe>
+        `);
     });
 
     showOnePodcast();
@@ -43,6 +52,8 @@ function backButton() {
 function showWikipedia() {
 
     $('.wiki-results').on('click', 'a', event => {
+
+      $('.wikipedia').removeClass('hidden');
       $('html, body').animate({scrollTop: $('.wikipedia-frame').offset().top}, 500);
     });
 }
@@ -117,8 +128,8 @@ function showOnePodcast() {
 
         $('.full-description, .listen-notes-link, .selected-podcast, .podcast-player').removeClass('hidden');
 
-        //NEW ADD: this is redundant and you will need to clean it up
-        $('.wikipedia').removeClass('hidden');
+
+        // $('.wikipedia').removeClass('hidden');
    
         $('.podcast-results, .search-container').hide();
         $('.main').addClass('shorter-screen');
