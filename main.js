@@ -39,34 +39,12 @@ function backButton() {
     showOnePodcast();
 }
 
-//hides wikipedia frame
-function hideWikipedia() {
-  console.log('hideWikipedia ran, but it is just a function stub right now');
-    // $('.wikipedia').on('click', '.exit-iframe', event => {
-    //     $('.wikipedia').addClass('hidden');
-    //     $('.selected-podcast').show();
-    // });
-}
-
-//shows wikipedia frame
+//shows wikipedia frame by scrolling to it
 function showWikipedia() {
-    // $('.wiki-results').on('click', 'a', event => {
-    //     $('.wikipedia').removeClass('hidden');
-    //     $('.selected-podcast').hide();
-    // });
 
     $('.wiki-results').on('click', 'a', event => {
-    //   $('.wikipedia-frame').stop().animate({
-    //     scrollTop: $($(this).attr('href')).offset().top
-    // }, 1000, 'linear');
-      // $('.wikipedia-frame').offset({top: 0});
       $('html, body').animate({scrollTop: $('.wikipedia-frame').offset().top}, 500);
-
-      console.log('implement scrolling behavior');
     });
-
-    hideWikipedia();
-    console.log('showWikipedia ran, but it is just a function stub right now');
 }
 
 //since Dandelion API will sometimes return duplicate objects in the results, this filters out all the duplicates and returns an array containing only unique objects
