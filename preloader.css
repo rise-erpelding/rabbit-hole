@@ -6,7 +6,8 @@ body {
 .preloader-text {
   text-align: center;
   position: relative;
-  top: calc(50vh + 138px);
+  top: calc(50vh + 30px);
+  color: #541810;
 }
 
 .preloader {
@@ -14,12 +15,12 @@ body {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 320px;
-  height: 276px;
+  width: 100px;
+  height: 86px;
 
   background: 
-    url('Images/rabbit-sprite-strip-7360-min.png');
-    animation: animate 1s steps(23) infinite;
+    url('Images/rabbit-sprite-strip-maroon-2300-min.png');
+    animation: animate 0.7s steps(23) infinite;
 }
 
 
@@ -29,6 +30,6 @@ body {
   }
 
   to {
-    background-position: -7360px;
+    background-position: -2300px;
   }
 }

@@ -6,7 +6,7 @@ body {
   font-family: 'Open Sans', sans-serif;
   font-size: 1em;
   margin: 0;
-  background-color: #E5E5E5;
+  background-color: #D9E3DB;
   background-image: 
     linear-gradient(
       rgba(255, 255, 255, 0.5),
@@ -38,7 +38,7 @@ a {
   font-size: 2em;
   margin-left: 2px;
   margin-bottom: 3px;
-  color: #0B3C85;
+  color: #235789;
 }
 
 .back-to-top {
@@ -47,7 +47,7 @@ a {
   border-left: 3px solid white;
   border-top-left-radius: 8px;
   border-bottom-left-radius: 8px;
-  background-color: #0b3c85;
+  background-color: #235789;
   padding: 0.2em;
   color: white;
   font-size: 1.4em;
@@ -61,6 +61,7 @@ a {
 /* styles for .search-container and children */
 .search-container {
   border: none;
+  /* note: border-bottom changed to 1px solid #C6DAC8 in when watchForm runs in main.js */
 }
 
 .big-title {
@@ -104,7 +105,7 @@ a {
   width: 25px;
   font-size: 1.1em;
   background-color: white;
-  color: #0B3C85;
+  color: #235789;
   border: none;
   position: relative;
   bottom: -2px;
@@ -136,7 +137,7 @@ a {
 /* styles for user onboarding */
 .start-onboarding {
   padding-left: 20px;
-  background-color: #0B3C85;
+  background-color: #235789;
   color: white;
   max-width: 1.6em;
   padding: .2em;
@@ -153,7 +154,7 @@ a {
   position: fixed;
   overflow: auto;
   top: 0;
-  background: #0b3c85;
+  background: #235789;
   padding-top: 5vh;
   padding-bottom: 5vh;
   color: white;
@@ -187,7 +188,7 @@ a {
   text-align: center;
   width: 2em;
   margin: 20px;
-  color: #bbe727;
+  color: white;
 }
 
 .back-to-landing {
@@ -219,7 +220,7 @@ ol {
 /* styles for .js-error-message */
 .error-style {
   margin: 10px;
-  color: #B83422;
+  color: #c80000;
   font-weight: 700;
   text-align: center;
   padding: 20px;
@@ -245,7 +246,7 @@ ol {
 }
 
 .episode-title {
-  color: #B83422;
+  color: #c80000;
   font-weight: 700;
   font-size: 1.1em;
   margin-bottom: 10px;
@@ -277,7 +278,7 @@ ol {
 }
 
 .no-results {
-  color: #B83422;
+  color: #c80000;
   text-align: center;
   margin: 20px 50px 20px 50px;
 }
@@ -296,13 +297,13 @@ ol {
 }
 
 .listen-notes-link {
-  color: #B83422;
+  color: #c80000;
   padding-top: .5em;
   font-size: .8em;
 }
 
 .wiki-list > li {
-  background: lightgray;
+  background: #D9E3DB;
   font-size: 0.85em;
   padding: 13px;
   margin-bottom: 10px;
@@ -312,13 +313,13 @@ ol {
 
 .wiki-results > h3 {
   margin-top: 20px;
-  color: #0B3C85;
+  color: #235789;
   font-weight: 700;
   margin-bottom: 5px;
 }
 
 .wiki-title {
-  color: #0B3C85;
+  color: #235789;
   font-weight: 700;
   margin-bottom: 3px;
 }
@@ -344,7 +345,7 @@ ol {
 
 /* styles for .podcast-player and children */
 .podcast-player {
-  border-top: 1px solid #D2D2D2;
+  border-top: 1px solid #C6DAC8;
 }
 
 .player {
