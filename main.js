@@ -26,15 +26,14 @@ function backToTop() {
   });
 }
 
-//when you click on back, hides wikipedia and podcast player, goes back to all short descriptions from search results, continues to display podcast player
+//when you click on back, hides wikipedia and podcast player, goes back to podcast results display, continues to display podcast player
 function backButton() {
     $('.flex-parent').on('click', '.go-back', event => {
-        $('.selected-podcast, .full-description, .listen-notes-link, .wikipedia').addClass('hidden');
+        $('.selected-podcast, .full-description, .listen-notes-link, .wikipedia, .flex-parent').addClass('hidden');
         $('.podcast-results, .search-container').show();
         $('.podcast-description').removeClass('hidden');
         $('.js-selected').removeClass('js-selected');
         $('.js-error-message').empty();
-        //TODO: This is where I left off
         $('.wikipedia-frame').remove();
         $('.wikipedia').append(`
           <iframe class="wikipedia-frame"
@@ -43,6 +42,8 @@ function backButton() {
             src="preloader.html">
           </iframe>
         `);
+        // TODO: come back to this and see if this is really the height we need
+        $('.podcast-results').css('max-height', 'calc(100vh - 273px');
     });
 
     showOnePodcast();
@@ -122,7 +123,7 @@ function showOnePodcast() {
         const selectedPodcastHTML = $('.js-selected').html();
         $('.podcast-info').html(selectedPodcastHTML);
         $('.podcast-description').addClass('hidden');
-
+        $('.start-onboarding').addClass('hidden');
         //NEW ADD
         $('.flex-parent').removeClass('hidden');
 
@@ -132,7 +133,8 @@ function showOnePodcast() {
         // $('.wikipedia').removeClass('hidden');
    
         $('.podcast-results, .search-container').hide();
-        $('.main').addClass('shorter-screen');
+        //TODO: starting here
+        // $('.main').addClass('shorter-screen');
 
         //passes description to getEntities function to search for key phrases
         let selectedDescription = $('.js-selected > .full-description').text();
@@ -145,7 +147,11 @@ function showOnePodcast() {
         const selectedIDNum = $('.js-selected > .idnum').text();
         const playerURL = 'https://www.listennotes.com/embedded/e/' + selectedIDNum + '/';
         $('.player').attr('src',playerURL);
-    })  
+    })
+    
+    if ($('.podcast-player').hasClass('hidden') === false) {
+      $('.main').addClass('shorter-screen');
+    }
 }
 
 //displays the results for the podcast episodes found
@@ -221,7 +227,9 @@ function getPodcasts(query) {
         .then(responseJson => displayPodcastResults(responseJson))
         .catch(error => {
             $('.js-error-message').html(`<p><i class="far fa-flushed"></i></p><p>Uh-oh, something went wrong: ${error.message}. Try reloading the page and repeating your request.</p>`);
-            $('.js-error-message').addClass('.error-style');
+            $('.js-error-message').addClass('error-style');
+            $('.podcast-results').hide();
+            $('.flex-parent').hide();
         });
 }
 
@@ -247,13 +255,13 @@ function watchForm() {
 function startUserOnboarding() {
 
     $('.search-container').on('click', '.start-onboarding', event => {
-        $('.user-onboarding').removeClass('hidden').addClass('animated slideInLeft').one('animationend', () => {
+        $('.user-onboarding').removeClass('hidden').addClass('animated slideInLeft').one('animationend', function() {
             $(this).removeClass('animated slideInLeft');
         });
     });
 
     $('.user-onboarding').on('click', '.back-to-landing', event => {
-        $('.user-onboarding').addClass('animated slideOutLeft').one('animationend', () => {
+        $('.user-onboarding').addClass('animated slideOutLeft').one('animationend', function() {
             $(this).removeClass('animated slideOutLeft').addClass('hidden');
         });
         

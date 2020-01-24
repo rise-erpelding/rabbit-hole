@@ -25,8 +25,12 @@ a {
 }
 
 .shorter-screen {
-  height: 84vh;
-  /* overflow: scroll; */
+  margin-bottom: 144px;
+}
+
+.go-back {
+  margin-left: 10px;
+  margin-right: 10px;
 }
 
 .fa-times {
@@ -48,9 +52,10 @@ a {
   font-size: 1.4em;
   text-align: center;
   position: fixed;
-  /* left: calc(100vw - 1.8em); */
   right: 0px;
-  top: 70vh;
+  /* top: 70vh; */
+  /* bottom: calc(100vh - 368px); */
+  top: calc(100vh - 200px);
   max-width: 1.8em;
 }
 
@@ -67,8 +72,8 @@ a {
 }
 
 .small-title {
-  font-size: 1.5em;
-  margin-top: 5vh;
+  font-size: 24px;
+  margin-top: 20px;
 }
 
 .subtitle {
@@ -142,16 +147,17 @@ a {
 
 .user-onboarding {
   position: fixed;
-  overflow: scroll;
+  overflow: auto;
   top: 0;
   background: #0b3c85;
-  padding-top: 10vh;
-  padding-bottom: 10vh;
+  padding-top: 5vh;
+  padding-bottom: 5vh;
   color: white;
   height: 100vh;
   width: 100vw;
-  padding-left: 10vw;
-  padding-right: 10vw;
+  font-size: 0.8em;
+  padding-left: 5vw;
+  padding-right: 5vw;
 }
 
 .onboarding-title-container {
@@ -172,10 +178,10 @@ a {
 .onboard-icon {
   border: 3px solid white;
   border-radius: 8px;
-  font-size: 4em;
+  font-size: 3em;
   padding: 15px;
   text-align: center;
-  width: 1.6em;
+  width: 2em;
   margin: 20px;
   color: #bbe727;
 }
@@ -183,7 +189,6 @@ a {
 .back-to-landing {
   text-align: center;
   margin-top: 30px;
-  margin-bottom: 16vh;
 }
 
 .icons-list {
@@ -222,7 +227,7 @@ ol {
 
 /* styles for .podcast-results and children */
 .podcast-results {
-  max-height: 500px;
+  max-height: calc(100vh - 144px);
   overflow: auto;
 }
 
@@ -277,8 +282,10 @@ ol {
   background: white;
   padding: 8px;
   width: 97vw;
+  height: calc(100vh - 144px - 20px);
   margin-left: auto;
   margin-right: auto;
+  margin-top: 15px;
   border-radius: 4px;
   box-shadow: 0px 4px 3px rgba(0, 0, 0, 0.25);
 }
@@ -313,97 +320,112 @@ ol {
 
 /* styles for .wikipedia and children   */
 .wikipedia {
+  margin-top: 15px;
   width: 97vw;
   margin-left: auto;
   margin-right: auto;
+  height: calc(100vh - 144px - 20px);
 }
 
 .wikipedia-frame {
-  margin-top: 10px;
-  height: 83vh;
+  /* margin-top: 10px; */
+
+  height: calc(100vh - 144px - 20px);
   width: 97vw;
   margin-left: auto;
   margin-right: auto;
   border: 1px solid white;
   border-radius: 4px;
   box-shadow: 0px 4px 3px rgba(0, 0, 0, 0.25);
-  margin-bottom: 16vh; /*matches height of player */
+  /* margin-bottom: 16vh; */
 }
 
 /* styles for .podcast-player and children */
 .player {
   box-shadow: none;
   border: none;
-  margin-bottom: -6px;
+  /* margin-bottom: -6px; */
   position: fixed;
   bottom: 0;
-  height: 16vh;
+  height: 144px;
   background-color: white;
   width: 100vw;
 }
 
-/* media queries for screen widths */
+/* media queries for screen heights and widths */
+@media screen and (min-height: 600px) {
+  .user-onboarding {
+    font-size: 1em;
+    padding-top: 6vh;
+  }
+}
+
+@media screen and (min-height: 700px) {
+  .user-onboarding {
+    font-size: 1em;
+    padding-top: 12vh;
+  }
+}
+
+@media screen and (min-height: 900px) {
+  .user-onboarding {
+    font-size: 1.2em;
+    padding-top: 12vh;
+  }
+
+  .onboard-icon {
+    font-size: 4em;
+  }
+}
+
 @media screen and (min-width: 480px) {
   .js-search-term {
     width: 240px;
   }
 }
 
-@media screen and (min-width: 700px) {
+@media screen and (min-width: 850px) {
+  .user-onboarding {
+    padding-left: 10vw;
+    padding-right: 10vw;
+  }
+}
+
+@media screen and (min-width: 900px) {
   .podcast-results {
     width: 75vw;
     margin: auto;
   } 
 
   .selected-podcast {
-    width: 48vw;
-    margin-top: 4vh;
-    height: 80vh;
+    width: 47vw;
+    /* margin-top: 4vh; */
     overflow: scroll;
   }
 
   .wikipedia {
-    width: 48vw;
+    width: 47vw;
   } 
 
   .wikipedia-frame {
-    width: 48vw;
-    margin-top: 4vh;
-    height: 80vh;
+    width: 47vw;
+    /* margin-top: 4vh; */
   }
 
   .flex-parent {
     display: flex;
   }
 
-
 }
 
-/* @media screen and (min-width: 880px) {
-  .podcast-results, 
-  .selected-podcast {
-    width: 65vw;
-    margin: auto;
-  }
-
-  .wikipedia, 
-  .wikipedia-frame {
-    width: 70vw;
+@media screen and (min-width: 1000px) {
+  .user-onboarding {
+    padding-left: 20vw;
+    padding-right: 20vw;
   }
 }
 
-@media screen and (min-width: 1050px) {
-  .podcast-results, 
-  .selected-podcast {
-    width: 55vw;
-    margin: auto;
-  }
 
-  .wikipedia, 
-  .wikipedia-frame {
-    width: 60vw;
-  }
-} */
 
 .hidden {
   display: none;
