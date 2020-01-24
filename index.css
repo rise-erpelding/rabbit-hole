@@ -13,6 +13,7 @@ body {
       rgba(255, 255, 255, 0.5)
     ),
     url(Images/spiral-staircase-feet.jpg);
+    /* note: background image changed to none when watchForm runs in main.js */
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
@@ -53,13 +54,15 @@ a {
   text-align: center;
   position: fixed;
   right: 0px;
-  /* top: 70vh; */
-  /* bottom: calc(100vh - 368px); */
   top: calc(100vh - 200px);
   max-width: 1.8em;
 }
 
 /* styles for .search-container and children */
+.search-container {
+  border: none;
+}
+
 .big-title {
   font-size: 2.5em;
   font-family: 'Arima Madurai', sans-serif;
@@ -118,15 +121,16 @@ a {
 
 .logos {
   text-align: center;
-  margin-top: 15px;
+  margin-top: 11px;
+  margin-bottom: 10px;
 }
 
 .listen-notes-logo {
-  height: 15px;
+  height: 14px;
 }
 
 .dandelion-logo {
-  height: 20px;
+  height: 15px;
 }
 
 /* styles for user onboarding */
@@ -228,6 +232,7 @@ ol {
 /* styles for .podcast-results and children */
 .podcast-results {
   max-height: calc(100vh - 144px);
+  /* note: max-height changed to calc(100vh - 273px) when backButton runs in main.js */
   overflow: auto;
 }
 
@@ -282,7 +287,7 @@ ol {
   background: white;
   padding: 8px;
   width: 97vw;
-  height: calc(100vh - 144px - 20px);
+  /* height: calc(100vh - 144px - 20px); */
   margin-left: auto;
   margin-right: auto;
   margin-top: 15px;
@@ -328,8 +333,6 @@ ol {
 }
 
 .wikipedia-frame {
-  /* margin-top: 10px; */
-
   height: calc(100vh - 144px - 20px);
   width: 97vw;
   margin-left: auto;
@@ -337,17 +340,19 @@ ol {
   border: 1px solid white;
   border-radius: 4px;
   box-shadow: 0px 4px 3px rgba(0, 0, 0, 0.25);
-  /* margin-bottom: 16vh; */
 }
 
 /* styles for .podcast-player and children */
+.podcast-player {
+  border-top: 1px solid #D2D2D2;
+}
+
 .player {
   box-shadow: none;
   border: none;
-  /* margin-bottom: -6px; */
   position: fixed;
   bottom: 0;
-  height: 144px;
+  height: 143px;
   background-color: white;
   width: 100vw;
 }
@@ -399,7 +404,7 @@ ol {
 
   .selected-podcast {
     width: 47vw;
-    /* margin-top: 4vh; */
+    height: calc(100vh - 144px - 20px);
     overflow: scroll;
   }
 
@@ -409,13 +414,11 @@ ol {
 
   .wikipedia-frame {
     width: 47vw;
-    /* margin-top: 4vh; */
   }
 
   .flex-parent {
     display: flex;
   }
-
 }
 
 @media screen and (min-width: 1000px) {
@@ -424,8 +427,6 @@ ol {
     padding-right: 20vw;
   }
 }
-
-
 
 .hidden {
   display: none;

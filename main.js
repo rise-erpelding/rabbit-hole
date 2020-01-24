@@ -241,6 +241,7 @@ function watchForm() {
         getPodcasts(searchTerm);
         $('.js-search-term').val('');
         $('body').css('background-image', 'none');
+        $('.search-container').css('border-bottom','1px solid #D2D2D2');
         $('.subtitle').remove();
         $('.big-title').addClass('small-title');
         $('.main').removeClass('shorter-screen');
