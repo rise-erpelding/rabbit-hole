@@ -1,0 +1,35 @@
+body {
+  background: white;
+  font-family: 'Arima Madurai', sans-serif;
+}
+
+.preloader-text {
+  text-align: center;
+  position: relative;
+  top: calc(50vh + 30px);
+  color: #541810;
+}
+
+.preloader {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100px;
+  height: 86px;
+
+  background: 
+    url('Images/rabbit-sprite-strip-maroon-2300-min.png');
+    animation: animate 0.7s steps(23) infinite;
+}
+
+
+@keyframes animate {
+  from {
+    background-position: 0;
+  }
+
+  to {
+    background-position: -2300px;
+  }
+}

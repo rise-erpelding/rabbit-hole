@@ -24,11 +24,8 @@ Landing page:
 Search results:
 ![podcast search results](Screenshots/search-results.png)
 
-Podcast player and details for podcast episode, with Wikipedia links:
-![podcast player and wikipedia links, with podcast details](Screenshots/player-and-links.png)
-
-Wikipedia within the app:
-![wikipedia article within the app](Screenshots/wikipedia-view.png)
+Podcast player and details for podcast episode, with suggested Wikipedia links:
+![podcast player and wikipedia links, with podcast details](Screenshots/player-and-wikipedia.png)
 
 
 [See Rabbit Hole in action](https://rise-erpelding.github.io/rabbit-hole/)

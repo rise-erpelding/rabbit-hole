@@ -1,33 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Rabbit Hole</title>
-    <link rel="shortcut icon" href="#">
-    <script src="https://kit.fontawesome.com/08a7f00056.js" crossorigin="anonymous"></script>
-    <link href="https://fonts.googleapis.com/css?family=Arima+Madurai&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Averia+Serif+Libre:700&display=swap" rel="stylesheet">
-    <link href="https://meyerweb.com/eric/tools/css/reset/reset.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="main.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Rabbit Hole</title>
+  <link rel="shortcut icon" href="#">
+  <script src="https://kit.fontawesome.com/08a7f00056.js" crossorigin="anonymous"></script>
+  <link href="https://fonts.googleapis.com/css?family=Arima+Madurai&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap" rel="stylesheet">
+  <link href="https://meyerweb.com/eric/tools/css/reset/reset.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="index.css">
+  <link rel="apple-touch-icon" sizes="180x180" href="Favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="Favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="Favicon/favicon-16x16.png">
+  <link rel="manifest" href="Favicon/site.webmanifest">
+
 </head>
 <body>
-    <header class="search-container">
-        <h1 class="big-title">Rabbit Hole</h1>
-        <h2 class="subtitle">Listen. Read. Learn more.</h2>
-        <form class="podcast-search">
-            <input type="text" name="search-term" class="js-search-term" placeholder="Search for podcast names, topics, people..." required>
-            <button class="submit" type="submit"><i class="fas fa-search"></i></button>
-        </form>
-        <div class="logos"><p><a href="https://www.listennotes.com/" target="_blank"><img class="listen-notes-logo" src="Images/listennoteslogo-min.png" alt="ListenNotes logo"></a></p><p><a href="https://dandelion.eu/" target="_blank"><img class="dandelion-logo" src="Images/dandelion-min.png" alt="Dandelion Logo"></a></p></div>
-        <div class="start-onboarding"><i class="fas fa-question-circle"></i>
-        </div>
-    </header>
-    <main role="main" class="main">
-
+    <main class="main">
+        <section class="search-container">
+            <h1 class="big-title">Rabbit Hole</h1>
+            <h2 class="subtitle">Listen. Read. Learn more.</h2>
+            <form class="podcast-search">
+                <input type="text" name="search-term" class="js-search-term" placeholder="Search for podcast names, topics, people..." required>
+                <button class="submit" type="submit"><i class="fas fa-search"></i></button>
+            </form>
+            <div class="logos"><p><a href="https://www.listennotes.com/" target="_blank"><img class="listen-notes-logo" src="Images/listennoteslogo.png" alt="ListenNotes logo"></a></p><p><a href="https://dandelion.eu/" target="_blank"><img class="dandelion-logo" src="Images/dandelion.png" alt="Dandelion Logo"></a></p></div>
+            <div class="start-onboarding"><i class="fas fa-question-circle"></i>
+            </div>
+        </section>  
 
         <section class="js-error-message"></section>
 
@@ -94,9 +97,34 @@
             <iframe class="player"></iframe>
         </footer>
 
+        <div class="flex-parent hidden">
+          <div class="go-back"><i class="fas fa-times"></i></div>
+          <section class="selected-podcast hidden">
+            <div class="podcast-info"></div>
+            <div class="wiki-results">
+                <h3>Wikipedia results related to your podcast:</h3>
+                <ul class="wiki-list"></ul>
+            </div>
+        </section>
 
+        <section class="wikipedia hidden">
+            <iframe class="wikipedia-frame"
+                title="Wikipedia Page"
+                name="wiki_iframe"
+                src="preloader.html">
+            </iframe>
+        </section>
+        </div>
 
-    
+        <div class="back-to-top hidden">
+            <i class="fas fa-chevron-up"></i>
+        </div>
+        
+    </main>
+
+    <footer class="podcast-player hidden">
+        <iframe class="player" src="Images/listennoteslogo.png"></iframe>
+    </footer>
 
 
 
