@@ -29,6 +29,7 @@ function backToTop() {
 // player.
 function backButton() {
   $('.flex-parent').on('click', '.go-back', event => {
+    $('.selected-podcast').scrollTop(0);
     $('.selected-podcast, .full-description, .listen-notes-link, .wikipedia, .flex-parent').addClass('hidden');
     $('.podcast-results, .search-container').show();
     $('.podcast-description').removeClass('hidden');

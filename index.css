@@ -406,10 +406,12 @@ ol {
     width: 47vw;
     height: calc(100vh - 144px - 20px);
     overflow: scroll;
+    margin-left: 0px;
   }
 
   .wikipedia {
     width: 47vw;
+    margin-left: 0px;
   } 
 
   .wikipedia-frame {
@@ -418,6 +420,7 @@ ol {
 
   .flex-parent {
     display: flex;
+    justify-content: flex-start;
   }
 }
 
