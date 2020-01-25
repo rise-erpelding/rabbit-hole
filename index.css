@@ -30,6 +30,7 @@ a {
 }
 
 .go-back {
+  margin-top: 5px;
   margin-left: 10px;
   margin-right: 10px;
 }
@@ -37,7 +38,6 @@ a {
 .fa-times {
   font-size: 2em;
   margin-left: 2px;
-  margin-bottom: 3px;
   color: #235789;
 }
 
@@ -283,14 +283,18 @@ ol {
   margin: 20px 50px 20px 50px;
 }
 
-/* styles for .selected-podcast and children */
+/* styles for .flex-parent and children */
+.flex-parent {
+  display: flex;
+  flex-direction: column;
+}
 .selected-podcast {
   background: white;
   padding: 8px;
   width: 97vw;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 15px;
+  margin-top: 5px;
   border-radius: 4px;
   box-shadow: 0px 4px 3px rgba(0, 0, 0, 0.25);
 }
@@ -323,17 +327,16 @@ ol {
   margin-bottom: 3px;
 }
 
-/* styles for .wikipedia and children   */
 .wikipedia {
-  margin-top: 15px;
+  margin-top: 10px;
   width: 97vw;
   margin-left: auto;
   margin-right: auto;
-  height: calc(100vh - 144px - 20px);
+  height: calc(100vh - 144px - 40px);
 }
 
 .wikipedia-frame {
-  height: calc(100vh - 144px - 20px);
+  height: calc(100vh - 144px - 40px);
   width: 97vw;
   margin-left: auto;
   margin-right: auto;
@@ -404,14 +407,16 @@ ol {
 
   .selected-podcast {
     width: 47vw;
-    height: calc(100vh - 144px - 20px);
+    height: calc(100vh - 144px - 40px);
     overflow: scroll;
     margin-left: 0px;
+    margin-top: 40px;
   }
 
   .wikipedia {
     width: 47vw;
     margin-left: 0px;
+    margin-top: 40px;
   } 
 
   .wikipedia-frame {
@@ -419,7 +424,7 @@ ol {
   }
 
   .flex-parent {
-    display: flex;
+    flex-direction: row;
     justify-content: flex-start;
   }
 }
